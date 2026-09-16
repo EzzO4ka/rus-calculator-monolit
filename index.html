@@ -283,7 +283,29 @@
     </div>
   </div>
 
-  <!-- Окно блокировки за нарушение ст. 6.21 КоАП РФ -->
+  <!-- Модальное окно: УСПЕШНОЕ ПРОХОЖДЕНИЕ ПРОВЕРКИ С ЗЕЛЁНОЙ ГАЛОЧКОЙ -->
+  <div id="captcha-success-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#19221d] border-2 border-monolith-success rounded-[6px] max-w-md w-full p-6 shadow-2xl text-center space-y-4">
+      <div class="w-16 h-16 mx-auto rounded-full bg-emerald-950/80 border-2 border-monolith-success flex items-center justify-center text-monolith-success shadow-[0_0_20px_rgba(63,174,123,0.35)] animate-bounce">
+        <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+      </div>
+      <div>
+        <div class="inline-block px-2.5 py-0.5 rounded bg-monolith-success/20 border border-monolith-success text-monolith-success text-[10px] font-mono font-bold tracking-widest uppercase">
+          ПРОВЕРКА ПРОЙДЕНА УСПЕШНО
+        </div>
+        <h3 class="font-bold text-base sm:text-lg text-monolith-textPrimary font-mono mt-2">ДОСТУП ВОССТАНОВЛЕН</h3>
+        <p class="text-xs sm:text-sm text-emerald-100/90 font-mono mt-3 leading-relaxed bg-black/40 p-3 rounded border border-monolith-success/30">
+          Вы успешно прошли выборочную проверку Роскомнадзора. Ваша приверженность духовно-нравственным ценностям подтверждена. Можете дальше пользоваться калькулятором!
+        </p>
+      </div>
+      <button id="btn-close-success" class="w-full py-2.5 bg-monolith-success hover:bg-emerald-600 text-[#121c16] font-mono text-xs font-bold uppercase tracking-wider rounded transition active:scale-95 shadow-md flex items-center justify-center gap-2">
+        <i data-lucide="calculator" class="w-4 h-4"></i>
+        <span>Продолжить пользоваться</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Окно временной блокировки за нарушение ст. 6.21 КоАП РФ (24 часа) -->
   <div id="lockout-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 hidden flex items-center justify-center p-4">
     <div class="bg-[#1f1515] border-2 border-monolith-triRed rounded-[6px] max-w-md w-full p-6 shadow-2xl text-center space-y-4 animate-pulse">
       <div class="w-16 h-16 mx-auto rounded-full bg-red-950 flex items-center justify-center border-2 border-monolith-triRed text-monolith-triRed">
@@ -300,6 +322,34 @@
       </div>
       <div class="p-3 bg-black/40 rounded font-mono text-xs text-monolith-steelLight">
         Время до разблокировки: <span id="lockout-timer" class="text-monolith-triRed font-bold">23:59:59</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Окно БЕССРОЧНОЙ (ВЕЧНОЙ) БЛОКИРОВКИ при повторных попаданиях под проверку -->
+  <div id="perm-lockout-modal" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#1b1212] border-4 border-monolith-triRed rounded-[6px] max-w-lg w-full p-6 sm:p-8 shadow-[0_0_50px_rgba(192,57,43,0.5)] text-center space-y-5">
+      <div class="w-20 h-20 mx-auto rounded-full bg-red-950/80 flex items-center justify-center border-4 border-monolith-triRed text-monolith-triRed shadow-2xl animate-pulse">
+        <i data-lucide="shield-ban" class="w-12 h-12"></i>
+      </div>
+      <div class="space-y-2">
+        <div class="inline-block px-3 py-1 rounded bg-monolith-triRed text-white font-mono text-xs font-bold tracking-widest uppercase">
+          БЕССРОЧНОЕ ПРЕДПИСАНИЕ РОСКОМНАДЗОРА
+        </div>
+        <h2 class="font-bold text-xl sm:text-2xl text-monolith-triRed font-mono uppercase tracking-wider">
+          ДОСТУП ЗАБЛОКИРОВАН НАВСЕГДА
+        </h2>
+        <div class="p-4 bg-black/70 rounded border border-monolith-triRed/60 text-xs sm:text-sm font-mono text-left text-red-200/90 leading-relaxed space-y-2">
+          <p>
+            Внимание! Вы неоднократно и систематически попадали под выборочную проверку Роскомнадзора по факту генерации запрещённого значения 67.
+          </p>
+          <p class="text-amber-300 font-semibold">
+            В связи с повторными рецидивами калькулятор «Монолит» заблокирован навсегда без права восстановления доступа!
+          </p>
+        </div>
+      </div>
+      <div class="p-3 bg-red-950/40 rounded border border-red-900/50 font-mono text-xs text-monolith-steelLight">
+        Статус доступа: <span class="text-monolith-triRed font-bold tracking-widest uppercase">БЛОКИРОВКА БЕССРОЧНАЯ (НАВСЕГДА)</span>
       </div>
     </div>
   </div>
@@ -719,7 +769,9 @@
     const FORBIDDEN_WARNING = "значение 67 six seven запрещено роскомнадзором, соблюдайте духовно нравственные ценности России";
 
     let forbiddenViolationCount = 0;
+    let roskomInspectionCount = 0; // Счётчик попаданий под выборочную проверку Роскомнадзора
     let isLockedOut = false;
+    let isPermLockedOut = false; // Флаг вечной блокировки
     let lockoutEndTime = null;
     let captchaAnswers = { hasChildren: null, branchChoice: null, branchWhy: null };
 
@@ -983,12 +1035,16 @@
     const censorshipModal = document.getElementById('censorship-modal');
 
     function isForbidden(val) {
-      if (isLockedOut) return false;
+      if (isPermLockedOut || isLockedOut) return false;
       const num = typeof val === 'number' ? val : parseFloat(String(val).replace(',', '.'));
       return !isNaN(num) && Math.abs(num - FORBIDDEN_VALUE) < 1e-9;
     }
 
     function triggerCensorship() {
+      if (isPermLockedOut) {
+        showPermLockoutScreen();
+        return;
+      }
       if (isLockedOut) {
         showLockoutScreen();
         return;
@@ -1007,7 +1063,14 @@
 
       forbiddenViolationCount++;
 
+      // Если пользователь уже ранее попадал под проверку и снова нарушает правило
+      if (roskomInspectionCount >= 1 && forbiddenViolationCount >= 2) {
+        triggerPermanentLockout();
+        return;
+      }
+
       if (forbiddenViolationCount >= 3) {
+        roskomInspectionCount++;
         censorshipModal.classList.add('hidden');
         document.getElementById('roskom-warning-modal').classList.remove('hidden');
         playMonolithVoice('roskom');
@@ -1041,8 +1104,14 @@
       document.getElementById('captcha-modal').classList.remove('hidden');
     });
 
+    // Обработчик закрытия окна успеха (зеленой галочки)
+    document.getElementById('btn-close-success').addEventListener('click', () => {
+      document.getElementById('captcha-success-modal').classList.add('hidden');
+      updateDisplay();
+    });
+
     // =========================================================================
-    // ЛОГИКА КАПЧИ И БЛОКИРОВКИ ПО СТАТЬЕ 6.21
+    // ЛОГИКА КАПЧИ И БЛОКИРОВОК (ВРЕМЕННОЙ И ВЕЧНОЙ)
     // =========================================================================
     function initCaptcha() {
       captchaAnswers = { hasChildren: null, branchChoice: null, branchWhy: null };
@@ -1218,11 +1287,15 @@
       } else {
         document.getElementById('captcha-modal').classList.add('hidden');
         forbiddenViolationCount = 0;
+        
+        // Показываем модальное окно с зелёной галочкой
+        document.getElementById('captcha-success-modal').classList.remove('hidden');
         showToast("Проверка пройдена! Духовно-нравственные ценности подтверждены.", "info");
-        updateDisplay();
+        lucide.createIcons();
       }
     });
 
+    // Временная блокировка на 24 часа (статья 6.21)
     function triggerLockout() {
       isLockedOut = true;
       lockoutEndTime = Date.now() + 24 * 60 * 60 * 1000;
@@ -1255,6 +1328,27 @@
       }, 1000);
     }
 
+    // БЕССРОЧНАЯ (ВЕЧНАЯ) БЛОКИРОВКА ПРИ РЕЦИДИВАХ
+    function triggerPermanentLockout() {
+      isPermLockedOut = true;
+      censorshipModal.classList.add('hidden');
+      document.getElementById('roskom-warning-modal').classList.add('hidden');
+      document.getElementById('captcha-modal').classList.add('hidden');
+      document.getElementById('captcha-success-modal').classList.add('hidden');
+      stopAllVoiceAndSiren();
+      startWarningSiren(true);
+      showPermLockoutScreen();
+      showToast("ВНИМАНИЕ: Калькулятор заблокирован навсегда!", "error");
+    }
+
+    function showPermLockoutScreen() {
+      document.getElementById('perm-lockout-modal').classList.remove('hidden');
+      calcDisplay.textContent = 'БЛОК НАВСЕГДА';
+      calcStatusMsg.textContent = 'БЕССРОЧНОЕ ПРЕДПИСАНИЕ РОСКОМНАДЗОРА';
+      calcStatusMsg.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
     // =========================================================================
     // ОФОРМЛЕНИЕ И ВЫЧИСЛИТЕЛЬНОЕ ЯДРО
     // =========================================================================
@@ -1271,6 +1365,10 @@
     }
 
     function updateDisplay() {
+      if (isPermLockedOut) {
+        showPermLockoutScreen();
+        return;
+      }
       if (isLockedOut) {
         showLockoutScreen();
         return;
@@ -1303,6 +1401,7 @@
     }
 
     function inputDigit(digit) {
+      if (isPermLockedOut) return;
       audioSys.playClick(false);
       triggerHaptic();
 
@@ -1328,6 +1427,7 @@
     }
 
     function inputDecimal() {
+      if (isPermLockedOut) return;
       audioSys.playClick(false);
       triggerHaptic();
       if (state.waitingForOperand) {
@@ -1340,6 +1440,7 @@
     }
 
     function toggleSign() {
+      if (isPermLockedOut) return;
       audioSys.playClick(true);
       triggerHaptic();
       if (state.currentValue === '0') return;
@@ -1352,6 +1453,7 @@
     }
 
     function backspace() {
+      if (isPermLockedOut) return;
       audioSys.playClick(true);
       triggerHaptic();
       if (state.waitingForOperand) return;
@@ -1364,6 +1466,7 @@
     }
 
     function clearAll() {
+      if (isPermLockedOut) return;
       audioSys.playClick(true);
       triggerHaptic();
       state.currentValue = '0';
@@ -1375,6 +1478,7 @@
     }
 
     function handlePercent() {
+      if (isPermLockedOut) return;
       audioSys.playClick(true);
       triggerHaptic();
       const current = parseFloat(state.currentValue);
@@ -1407,6 +1511,7 @@
     }
 
     function setOperation(nextOp) {
+      if (isPermLockedOut) return;
       audioSys.playClick(true);
       triggerHaptic();
       const inputValue = parseFloat(state.currentValue);
@@ -1434,6 +1539,7 @@
     }
 
     function executeEquals() {
+      if (isPermLockedOut) return;
       audioSys.playClick(true, true);
       triggerHaptic(20);
 
@@ -1467,6 +1573,7 @@
     }
 
     function handleEngineering(engAction) {
+      if (isPermLockedOut) return;
       audioSys.playClick(true);
       triggerHaptic();
       const curr = parseFloat(state.currentValue) || 0;
@@ -1530,6 +1637,7 @@
     }
 
     function handleMemory(memAction) {
+      if (isPermLockedOut) return;
       audioSys.playClick(true);
       triggerHaptic();
       const curr = parseFloat(state.currentValue) || 0;
@@ -1891,7 +1999,7 @@
     });
 
     // =========================================================================
-    // ПРИВЯЗКА КНОПОК ОСНОВНОЙ КЛАВИАТУРЫ И ГОРАЧИХ КЛАВИШ
+    // ПРИВЯЗКА КНОПОК ОСНОВНОЙ КЛАВИАТУРЫ И ГОРЯЧИХ КЛАВИШ
     // =========================================================================
     document.querySelectorAll('[data-num]').forEach(btn => {
       btn.addEventListener('click', () => inputDigit(btn.dataset.num));
