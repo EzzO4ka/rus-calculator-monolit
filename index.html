@@ -5,15 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Монолит — Национальный калькулятор</title>
   
-  <!-- Подключение шрифтов Golos Text и JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
@@ -36,16 +32,12 @@
               success: '#3FAE7B',
               warning: '#E59B37',
               triWhite: '#D8DADF',
-              triWhiteHover: '#ECEEF2',
-              triWhiteActive: '#BFC3CB',
               triWhiteText: '#1C1E22',
               triBlue: '#2E4FB5',
               triBlueHover: '#385CD1',
-              triBlueActive: '#1D3582',
               triBlueBorder: '#456BE0',
               triRed: '#C0392B',
               triRedHover: '#D64535',
-              triRedActive: '#8E2418',
               triRedBorder: '#E04B3B'
             }
           },
@@ -55,12 +47,10 @@
           },
           boxShadow: {
             'concrete': '0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-            'btn-inset': 'inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.03)',
-            'btn-lift': '0 3px 0 #181A1D, 0 4px 6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
-            'btn-lift-white': '0 3px 0 #8B909A, 0 4px 6px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
-            'btn-lift-blue': '0 3px 0 #152865, 0 4px 8px rgba(30, 58, 138, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25)',
-            'btn-lift-equals': '0 3px 0 #122256, 0 0 12px rgba(46, 79, 181, 0.55), 0 5px 10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35)',
-            'btn-lift-red': '0 3px 0 #691710, 0 4px 8px rgba(192, 57, 43, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25)'
+            'btn-lift-white': '0 3px 0 #7A818E, 0 4px 6px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.85)',
+            'btn-lift-blue': '0 3px 0 #152865, 0 4px 8px rgba(22, 44, 107, 0.5), inset 0 1px 0 rgba(255,255,255,0.25)',
+            'btn-lift-equals': '0 3px 0 #122256, 0 0 14px rgba(46, 79, 181, 0.55), inset 0 1px 0 rgba(255,255,255,0.4)',
+            'btn-lift-red': '0 3px 0 #691710, 0 4px 8px rgba(192, 57, 43, 0.45), inset 0 1px 0 rgba(255,255,255,0.25)'
           }
         }
       }
@@ -75,17 +65,15 @@
       background-size: 24px 24px, 12px 12px;
       background-position: 0 0, 6px 6px;
     }
-
     .mono-btn {
       position: relative;
       user-select: none;
       transition: all 0.08s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .mono-btn:active, .mono-btn.active-press {
+    .mono-btn:active {
       transform: translateY(2px) scale(0.985);
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6) !important;
     }
-
     .btn-tricolor-white {
       background-color: #D8DADF;
       color: #1C1E22;
@@ -93,14 +81,7 @@
       border-radius: 3px;
       box-shadow: 0 3px 0 #7A818E, 0 4px 6px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.85);
     }
-    .btn-tricolor-white:hover {
-      background-color: #ECEEF2;
-    }
-    .btn-tricolor-white:active {
-      background-color: #BFC3CB;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.5) !important;
-    }
-
+    .btn-tricolor-white:hover { background-color: #ECEEF2; }
     .btn-tricolor-blue {
       background-color: #2E4FB5;
       color: #FFFFFF;
@@ -108,14 +89,7 @@
       border-radius: 7px;
       box-shadow: 0 3px 0 #152865, 0 4px 8px rgba(22, 44, 107, 0.5), inset 0 1px 0 rgba(255,255,255,0.25);
     }
-    .btn-tricolor-blue:hover {
-      background-color: #385CD1;
-    }
-    .btn-tricolor-blue:active {
-      background-color: #1D3582;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.6) !important;
-    }
-
+    .btn-tricolor-blue:hover { background-color: #385CD1; }
     .btn-tricolor-equals {
       background: linear-gradient(180deg, #375CE2 0%, #2646A9 100%);
       color: #FFFFFF;
@@ -123,15 +97,6 @@
       border-radius: 7px;
       box-shadow: 0 3px 0 #122256, 0 0 14px rgba(46, 79, 181, 0.55), inset 0 1px 0 rgba(255,255,255,0.4);
     }
-    .btn-tricolor-equals:hover {
-      background: linear-gradient(180deg, #4369F0 0%, #2B4EBD 100%);
-      box-shadow: 0 3px 0 #122256, 0 0 18px rgba(67, 105, 240, 0.7), inset 0 1px 0 rgba(255,255,255,0.5);
-    }
-    .btn-tricolor-equals:active {
-      background: #182C6D;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.7) !important;
-    }
-
     .btn-tricolor-red {
       background-color: #C0392B;
       color: #FFFFFF;
@@ -139,49 +104,10 @@
       border-radius: 4px;
       box-shadow: 0 3px 0 #691710, 0 4px 8px rgba(192, 57, 43, 0.45), inset 0 1px 0 rgba(255,255,255,0.25);
     }
-    .btn-tricolor-red:hover {
-      background-color: #D64535;
-    }
-    .btn-tricolor-red:active {
-      background-color: #8E2418;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.6) !important;
-    }
-
-    .role-badge {
-      display: none;
-      position: absolute;
-      top: 2px;
-      left: 3px;
-      font-size: 8px;
-      line-height: 1;
-      opacity: 0.7;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      pointer-events: none;
-    }
-    body.show-role-hints .role-badge {
-      display: block;
-    }
-
+    .btn-tricolor-red:hover { background-color: #D64535; }
     .display-recess {
       box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.05);
       background: linear-gradient(180deg, #181A1D 0%, #1D2024 100%);
-    }
-
-    ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #1C1E22;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #5A6672;
-      border-radius: 2px;
-    }
-
-    .counter-value {
-      font-variant-numeric: tabular-nums;
     }
   </style>
 </head>
@@ -191,10 +117,10 @@
   <!-- Контейнер оповещений -->
   <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm"></div>
 
-  <!-- Модальное окно цензуры числа 67 -->
+  <!-- Модальное окно цензуры числа 67 (Первое предупреждение) -->
   <div id="censorship-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-monolith-surface border-2 border-monolith-triRed rounded-[6px] max-w-md w-full p-5 shadow-2xl space-y-4 text-center animate-pulse">
-      <div class="w-12 h-12 mx-auto rounded-full bg-monolith-triRed/20 flex items-center justify-center border border-monolith-triRed text-monolith-triRed">
+    <div class="bg-monolith-surface border-2 border-monolith-triRed rounded-[6px] max-w-md w-full p-5 shadow-2xl space-y-4 text-center">
+      <div class="w-12 h-12 mx-auto rounded-full bg-monolith-triRed/20 flex items-center justify-center border border-monolith-triRed text-monolith-triRed animate-pulse">
         <i data-lucide="shield-alert" class="w-7 h-7"></i>
       </div>
       <div>
@@ -203,105 +129,173 @@
           значение 67 six seven запрещено роскомнадзором, соблюдайте духовно нравственные ценности России
         </p>
       </div>
-      <button id="btn-close-censorship" class="w-full py-2.5 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition">
-        Принять к сведению
-      </button>
+      <div id="audio-status-first" class="text-[11px] font-mono text-amber-400 flex items-center justify-center gap-1.5 py-1">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+        <span id="audio-label-first">Воспроизведение сирены и озвучки...</span>
+      </div>
+      <div class="pt-1 flex flex-col sm:flex-row gap-2">
+        <button id="btn-replay-first-voice" class="py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+          <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
+          <span>Озвучить повторно</span>
+        </button>
+        <button id="btn-close-censorship" class="flex-1 py-2.5 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition active:scale-95">
+          Принять к сведению
+        </button>
+      </div>
     </div>
   </div>
 
-  <header class="w-full max-w-4xl mx-auto px-4 pt-3 pb-2 flex items-center justify-between border-b border-monolith-steel/20 select-none">
-    <div class="flex items-center gap-3">
-      <!-- Изометрический логотип -->
-      <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-[6px] bg-[#17191D] border border-monolith-steel/35 shadow-md flex items-center justify-center p-1 relative group cursor-pointer hover:border-monolith-triBlue transition-all flex-shrink-0" title="Национальный калькулятор «Монолит»">
-        <svg class="w-full h-full filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.55)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 14L66 30.5H58V40H50V14Z" fill="#CAD2DD" />
-          <path d="M50 14L34 30.5H42V40H50V14Z" fill="#F4F6F9" />
-          <path d="M50 40L42 35V43L50 48L58 43V35L50 40Z" fill="#122A54" />
-          <path d="M50 40L42 35V43L50 48V40Z" fill="#0E2142" />
-          <path d="M20.5 46.5L33 33.5L42 41V64.5L26 56.5V46.5L20.5 46.5Z" fill="#1E57AF" />
-          <path d="M26 46.5L33 41L50 50V68.5L26 57V46.5Z" fill="#164388" />
-          <path d="M50 60L33.5 50V79.5H36.5V52L50 62.5V60Z" fill="#FFFFFF" />
-          <path d="M26 65.5L50 78.5V89.5C49 89.5 47.5 88.5 45.5 87L28 77C26.5 75.8 26 74 26 71.5V65.5Z" fill="#C52B20" />
-          <path d="M26 65.5L33.5 69.5V79.5L26 75.5V65.5Z" fill="#AA2218" />
-          <path d="M50 44L66 31L79.5 25.5L76.5 39.5L73.5 38.5V47.5L50 61V44Z" fill="#1B4F9E" />
-          <path d="M50 44L73.5 30.5V77.5C73.5 79.5 72.5 81 70.5 82L50 89.5V44Z" fill="#1B4D97" />
-          <path d="M50 44L73.5 30.5V47.5L50 61V44Z" fill="#112952" />
-          <g transform="translate(52, 38) skewY(30)">
-            <rect x="0" y="0" width="18" height="7.5" rx="0.8" fill="#0A1830" />
-            <text x="1.5" y="5.6" fill="#E2EDF9" font-family="'JetBrains Mono', monospace" font-size="4.6" font-weight="700" letter-spacing="0.4">2024</text>
-          </g>
-          <path d="M58 56.5V85M65.5 52V76M50 70.5L73.5 57M50 79.5L73.5 66" stroke="#12356B" stroke-width="0.85" />
-          <g transform="translate(50.5, 62) skewY(30)">
-            <text x="2" y="3.5" fill="#93B4E8" font-family="'JetBrains Mono', monospace" font-size="4.2" font-weight="bold">+</text>
-            <text x="9" y="3.5" fill="#93B4E8" font-family="'JetBrains Mono', monospace" font-size="4.5" font-weight="bold">−</text>
-            <text x="9" y="11" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="3.4" font-weight="bold">%</text>
-          </g>
-          <path d="M65.5 61.5L73.5 57V76L65.5 80.5V61.5Z" fill="#C02D22" />
-          <g transform="translate(66, 68) skewY(30)">
-            <text x="1.5" y="3.5" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="4.2" font-weight="bold">=</text>
-          </g>
-          <path d="M50 78.5L73.5 65V76.5C73.5 78.5 72 80 70 81.5L50 89.5V78.5Z" fill="#D32F2F" />
-        </svg>
+  <!-- Предписание Роскомнадзора при повторных нарушениях -->
+  <div id="roskom-warning-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#1a1c20] border-2 border-monolith-triRed rounded-[6px] max-w-lg w-full p-6 shadow-2xl space-y-4 text-center">
+      <div class="w-14 h-14 mx-auto rounded-full bg-red-950/60 flex items-center justify-center border-2 border-monolith-triRed text-monolith-triRed animate-bounce">
+        <i data-lucide="siren" class="w-8 h-8"></i>
+      </div>
+      <div class="space-y-2">
+        <div class="inline-block px-2.5 py-0.5 rounded bg-monolith-triRed/20 border border-monolith-triRed text-monolith-triRed text-[11px] font-mono font-bold tracking-widest uppercase">
+          ФЕДЕРАЛЬНАЯ СЛУЖБА ПО НАДЗОРУ В СФЕРЕ СВЯЗИ (РОСКОМНАДЗОР)
+        </div>
+        <h3 class="font-bold text-base sm:text-lg text-monolith-textPrimary font-mono">ВЫБОРОЧНАЯ ПРОВЕРКА ЦЕННОСТЕЙ</h3>
+        <p id="roskom-warning-text" class="text-xs sm:text-sm text-amber-200 font-mono leading-relaxed bg-black/50 p-4 rounded border border-monolith-triRed/50 text-left">
+          Внимание, вы много раз нарушили правила духовно нравственных ценностей, вы попали под выборочную проверку Роскомнадзором. Пройдите в течение 1 дня, согласно 19.3 КоАП РФ предусмотрена ответственность!
+        </p>
+      </div>
+      <div id="audio-status-roskom" class="text-[11px] font-mono text-amber-400 flex items-center justify-center gap-1.5 py-1">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+        <span id="audio-label-roskom">Воспроизведение предписания...</span>
+      </div>
+      <div class="pt-2 flex flex-col sm:flex-row gap-2">
+        <button id="btn-replay-voice" class="flex-1 py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+          <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
+          <span>Повторить озвучку</span>
+        </button>
+        <button id="btn-start-captcha" class="flex-1 py-2.5 px-3 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded shadow-lg transition flex items-center justify-center gap-2 active:scale-95">
+          <i data-lucide="clipboard-check" class="w-4 h-4"></i>
+          <span>Пройти проверку</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Окно теста: Капча духовно-нравственных ценностей -->
+  <div id="captcha-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-monolith-surface border border-monolith-steel/40 rounded-[6px] max-w-lg w-full p-5 shadow-2xl space-y-4 my-auto">
+      <div class="flex items-center justify-between border-b border-monolith-steel/20 pb-3">
+        <div class="flex items-center gap-2">
+          <i data-lucide="stamp" class="w-5 h-5 text-monolith-triRed"></i>
+          <div>
+            <h3 class="font-bold text-sm tracking-wide font-mono text-monolith-textPrimary">КАПЧА: РОСКОМНАДЗОР</h3>
+            <p class="text-[10px] text-monolith-steelLight">Проверка приверженности духовно-нравственным ценностям</p>
+          </div>
+        </div>
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-monolith-bg border border-monolith-steel/30 text-amber-300">ФОРМА 19.3-РФ</span>
       </div>
 
+      <div id="captcha-questions-container" class="space-y-4 text-xs font-mono">
+        <!-- Шаг 1 -->
+        <div class="p-3 bg-monolith-bg rounded border border-monolith-steel/30 space-y-2">
+          <label class="block font-semibold text-monolith-textPrimary">1. Есть ли у вас дети?</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" data-q1="yes" class="captcha-choice-btn py-2 px-3 bg-monolith-plate border border-monolith-steel/40 rounded text-center transition">Да, есть</button>
+            <button type="button" data-q1="no" class="captcha-choice-btn py-2 px-3 bg-monolith-plate border border-monolith-steel/40 rounded text-center transition">Пока нет</button>
+          </div>
+        </div>
+
+        <!-- Шаг 2 (динамический) -->
+        <div id="captcha-branch-container" class="space-y-4"></div>
+
+        <div id="captcha-pending-hint" class="p-3 bg-monolith-bg/50 rounded border border-dashed border-monolith-steel/30 text-center text-[11px] text-monolith-steelLight">
+          Ответьте на тестовые вопросы выше, чтобы перейти к итоговому вопросу.
+        </div>
+
+        <!-- Шаг 3: Текстовый вопрос -->
+        <div id="captcha-q3-container" class="hidden p-3 bg-monolith-bg rounded border border-monolith-steel/40 space-y-2">
+          <label class="block font-semibold text-monolith-textPrimary flex items-center justify-between">
+            <span>3. Итоговый вопрос: Кто для вас мама, Россия и SHAMAN?</span>
+            <span class="text-[10px] text-monolith-triBlue">ОБЯЗАТЕЛЬНО</span>
+          </label>
+          <textarea id="captcha-text-answer" rows="3" class="w-full bg-[#181A1D] border border-monolith-steel/40 rounded p-2 text-monolith-textPrimary focus:border-monolith-triBlue focus:outline-none placeholder:text-monolith-steel text-xs" placeholder="Напишите развёрнутый ответ..."></textarea>
+        </div>
+      </div>
+
+      <div id="captcha-submit-container" class="hidden pt-2 flex justify-end gap-2 border-t border-monolith-steel/20">
+        <button id="btn-submit-captcha" class="w-full py-2.5 bg-monolith-triBlue hover:bg-monolith-triBlueHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 active:scale-95">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>Завершить проверку</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Окно блокировки за нарушение ст. 6.21 КоАП РФ -->
+  <div id="lockout-modal" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#1f1515] border-2 border-monolith-triRed rounded-[6px] max-w-md w-full p-6 shadow-2xl text-center space-y-4">
+      <div class="w-16 h-16 mx-auto rounded-full bg-red-950 flex items-center justify-center border-2 border-monolith-triRed text-monolith-triRed">
+        <i data-lucide="lock" class="w-9 h-9"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg text-monolith-triRed font-mono uppercase tracking-widest">ДОСТУП ЗАБЛОКИРОВАН</h3>
+        <div class="mt-1 inline-block px-2 py-0.5 rounded bg-monolith-triRed text-white font-mono text-[10px] font-bold">
+          СТАТЬЯ 6.21 КоАП РФ
+        </div>
+        <p class="text-xs text-monolith-textPrimary font-mono mt-3 leading-relaxed bg-black/60 p-3 rounded border border-monolith-triRed/40 text-left">
+          В ваших ответах обнаружены нарушения духовно-нравственных ценностей или пропаганда отказа от деторождения. Доступ к калькулятору ограничен на 24 часа. Согласно статье 6.21 КоАП РФ предусмотрена административная ответственность!
+        </p>
+      </div>
+      <div class="p-3 bg-black/40 rounded font-mono text-xs text-monolith-steelLight">
+        Время до разблокировки: <span id="lockout-timer" class="text-monolith-triRed font-bold">23:59:59</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Шапка -->
+  <header class="w-full max-w-4xl mx-auto px-4 pt-3 pb-2 flex items-center justify-between border-b border-monolith-steel/20 select-none">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-[6px] bg-[#17191D] border border-monolith-steel/35 shadow-md flex items-center justify-center p-1">
+        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
+          <path d="M50 14L66 30.5H58V40H50V14Z" fill="#CAD2DD" />
+          <path d="M50 14L34 30.5H42V40H50V14Z" fill="#F4F6F9" />
+          <path d="M26 46.5L50 50V68.5L26 57V46.5Z" fill="#164388" />
+          <path d="M50 44L73.5 30.5V77.5C73.5 79.5 72.5 81 70.5 82L50 89.5V44Z" fill="#1B4D97" />
+          <path d="M50 78.5L73.5 65V76.5L50 89.5V78.5Z" fill="#D32F2F" />
+        </svg>
+      </div>
       <div>
         <div class="flex items-center gap-2">
           <span class="font-bold tracking-wider text-base text-monolith-textPrimary uppercase">МОНОЛИТ</span>
           <span class="text-[10px] bg-monolith-surface border border-monolith-steel/30 px-1.5 py-0.5 rounded text-monolith-steelLight font-mono">СЕРТИФИЦИРОВАНО</span>
         </div>
-        <p class="text-[10px] text-monolith-textSecondary tracking-wide">НАЦИОНАЛЬНЫЙ ИНСТРУМЕНТ ТОЧНЫХ ВЫЧИСЛЕНИЙ</p>
+        <p class="text-[10px] text-monolith-textSecondary tracking-wide">НАЦИОНАЛЬНЫЙ ИНСТРУМЕНТ ВЫЧИСЛЕНИЙ</p>
       </div>
     </div>
-
     <div class="flex items-center gap-2">
-      <button id="btn-sound-toggle" title="Звуковой отклик реле" class="p-2 rounded-[4px] bg-monolith-surface hover:bg-monolith-plate border border-monolith-steel/25 text-monolith-steelLight hover:text-monolith-textPrimary transition">
+      <button id="btn-sound-toggle" class="p-2 rounded-[4px] bg-monolith-surface border border-monolith-steel/25 text-monolith-steelLight">
         <i data-lucide="volume-2" class="w-4 h-4"></i>
       </button>
-      <button id="btn-open-history" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-[4px] bg-monolith-surface hover:bg-monolith-plate border border-monolith-steel/25 text-xs font-medium text-monolith-textPrimary transition">
+      <button id="btn-open-history" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-[4px] bg-monolith-surface border border-monolith-steel/25 text-xs font-medium text-monolith-textPrimary">
         <i data-lucide="history" class="w-3.5 h-3.5 text-monolith-steel"></i>
         <span>История</span>
-        <span id="history-badge" class="hidden ml-1 px-1.5 py-0.2 text-[10px] bg-monolith-steel/30 rounded font-mono">0</span>
-      </button>
-      <button id="btn-open-settings" title="Справка и параметры" class="p-2 rounded-[4px] bg-monolith-surface hover:bg-monolith-plate border border-monolith-steel/25 text-monolith-steelLight hover:text-monolith-textPrimary transition">
-        <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
       </button>
     </div>
   </header>
 
+  <!-- Основной калькулятор -->
   <main class="flex-1 flex flex-col justify-center items-center p-3 sm:p-5 w-full max-w-4xl mx-auto">
-    <div class="w-full max-w-xl bg-monolith-surface border border-monolith-steel/30 rounded-[6px] shadow-concrete p-3 sm:p-5 relative transition-all duration-200">
+    <div class="w-full max-w-xl bg-monolith-surface border border-monolith-steel/30 rounded-[6px] shadow-concrete p-3 sm:p-5 relative">
       
-      <!-- Винты -->
-      <div class="absolute top-2 left-2 w-2 h-2 rounded-full border border-monolith-steel/40 flex items-center justify-center pointer-events-none opacity-40">
-        <div class="w-1.5 h-[1px] bg-monolith-steel"></div>
-      </div>
-      <div class="absolute top-2 right-2 w-2 h-2 rounded-full border border-monolith-steel/40 flex items-center justify-center pointer-events-none opacity-40">
-        <div class="w-1.5 h-[1px] bg-monolith-steel rotate-45"></div>
-      </div>
-      <div class="absolute bottom-2 left-2 w-2 h-2 rounded-full border border-monolith-steel/40 flex items-center justify-center pointer-events-none opacity-40">
-        <div class="w-1.5 h-[1px] bg-monolith-steel -rotate-45"></div>
-      </div>
-      <div class="absolute bottom-2 right-2 w-2 h-2 rounded-full border border-monolith-steel/40 flex items-center justify-center pointer-events-none opacity-40">
-        <div class="w-1.5 h-[1px] bg-monolith-steel rotate-90"></div>
-      </div>
-
       <!-- Дисплей -->
       <div class="display-recess rounded-[4px] p-4 mb-4 border border-monolith-steel/25 select-text relative">
         <div class="flex items-center justify-between text-[11px] font-mono text-monolith-textSecondary mb-1">
-          <div class="flex items-center gap-2">
-            <span id="display-mode-label" class="text-monolith-steelLight font-semibold">ОБЫЧНЫЙ</span>
-            <span id="display-angle-unit" class="hidden px-1 rounded bg-monolith-steel/20 text-monolith-textSecondary text-[10px]">RAD</span>
-            <span id="display-memory-badge" class="hidden px-1 rounded bg-monolith-success/20 text-monolith-success font-semibold text-[10px]">M</span>
-          </div>
-          <div id="display-sub-info" class="truncate max-w-[200px] text-right">ГОСТ 23414</div>
+          <span id="display-mode-label" class="text-monolith-steelLight font-semibold">ОБЫЧНЫЙ</span>
+          <span id="display-sub-info">ГОСТ 23414</span>
         </div>
 
-        <div id="calc-expression" class="font-mono text-xs sm:text-sm text-monolith-steelLight text-right tracking-wider min-h-[1.25rem] overflow-x-auto whitespace-nowrap scrollbar-none">
+        <div id="calc-expression" class="font-mono text-xs sm:text-sm text-monolith-steelLight text-right tracking-wider min-h-[1.25rem]">
           &nbsp;
         </div>
 
         <div class="flex items-baseline justify-end overflow-hidden mt-1">
-          <div id="calc-display" class="font-mono text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-monolith-textPrimary text-right overflow-x-auto whitespace-nowrap counter-value py-0.5">
+          <div id="calc-display" class="font-mono text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-monolith-textPrimary text-right overflow-x-auto whitespace-nowrap">
             0
           </div>
         </div>
@@ -312,845 +306,203 @@
       </div>
 
       <!-- Вкладки режимов -->
-      <nav class="flex border-b border-monolith-steel/20 mb-4 gap-1 p-1 bg-monolith-bg/60 rounded-[4px]">
-        <button data-mode="standard" class="mode-tab flex-1 py-1.5 px-2 text-xs font-medium rounded-[3px] text-center transition flex items-center justify-center gap-1.5 bg-monolith-triRed text-white shadow-sm border border-monolith-triRedBorder/40">
-          <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
-          <span>Обычный</span>
-        </button>
-        <button data-mode="engineering" class="mode-tab flex-1 py-1.5 px-2 text-xs font-medium rounded-[3px] text-center transition flex items-center justify-center gap-1.5 text-monolith-textSecondary hover:text-monolith-textPrimary">
-          <i data-lucide="binary" class="w-3.5 h-3.5"></i>
-          <span>Инженерный</span>
-        </button>
-        <button data-mode="finance" class="mode-tab flex-1 py-1.5 px-2 text-xs font-medium rounded-[3px] text-center transition flex items-center justify-center gap-1.5 text-monolith-textSecondary hover:text-monolith-textPrimary">
-          <i data-lucide="landmark" class="w-3.5 h-3.5"></i>
-          <span>Финансы</span>
-        </button>
-        <button data-mode="builder" class="mode-tab flex-1 py-1.5 px-2 text-xs font-medium rounded-[3px] text-center transition flex items-center justify-center gap-1.5 text-monolith-textSecondary hover:text-monolith-textPrimary">
-          <i data-lucide="hammer" class="w-3.5 h-3.5"></i>
-          <span>Стройка</span>
-        </button>
+      <nav class="flex border-b border-monolith-steel/20 mb-3 gap-1 p-1 bg-monolith-bg/60 rounded-[4px]">
+        <button data-mode="standard" class="mode-tab flex-1 py-1.5 text-xs font-medium rounded-[3px] text-center bg-monolith-triRed text-white">Обычный</button>
+        <button data-mode="engineering" class="mode-tab flex-1 py-1.5 text-xs font-medium rounded-[3px] text-center text-monolith-textSecondary">Инженерный</button>
       </nav>
 
-      <div id="tricolor-legend" class="mb-3 px-2.5 py-1 bg-monolith-bg/75 border border-monolith-steel/25 rounded flex items-center justify-between text-[10px] font-mono select-none">
-        <span class="text-monolith-textSecondary flex items-center gap-1">
-          <span class="w-2 h-2 rounded-full bg-white border border-black/30 inline-block"></span>
-          <span class="text-monolith-triWhite">ВВОД</span>
-        </span>
-        <span class="text-monolith-steel">•</span>
-        <span class="text-monolith-textSecondary flex items-center gap-1">
-          <span class="w-2 h-2 rounded-full bg-monolith-triBlue inline-block"></span>
-          <span class="text-blue-300">РАСЧЁТ</span>
-        </span>
-        <span class="text-monolith-steel">•</span>
-        <span class="text-monolith-textSecondary flex items-center gap-1">
-          <span class="w-2 h-2 rounded-full bg-monolith-triRed inline-block"></span>
-          <span class="text-red-300">УПРАВЛЕНИЕ</span>
-        </span>
-      </div>
-      
-      <!-- 1. Клавиатура -->
+      <!-- Клавиатура триколора -->
       <div id="panel-standard-keypad" class="space-y-2">
-        <div id="engineering-addon" class="hidden grid grid-cols-5 gap-1.5 pb-1 border-b border-monolith-steel/20">
-          <button data-eng="deg-rad" class="mono-btn btn-tricolor-red p-2 text-xs font-mono font-medium"><span class="role-badge">УПР</span>DEG</button>
-          <button data-eng="sin" class="mono-btn btn-tricolor-blue p-2 text-xs font-mono font-medium"><span class="role-badge">СЧЕТ</span>sin</button>
-          <button data-eng="cos" class="mono-btn btn-tricolor-blue p-2 text-xs font-mono font-medium"><span class="role-badge">СЧЕТ</span>cos</button>
-          <button data-eng="tan" class="mono-btn btn-tricolor-blue p-2 text-xs font-mono font-medium"><span class="role-badge">СЧЕТ</span>tan</button>
-          <button data-eng="pi" class="mono-btn btn-tricolor-white p-2 text-xs font-mono font-bold"><span class="role-badge">ВВОД</span>π</button>
-          <button data-eng="pow2" class="mono-btn btn-tricolor-blue p-2 text-xs font-mono font-medium"><span class="role-badge">СЧЕТ</span>x²</button>
-          <button data-eng="sqrt" class="mono-btn btn-tricolor-blue p-2 text-xs font-mono font-medium"><span class="role-badge">СЧЕТ</span>√x</button>
-          <button data-eng="ln" class="mono-btn btn-tricolor-blue p-2 text-xs font-mono font-medium"><span class="role-badge">СЧЕТ</span>ln</button>
-          <button data-eng="log10" class="mono-btn btn-tricolor-blue p-2 text-xs font-mono font-medium"><span class="role-badge">СЧЕТ</span>lg</button>
-          <button data-eng="e" class="mono-btn btn-tricolor-white p-2 text-xs font-mono font-bold"><span class="role-badge">ВВОД</span>e</button>
-          <button data-eng="g" class="mono-btn btn-tricolor-white p-1.5 text-[11px] font-mono font-semibold">g=9.81</button>
-          <button data-eng="c_light" class="mono-btn btn-tricolor-white p-1.5 text-[11px] font-mono font-semibold">c₀</button>
-          <button data-eng="avogadro" class="mono-btn btn-tricolor-white p-1.5 text-[11px] font-mono font-semibold">Nₐ</button>
-          <button data-eng="fact" class="mono-btn btn-tricolor-blue p-1.5 text-[11px] font-mono font-medium">n!</button>
-          <button data-eng="inv" class="mono-btn btn-tricolor-blue p-1.5 text-[11px] font-mono font-medium">1/x</button>
-        </div>
-
-        <div class="grid grid-cols-4 gap-1.5 mb-1 text-[11px] font-mono">
-          <button data-mem="mc" class="mono-btn btn-tricolor-red py-1 text-xs font-bold"><span class="role-badge">УПР</span>MC</button>
-          <button data-mem="mr" class="mono-btn btn-tricolor-blue py-1 text-xs font-semibold"><span class="role-badge">СЧЕТ</span>MR</button>
-          <button data-mem="m-minus" class="mono-btn btn-tricolor-blue py-1 text-xs font-semibold"><span class="role-badge">СЧЕТ</span>M−</button>
-          <button data-mem="m-plus" class="mono-btn btn-tricolor-blue py-1 text-xs font-semibold"><span class="role-badge">СЧЕТ</span>M+</button>
-        </div>
-
         <div class="grid grid-cols-4 gap-2 font-mono">
-          <button data-action="clear" class="mono-btn btn-tricolor-red font-bold h-13 py-3 text-lg flex items-center justify-center"><span class="role-badge">УПР</span>C</button>
-          <button data-action="backspace" class="mono-btn btn-tricolor-red h-13 py-3 text-base flex items-center justify-center"><span class="role-badge">УПР</span><i data-lucide="delete" class="w-5 h-5"></i></button>
-          <button data-action="percent" class="mono-btn btn-tricolor-blue font-bold h-13 py-3 text-lg flex items-center justify-center"><span class="role-badge">СЧЕТ</span>%</button>
-          <button data-op="÷" class="mono-btn btn-tricolor-blue font-bold h-13 py-3 text-2xl flex items-center justify-center"><span class="role-badge">СЧЕТ</span>÷</button>
+          <button data-action="clear" class="mono-btn btn-tricolor-red font-bold py-3 text-lg">C</button>
+          <button data-action="backspace" class="mono-btn btn-tricolor-red py-3 text-base"><i data-lucide="delete" class="w-5 h-5 mx-auto"></i></button>
+          <button data-action="percent" class="mono-btn btn-tricolor-blue font-bold py-3 text-lg">%</button>
+          <button data-op="÷" class="mono-btn btn-tricolor-blue font-bold py-3 text-2xl">÷</button>
 
-          <button data-num="7" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>7</button>
-          <button data-num="8" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>8</button>
-          <button data-num="9" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>9</button>
-          <button data-op="×" class="mono-btn btn-tricolor-blue font-bold h-13 py-3 text-2xl flex items-center justify-center"><span class="role-badge">СЧЕТ</span>×</button>
+          <button data-num="7" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">7</button>
+          <button data-num="8" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">8</button>
+          <button data-num="9" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">9</button>
+          <button data-op="×" class="mono-btn btn-tricolor-blue font-bold py-3 text-2xl">×</button>
 
-          <button data-num="4" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>4</button>
-          <button data-num="5" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>5</button>
-          <button data-num="6" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>6</button>
-          <button data-op="−" class="mono-btn btn-tricolor-blue font-bold h-13 py-3 text-2xl flex items-center justify-center"><span class="role-badge">СЧЕТ</span>−</button>
+          <button data-num="4" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">4</button>
+          <button data-num="5" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">5</button>
+          <button data-num="6" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">6</button>
+          <button data-op="−" class="mono-btn btn-tricolor-blue font-bold py-3 text-2xl">−</button>
 
           <div class="col-span-3 grid grid-cols-3 gap-2">
-            <button data-num="1" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>1</button>
-            <button data-num="2" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>2</button>
-            <button data-num="3" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>3</button>
+            <button data-num="1" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">1</button>
+            <button data-num="2" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">2</button>
+            <button data-num="3" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">3</button>
 
-            <button data-action="negate" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-lg flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>±</button>
-            <button data-num="0" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>0</button>
-            <button data-action="comma" class="mono-btn btn-tricolor-white font-bold h-13 py-3 text-2xl flex items-center justify-center"><span class="role-badge text-gray-600">ВВОД</span>,</button>
+            <button data-action="negate" class="mono-btn btn-tricolor-white font-bold py-3 text-lg">±</button>
+            <button data-num="0" class="mono-btn btn-tricolor-white font-bold py-3 text-xl">0</button>
+            <button data-action="comma" class="mono-btn btn-tricolor-white font-bold py-3 text-2xl">,</button>
           </div>
 
           <div class="col-span-1 grid grid-rows-2 gap-2">
-            <button data-op="+" class="mono-btn btn-tricolor-blue font-bold h-13 py-3 text-2xl flex items-center justify-center"><span class="role-badge">СЧЕТ</span>+</button>
-            <button data-action="calculate" class="mono-btn btn-tricolor-equals font-bold h-13 py-3 text-3xl flex items-center justify-center" title="Вычислить результат"><span class="role-badge">ИТОГ</span>=</button>
+            <button data-op="+" class="mono-btn btn-tricolor-blue font-bold py-3 text-2xl">+</button>
+            <button data-action="calculate" class="mono-btn btn-tricolor-equals font-bold py-3 text-3xl">=</button>
           </div>
         </div>
       </div>
 
-      <!-- 2. Финансы -->
-      <div id="panel-finance" class="hidden space-y-4">
-        <div class="flex gap-1 bg-monolith-bg p-1 rounded-[4px] text-xs font-medium">
-          <button id="fin-tab-vat" class="fin-subtab flex-1 py-1 rounded bg-monolith-triRed text-white font-semibold">НДС РФ</button>
-          <button id="fin-tab-mortgage" class="fin-subtab flex-1 py-1 rounded text-monolith-textSecondary hover:text-white">Ипотека</button>
-          <button id="fin-tab-deposit" class="fin-subtab flex-1 py-1 rounded text-monolith-textSecondary hover:text-white">Вклад</button>
-          <button id="fin-tab-cbr" class="fin-subtab flex-1 py-1 rounded text-monolith-textSecondary hover:text-white">Курсы ЦБ</button>
-        </div>
-
-        <div id="fin-view-vat" class="space-y-3">
-          <div>
-            <label class="block text-xs font-mono text-monolith-textSecondary mb-1">Сумма (руб):</label>
-            <div class="relative">
-              <input type="number" id="vat-amount" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-3 py-2 text-monolith-textPrimary font-mono text-base focus:border-monolith-triBlue focus:outline-none" value="100000">
-              <span class="absolute right-3 top-2.5 font-mono text-xs text-monolith-steel">₽</span>
-            </div>
-          </div>
-          <div class="grid grid-cols-3 gap-2">
-            <button data-vat-rate="20" class="vat-rate-btn py-2 px-3 rounded-[4px] bg-monolith-triRed text-white font-mono text-xs font-bold border border-white/20">20% (Основная)</button>
-            <button data-vat-rate="10" class="vat-rate-btn py-2 px-3 rounded-[4px] bg-monolith-plate text-monolith-textPrimary font-mono text-xs font-semibold border border-monolith-steel/20">10% (Льготная)</button>
-            <button data-vat-rate="0" class="vat-rate-btn py-2 px-3 rounded-[4px] bg-monolith-plate text-monolith-textPrimary font-mono text-xs font-semibold border border-monolith-steel/20">0% (Экспорт)</button>
-          </div>
-          <div class="grid grid-cols-2 gap-2 pt-1">
-            <button id="btn-vat-add" class="mono-btn btn-tricolor-blue py-2.5 rounded-[4px] text-xs font-semibold">Начислить НДС (+)</button>
-            <button id="btn-vat-extract" class="mono-btn btn-tricolor-blue py-2.5 rounded-[4px] text-xs font-semibold">Выделить НДС (в т.ч.)</button>
-          </div>
-          <div class="bg-monolith-bg/80 border border-monolith-steel/20 rounded-[4px] p-3 space-y-1.5 font-mono text-xs">
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">Сумма без НДС:</span><span id="vat-res-base" class="font-semibold text-monolith-textPrimary">100 000,00 ₽</span></div>
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">Сумма НДС:</span><span id="vat-res-tax" class="font-semibold text-monolith-warning">20 000,00 ₽</span></div>
-            <div class="border-t border-monolith-steel/20 pt-1 flex justify-between text-sm"><span class="text-monolith-steelLight font-sans">Итого с НДС:</span><span id="vat-res-total" class="font-bold text-blue-400">120 000,00 ₽</span></div>
-          </div>
-        </div>
-
-        <div id="fin-view-mortgage" class="hidden space-y-3">
-          <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div><label class="text-monolith-textSecondary mb-1 block">Кредит (₽):</label><input type="number" id="mortgage-sum" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="6000000"></div>
-            <div><label class="text-monolith-textSecondary mb-1 block">Ставка (%):</label><input type="number" step="0.1" id="mortgage-rate" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="16.5"></div>
-          </div>
-          <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div><label class="text-monolith-textSecondary mb-1 block">Срок (лет):</label><input type="number" id="mortgage-years" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="20"></div>
-            <div class="flex items-end"><button id="btn-calc-mortgage" class="w-full mono-btn btn-tricolor-blue py-2 rounded-[4px] font-sans font-semibold text-xs">Рассчитать</button></div>
-          </div>
-          <div class="bg-monolith-bg/80 border border-monolith-steel/20 rounded-[4px] p-3 space-y-1 font-mono text-xs">
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">Ежемесячный платёж:</span><span id="mortgage-res-monthly" class="font-bold text-blue-400 text-sm">84 152 ₽</span></div>
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">Переплата по %:</span><span id="mortgage-res-overpay" class="text-monolith-warning">14 196 480 ₽</span></div>
-            <div class="flex justify-between text-monolith-steelLight"><span>Всего выплат:</span><span id="mortgage-res-total">20 196 480 ₽</span></div>
-          </div>
-        </div>
-
-        <div id="fin-view-deposit" class="hidden space-y-3">
-          <div class="grid grid-cols-3 gap-2 text-xs font-mono">
-            <div><label class="text-monolith-textSecondary mb-1 block">Сумма (₽):</label><input type="number" id="deposit-sum" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="500000"></div>
-            <div><label class="text-monolith-textSecondary mb-1 block">Ставка (%):</label><input type="number" step="0.1" id="deposit-rate" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="18.0"></div>
-            <div><label class="text-monolith-textSecondary mb-1 block">Месяцев:</label><input type="number" id="deposit-months" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="12"></div>
-          </div>
-          <div class="flex items-center gap-2 text-xs">
-            <input type="checkbox" id="deposit-cap" class="rounded bg-monolith-bg border-monolith-steel text-monolith-triBlue" checked>
-            <label for="deposit-cap" class="text-monolith-textSecondary select-none">Ежемесячная капитализация</label>
-          </div>
-          <button id="btn-calc-deposit" class="w-full mono-btn btn-tricolor-blue py-2 rounded-[4px] text-xs font-semibold">Рассчитать доходность</button>
-          <div class="bg-monolith-bg/80 border border-monolith-steel/20 rounded-[4px] p-3 space-y-1 font-mono text-xs">
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">Чистая прибыль:</span><span id="dep-res-profit" class="font-bold text-blue-400 text-sm">+97 809 ₽</span></div>
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">Итоговая сумма:</span><span id="dep-res-total" class="text-monolith-textPrimary">597 809 ₽</span></div>
-          </div>
-        </div>
-
-        <div id="fin-view-cbr" class="hidden space-y-2 font-mono text-xs">
-          <div class="grid grid-cols-2 gap-2">
-            <div class="bg-monolith-bg p-2.5 rounded border border-monolith-steel/20">
-              <div class="text-monolith-steelLight text-[11px]">USD / Доллар США</div>
-              <div class="text-lg font-bold text-monolith-textPrimary mt-0.5">89,45 ₽</div>
-            </div>
-            <div class="bg-monolith-bg p-2.5 rounded border border-monolith-steel/20">
-              <div class="text-monolith-steelLight text-[11px]">EUR / Евро</div>
-              <div class="text-lg font-bold text-monolith-textPrimary mt-0.5">97,10 ₽</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. Стройка -->
-      <div id="panel-builder" class="hidden space-y-4">
-        <div class="flex gap-1 bg-monolith-bg p-1 rounded-[4px] text-xs font-medium">
-          <button id="bld-tab-concrete" class="bld-subtab flex-1 py-1 rounded bg-monolith-triRed text-white font-semibold">Бетон (м³)</button>
-          <button id="bld-tab-walls" class="bld-subtab flex-1 py-1 rounded text-monolith-textSecondary hover:text-white">Стены / Обои</button>
-          <button id="bld-tab-floors" class="bld-subtab flex-1 py-1 rounded text-monolith-textSecondary hover:text-white">Ламинат / Плитка</button>
-        </div>
-
-        <div id="bld-view-concrete" class="space-y-3">
-          <div class="grid grid-cols-3 gap-2 text-xs font-mono">
-            <div><label class="text-monolith-textSecondary mb-1 block">Длина (м):</label><input type="number" step="0.1" id="cnc-length" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="10"></div>
-            <div><label class="text-monolith-textSecondary mb-1 block">Ширина (м):</label><input type="number" step="0.1" id="cnc-width" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="8"></div>
-            <div><label class="text-monolith-textSecondary mb-1 block">Толщина (м):</label><input type="number" step="0.05" id="cnc-height" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="0.3"></div>
-          </div>
-          <button id="btn-calc-concrete" class="w-full mono-btn btn-tricolor-blue py-2.5 rounded-[4px] text-xs font-bold">Рассчитать кубатуру</button>
-          <div class="bg-monolith-bg/80 border border-monolith-steel/20 rounded-[4px] p-3 space-y-1.5 font-mono text-xs">
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">К заказу:</span><span id="cnc-res-order" class="font-bold text-blue-400 text-sm">25.68 м³</span></div>
-          </div>
-        </div>
-
-        <div id="bld-view-walls" class="hidden space-y-3">
-          <div class="grid grid-cols-3 gap-2 text-xs font-mono">
-            <div><label class="text-monolith-textSecondary mb-1 block">Периметр (м):</label><input type="number" step="0.5" id="wall-perim" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="18"></div>
-            <div><label class="text-monolith-textSecondary mb-1 block">Высота (м):</label><input type="number" step="0.1" id="wall-height" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="2.7"></div>
-            <div><label class="text-monolith-textSecondary mb-1 block">Проёмы (м²):</label><input type="number" step="0.5" id="wall-openings" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="6"></div>
-          </div>
-          <button id="btn-calc-walls" class="w-full mono-btn btn-tricolor-blue py-2.5 rounded-[4px] text-xs font-semibold">Рассчитать площадь</button>
-          <div class="bg-monolith-bg/80 border border-monolith-steel/20 rounded-[4px] p-3 space-y-1 font-mono text-xs">
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">Чистая площадь:</span><span id="wall-res-area" class="font-bold text-monolith-textPrimary">42.60 м²</span></div>
-          </div>
-        </div>
-
-        <div id="bld-view-floors" class="hidden space-y-3">
-          <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-            <div><label class="text-monolith-textSecondary mb-1 block">Площадь (м²):</label><input type="number" step="0.5" id="floor-area" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="22"></div>
-            <div><label class="text-monolith-textSecondary mb-1 block">Запас (%):</label><input type="number" id="floor-waste" class="w-full bg-monolith-bg border border-monolith-steel/30 rounded-[4px] px-2 py-1.5 text-monolith-textPrimary" value="10"></div>
-          </div>
-          <button id="btn-calc-floors" class="w-full mono-btn btn-tricolor-blue py-2.5 rounded-[4px] text-xs font-semibold">Рассчитать количество</button>
-          <div class="bg-monolith-bg/80 border border-monolith-steel/20 rounded-[4px] p-3 space-y-1 font-mono text-xs">
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">Всего:</span><span id="floor-res-total" class="font-bold text-monolith-textPrimary">24.20 м²</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 pt-3 border-t border-monolith-steel/15 flex items-center justify-between text-[10px] text-monolith-steel font-mono select-none">
-        <div class="flex items-center gap-1.5">
-          <span class="inline-block w-1.5 h-1.5 rounded-full bg-monolith-triBlue animate-pulse"></span>
-          <span>ТРИКОЛОР-ЭРГОНОМИКА</span>
-        </div>
-        <div class="tracking-widest font-sans uppercase text-monolith-steelLight text-[11px] font-medium">
-          БЕЛОЕ ВВОДИТ • СИНЕЕ СЧИТАЕТ • КРАСНОЕ УПРАВЛЯЕТ
-        </div>
-      </div>
     </div>
   </main>
-
-  <!-- Шторка истории -->
-  <div id="history-drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden transition-opacity duration-300 opacity-0"></div>
-  <aside id="history-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-monolith-surface border-l border-monolith-steel/30 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
-    <div class="p-4 border-b border-monolith-steel/20 flex items-center justify-between bg-monolith-bg/70">
-      <div class="flex items-center gap-2">
-        <i data-lucide="scroll-text" class="w-4 h-4 text-monolith-accent"></i>
-        <h2 class="font-bold text-sm tracking-wider uppercase">Журнал операций</h2>
-      </div>
-      <div class="flex items-center gap-1">
-        <button id="btn-clear-history" title="Очистить" class="p-1.5 hover:bg-monolith-plate text-monolith-steel hover:text-monolith-accent rounded transition"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-        <button id="btn-close-history" class="p-1.5 hover:bg-monolith-plate text-monolith-steel hover:text-white rounded transition"><i data-lucide="x" class="w-4 h-4"></i></button>
-      </div>
-    </div>
-    <div id="history-list" class="flex-1 overflow-y-auto p-4 space-y-3 font-mono text-sm">
-      <div class="text-center py-16 text-monolith-textSecondary text-xs">Журнал пуст.</div>
-    </div>
-  </aside>
-
-  <!-- Модальное окно настроек -->
-  <div id="settings-modal" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-monolith-surface border border-monolith-steel/40 rounded-[6px] max-w-lg w-full p-5 shadow-2xl space-y-4">
-      <div class="flex items-center justify-between border-b border-monolith-steel/20 pb-3">
-        <div class="flex items-center gap-2">
-          <i data-lucide="shield-check" class="w-5 h-5 text-monolith-triRed"></i>
-          <h3 class="font-bold text-sm tracking-wide">Параметры системы «Монолит»</h3>
-        </div>
-        <button id="btn-close-settings" class="text-monolith-steel hover:text-white p-1"><i data-lucide="x" class="w-4 h-4"></i></button>
-      </div>
-      <div class="space-y-3 text-xs">
-        <div class="flex items-center justify-between py-1 border-b border-monolith-steel/10">
-          <div><div class="font-medium text-monolith-textPrimary">Акустический отклик</div></div>
-          <input type="checkbox" id="setting-sound" checked class="w-4 h-4 accent-monolith-triRed cursor-pointer">
-        </div>
-        <div class="flex items-center justify-between py-1 border-b border-monolith-steel/10">
-          <div><div class="font-medium text-monolith-textPrimary">Тактильная отдача</div></div>
-          <input type="checkbox" id="setting-vibration" checked class="w-4 h-4 accent-monolith-triRed cursor-pointer">
-        </div>
-        <div class="flex items-center justify-between py-1 border-b border-monolith-steel/10">
-          <div><div class="font-medium text-monolith-textPrimary">Форматирование разрядов чисел</div></div>
-          <input type="checkbox" id="setting-format" checked class="w-4 h-4 accent-monolith-triRed cursor-pointer">
-        </div>
-      </div>
-      <div class="pt-3 border-t border-monolith-steel/20 flex justify-end">
-        <button id="btn-apply-settings" class="px-4 py-2 bg-monolith-plate hover:bg-monolith-plateHover border border-monolith-steel/30 rounded text-xs font-semibold text-monolith-textPrimary">Закрыть</button>
-      </div>
-    </div>
-  </div>
 
   <script>
     const FORBIDDEN_VALUE = 67;
     const FORBIDDEN_WARNING = "значение 67 six seven запрещено роскомнадзором, соблюдайте духовно нравственные ценности России";
 
-    class MonolithAudio {
-      constructor() { this.ctx = null; this.enabled = true; }
-      init() {
-        if (!this.ctx) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          if (AudioContext) this.ctx = new AudioContext();
-        }
-        if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+    let forbiddenViolationCount = 0;
+    let isLockedOut = false;
+    let lockoutEndTime = null;
+    let captchaAnswers = { hasChildren: null, branchChoice: null };
+
+    const FIRST_WARNING_VOICE_TEXT = "Значение six seven запрещено Роскомнадзором. Пожалуйста, соблюдайте духовно-нравственные ценности России.";
+    const ROSKOM_VOICE_TEXT = "Внимание, вы много раз нарушили правила духовно нравственных ценностей, вы попали под выборочную проверку Роскомнадзором. Пройдите в течение одного дня, согласно 19.3 КоАП РФ предусмотрена ответственность!";
+
+    // Варианты имен файлов в репозитории
+    const VOICE_1_FILES = [
+      'voice1.mp3',
+      'ElevenLabs_2026-09-16T11_51_03_Brian - Deep, Resonant and Comforting_eleven_multilingual_v2.mp3',
+      'warning1.mp3'
+    ];
+    const VOICE_2_FILES = [
+      'voice2.mp3',
+      'ElevenLabs_2026-09-16T11_53_43_Brian_eleven_multilingual_v2.mp3',
+      'roskom.mp3'
+    ];
+
+    // =========================================================================
+    // ЕДИНЫЙ ЗВУКОВОЙ ДВИЖОК WEB AUDIO API
+    // =========================================================================
+    let audioCtx = null;
+    let activeSirenOsc = null;
+    let activeSirenMod = null;
+    let sirenGain = null;
+    let activeVoiceSource = null;
+    const audioBufferCache = {};
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContextClass();
       }
-      playClick(isAction = false, isEquals = false) {
-        if (!this.enabled) return;
-        this.init();
-        if (!this.ctx) return;
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Предварительная загрузка MP3-файлов в буфер Web Audio
+    async function loadAudioBuffer(fileList, cacheKey) {
+      const ctx = getAudioContext();
+      for (const fileName of fileList) {
         try {
-          const now = this.ctx.currentTime;
-          const osc = this.ctx.createOscillator();
-          const gain = this.ctx.createGain();
-          osc.type = isEquals ? 'triangle' : (isAction ? 'square' : 'sine');
-          osc.frequency.setValueAtTime(isEquals ? 140 : (isAction ? 320 : 220), now);
-          osc.frequency.exponentialRampToValueAtTime(50, now + 0.05);
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
-          osc.connect(gain);
-          gain.connect(this.ctx.destination);
-          osc.start(now);
-          osc.stop(now + 0.05);
+          const res = await fetch(encodeURI(fileName));
+          if (res.ok) {
+            const arrayBuffer = await res.arrayBuffer();
+            const decoded = await ctx.decodeAudioData(arrayBuffer);
+            audioBufferCache[cacheKey] = decoded;
+            return true;
+          }
         } catch(e) {}
       }
+      return false;
     }
 
-    const audioSys = new MonolithAudio();
-
-    function triggerHaptic(duration = 10) {
-      if (document.getElementById('setting-vibration')?.checked && navigator.vibrate) {
-        try { navigator.vibrate(duration); } catch(e) {}
-      }
-    }
-
-    const state = {
-      currentValue: '0',
-      previousValue: null,
-      operation: null,
-      waitingForOperand: false,
-      expressionHistory: '',
-      memory: 0,
-      angleUnit: 'RAD',
-      history: [],
-      maxDigits: 14
-    };
-
-    const calcDisplay = document.getElementById('calc-display');
-    const calcExpression = document.getElementById('calc-expression');
-    const calcStatusMsg = document.getElementById('calc-status-msg');
-    const displayAngleUnit = document.getElementById('display-angle-unit');
-    const displayMemoryBadge = document.getElementById('display-memory-badge');
-    const displayModeLabel = document.getElementById('display-mode-label');
-    const censorshipModal = document.getElementById('censorship-modal');
-
-    // Проверка на запрещённое число 67
-    function isForbidden(val) {
-      const num = typeof val === 'number' ? val : parseFloat(String(val).replace(',', '.'));
-      return !isNaN(num) && Math.abs(num - FORBIDDEN_VALUE) < 1e-9;
-    }
-
-    function triggerCensorship() {
-      state.currentValue = '0';
-      state.previousValue = null;
-      state.operation = null;
-      state.waitingForOperand = false;
-      state.expressionHistory = '';
-      
-      calcDisplay.textContent = 'ЦЕНЗУРА';
-      calcStatusMsg.textContent = FORBIDDEN_WARNING;
-      calcStatusMsg.classList.remove('hidden');
-
-      censorshipModal.classList.remove('hidden');
-      triggerHaptic(67);
-      showToast(FORBIDDEN_WARNING, 'error');
-    }
-
-    document.getElementById('btn-close-censorship').addEventListener('click', () => {
-      censorshipModal.classList.add('hidden');
-      updateDisplay();
-    });
-
-    function formatRussianNumber(numStr) {
-      if (numStr === 'Error' || numStr === 'ЦЕНЗУРА' || isNaN(Number(String(numStr).replace(',', '.')))) {
-        return numStr;
-      }
-      const cleanStr = String(numStr).replace(',', '.');
-      const parts = cleanStr.split('.');
-      const integerPart = parts[0];
-      const decimalPart = parts[1];
-      const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-      return decimalPart !== undefined ? `${formattedInteger},${decimalPart}` : formattedInteger;
-    }
-
-    function updateDisplay() {
-      if (isForbidden(state.currentValue)) {
-        triggerCensorship();
-        return;
-      }
-      const useFormatting = document.getElementById('setting-format')?.checked ?? true;
-      calcDisplay.textContent = useFormatting ? formatRussianNumber(state.currentValue) : state.currentValue.replace('.', ',');
-      calcExpression.textContent = state.expressionHistory || '\u00A0';
-
-      if (state.memory !== 0) displayMemoryBadge.classList.remove('hidden');
-      else displayMemoryBadge.classList.add('hidden');
-
-      calcStatusMsg.classList.add('hidden');
-    }
-
-    function showError(msg = 'Недопустимая операция') {
-      state.currentValue = '0';
-      state.previousValue = null;
-      state.operation = null;
-      state.waitingForOperand = false;
-      state.expressionHistory = '';
-      calcDisplay.textContent = 'Ошибка';
-      calcStatusMsg.textContent = msg;
-      calcStatusMsg.classList.remove('hidden');
-      triggerHaptic(50);
-      showToast(msg, 'error');
-    }
-
-    function inputDigit(digit) {
-      audioSys.playClick(false);
-      triggerHaptic();
-
-      let nextVal;
-      if (state.waitingForOperand) {
-        nextVal = String(digit);
-      } else {
-        if (state.currentValue === '0') nextVal = String(digit);
-        else {
-          if (state.currentValue.replace(/[\s,.-]/g, '').length >= state.maxDigits) return;
-          nextVal = state.currentValue + String(digit);
+    // Разблокировка контекста при первом тапе
+    ['touchstart', 'pointerdown', 'mousedown', 'keydown'].forEach(evt => {
+      window.addEventListener(evt, () => {
+        getAudioContext();
+        if ('speechSynthesis' in window && window.speechSynthesis.paused) {
+          window.speechSynthesis.resume();
         }
-      }
-
-      if (isForbidden(nextVal)) {
-        triggerCensorship();
-        return;
-      }
-
-      state.currentValue = nextVal;
-      state.waitingForOperand = false;
-      updateDisplay();
-    }
-
-    function inputDecimal() {
-      audioSys.playClick(false);
-      triggerHaptic();
-      if (state.waitingForOperand) {
-        state.currentValue = '0.';
-        state.waitingForOperand = false;
-      } else if (!state.currentValue.includes('.')) {
-        state.currentValue += '.';
-      }
-      updateDisplay();
-    }
-
-    function toggleSign() {
-      audioSys.playClick(true);
-      triggerHaptic();
-      if (state.currentValue === '0') return;
-      state.currentValue = state.currentValue.startsWith('-') ? state.currentValue.slice(1) : '-' + state.currentValue;
-      if (isForbidden(state.currentValue)) {
-        triggerCensorship();
-        return;
-      }
-      updateDisplay();
-    }
-
-    function backspace() {
-      audioSys.playClick(true);
-      triggerHaptic();
-      if (state.waitingForOperand) return;
-      state.currentValue = state.currentValue.length > 1 ? state.currentValue.slice(0, -1) : '0';
-      if (isForbidden(state.currentValue)) {
-        triggerCensorship();
-        return;
-      }
-      updateDisplay();
-    }
-
-    function clearAll() {
-      audioSys.playClick(true);
-      triggerHaptic();
-      state.currentValue = '0';
-      state.previousValue = null;
-      state.operation = null;
-      state.waitingForOperand = false;
-      state.expressionHistory = '';
-      updateDisplay();
-    }
-
-    function handlePercent() {
-      audioSys.playClick(true);
-      triggerHaptic();
-      const current = parseFloat(state.currentValue);
-      if (isNaN(current)) return;
-      const res = (state.previousValue !== null && state.operation) ? (state.previousValue * current) / 100 : current / 100;
-      if (isForbidden(res)) {
-        triggerCensorship();
-        return;
-      }
-      state.currentValue = String(res);
-      updateDisplay();
-    }
-
-    function cleanFloat(num) {
-      if (isNaN(num)) return 0;
-      return parseFloat(Number(num.toPrecision(12)));
-    }
-
-    function performCalculation(op, prev, curr) {
-      switch (op) {
-        case '+': return prev + curr;
-        case '−':
-        case '-': return prev - curr;
-        case '×':
-        case '*': return prev * curr;
-        case '÷':
-        case '/': return curr === 0 ? 'DIV_ZERO' : prev / curr;
-        default: return curr;
-      }
-    }
-
-    function setOperation(nextOp) {
-      audioSys.playClick(true);
-      triggerHaptic();
-      const inputValue = parseFloat(state.currentValue);
-
-      if (state.previousValue === null) {
-        state.previousValue = inputValue;
-      } else if (state.operation && !state.waitingForOperand) {
-        const result = performCalculation(state.operation, state.previousValue, inputValue);
-        if (result === 'DIV_ZERO') {
-          showError('Деление на ноль невозможно');
-          return;
-        }
-        if (isForbidden(result)) {
-          triggerCensorship();
-          return;
-        }
-        state.currentValue = String(cleanFloat(result));
-        state.previousValue = cleanFloat(result);
-      }
-
-      state.waitingForOperand = true;
-      state.operation = nextOp;
-      state.expressionHistory = `${formatRussianNumber(String(state.previousValue))} ${nextOp}`;
-      updateDisplay();
-    }
-
-    function executeEquals() {
-      audioSys.playClick(true, true);
-      triggerHaptic(20);
-
-      if (state.operation === null || state.previousValue === null) return;
-
-      const prev = state.previousValue;
-      const curr = parseFloat(state.currentValue);
-      const op = state.operation;
-
-      const result = performCalculation(op, prev, curr);
-      if (result === 'DIV_ZERO') {
-        showError('Деление на ноль невозможно');
-        return;
-      }
-
-      if (isForbidden(result)) {
-        triggerCensorship();
-        return;
-      }
-
-      const cleanRes = cleanFloat(result);
-      const expressionFull = `${formatRussianNumber(String(prev))} ${op} ${formatRussianNumber(String(curr))}`;
-      addHistoryRecord(expressionFull, cleanRes);
-
-      state.expressionHistory = `${expressionFull} =`;
-      state.currentValue = String(cleanRes);
-      state.previousValue = null;
-      state.operation = null;
-      state.waitingForOperand = true;
-      updateDisplay();
-    }
-
-    function handleEngineering(engAction) {
-      audioSys.playClick(true);
-      triggerHaptic();
-      const curr = parseFloat(state.currentValue);
-      let res;
-
-      switch (engAction) {
-        case 'deg-rad':
-          state.angleUnit = state.angleUnit === 'RAD' ? 'DEG' : 'RAD';
-          const degBtn = document.querySelector('[data-eng="deg-rad"]');
-          if (degBtn) degBtn.textContent = state.angleUnit;
-          displayAngleUnit.textContent = state.angleUnit;
-          showToast(`Угловая мера: ${state.angleUnit}`);
-          return;
-        case 'pi': res = Math.PI; break;
-        case 'e': res = Math.E; break;
-        case 'g': res = 9.80665; break;
-        case 'c_light': res = 299792458; break;
-        case 'avogadro': res = 6.02214076e23; break;
-        case 'sin':
-          res = Math.sin(state.angleUnit === 'DEG' ? (curr * Math.PI) / 180 : curr);
-          break;
-        case 'cos':
-          res = Math.cos(state.angleUnit === 'DEG' ? (curr * Math.PI) / 180 : curr);
-          break;
-        case 'tan':
-          res = Math.tan(state.angleUnit === 'DEG' ? (curr * Math.PI) / 180 : curr);
-          break;
-        case 'sqrt':
-          if (curr < 0) { showError('Корень из отрицательного числа'); return; }
-          res = Math.sqrt(curr);
-          break;
-        case 'pow2': res = Math.pow(curr, 2); break;
-        case 'ln':
-          if (curr <= 0) { showError('ln аргумента ≤ 0'); return; }
-          res = Math.log(curr);
-          break;
-        case 'log10':
-          if (curr <= 0) { showError('lg аргумента ≤ 0'); return; }
-          res = Math.log10(curr);
-          break;
-        case 'inv':
-          if (curr === 0) { showError('Деление на ноль'); return; }
-          res = 1 / curr;
-          break;
-        case 'fact':
-          if (curr < 0 || !Number.isInteger(curr) || curr > 100) { showError('Факториал целых n ∈ [0, 100]'); return; }
-          let f = 1;
-          for (let i = 2; i <= curr; i++) f *= i;
-          res = f;
-          break;
-      }
-
-      if (isForbidden(res)) {
-        triggerCensorship();
-        return;
-      }
-
-      state.currentValue = String(cleanFloat(res));
-      state.waitingForOperand = true;
-      updateDisplay();
-    }
-
-    function handleMemory(memAction) {
-      audioSys.playClick(true);
-      triggerHaptic();
-      const curr = parseFloat(state.currentValue) || 0;
-      switch (memAction) {
-        case 'mc': state.memory = 0; showToast('Память очищена'); break;
-        case 'mr':
-          if (isForbidden(state.memory)) { triggerCensorship(); return; }
-          state.currentValue = String(state.memory);
-          state.waitingForOperand = false;
-          showToast(`Извлечено: ${formatRussianNumber(String(state.memory))}`);
-          break;
-        case 'm-plus': state.memory += curr; showToast(`M+: ${formatRussianNumber(String(state.memory))}`); break;
-        case 'm-minus': state.memory -= curr; showToast(`M−: ${formatRussianNumber(String(state.memory))}`); break;
-      }
-      updateDisplay();
-    }
-
-    function addHistoryRecord(expression, result) {
-      const formattedRes = formatRussianNumber(String(result));
-      const record = {
-        expression,
-        result: formattedRes,
-        rawResult: result,
-        timestamp: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-      };
-      state.history.unshift(record);
-      if (state.history.length > 50) state.history.pop();
-      renderHistory();
-    }
-
-    function renderHistory() {
-      const listEl = document.getElementById('history-list');
-      const badge = document.getElementById('history-badge');
-      if (state.history.length === 0) {
-        listEl.innerHTML = `<div class="text-center py-16 text-monolith-textSecondary text-xs">Журнал пуст.</div>`;
-        badge.classList.add('hidden');
-        return;
-      }
-      badge.textContent = state.history.length;
-      badge.classList.remove('hidden');
-      listEl.innerHTML = state.history.map((item, idx) => `
-        <div data-hist-idx="${idx}" class="p-2.5 rounded-[4px] bg-monolith-bg hover:bg-monolith-plate border border-monolith-steel/20 cursor-pointer transition flex flex-col group">
-          <div class="flex justify-between text-[11px] text-monolith-textSecondary mb-1">
-            <span class="truncate">${item.expression}</span>
-            <span class="text-[10px] text-monolith-steel ml-2">${item.timestamp}</span>
-          </div>
-          <div class="text-right text-base font-bold text-blue-400 group-hover:text-blue-300 transition">= ${item.result}</div>
-        </div>
-      `).join('');
-
-      listEl.querySelectorAll('[data-hist-idx]').forEach(el => {
-        el.addEventListener('click', () => {
-          const idx = parseInt(el.getAttribute('data-hist-idx'), 10);
-          const item = state.history[idx];
-          if (item) {
-            if (isForbidden(item.rawResult)) {
-              triggerCensorship();
-              return;
-            }
-            state.currentValue = String(item.rawResult);
-            state.waitingForOperand = true;
-            updateDisplay();
-            toggleHistoryDrawer(false);
-          }
-        });
-      });
-    }
-
-    const drawer = document.getElementById('history-drawer');
-    const overlay = document.getElementById('history-drawer-overlay');
-
-    function toggleHistoryDrawer(open) {
-      if (open) {
-        overlay.classList.remove('hidden');
-        setTimeout(() => {
-          overlay.classList.remove('opacity-0');
-          drawer.classList.remove('translate-x-full');
-        }, 10);
-      } else {
-        overlay.classList.add('opacity-0');
-        drawer.classList.add('translate-x-full');
-        setTimeout(() => overlay.classList.add('hidden'), 300);
-      }
-    }
-
-    document.getElementById('btn-open-history').addEventListener('click', () => toggleHistoryDrawer(true));
-    document.getElementById('btn-close-history').addEventListener('click', () => toggleHistoryDrawer(false));
-    overlay.addEventListener('click', () => toggleHistoryDrawer(false));
-    document.getElementById('btn-clear-history').addEventListener('click', () => {
-      state.history = [];
-      renderHistory();
-      showToast('Журнал очищен');
+      }, { once: true });
     });
 
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      toast.className = `px-3 py-2 rounded-[4px] text-xs font-mono border shadow-lg transition-all duration-300 transform translate-y-2 opacity-0 flex items-center gap-2 ${
-        type === 'error' ? 'bg-monolith-triRed text-white border-white/20' : 'bg-monolith-plate text-monolith-textPrimary border-monolith-steel/40'
-      }`;
-      toast.innerHTML = `<span class="inline-block w-2 h-2 rounded-full ${type === 'error' ? 'bg-white' : 'bg-monolith-success'}"></span><span>${message}</span>`;
-      container.appendChild(toast);
-      setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
-      setTimeout(() => {
-        toast.classList.add('opacity-0');
-        setTimeout(() => toast.remove(), 300);
-      }, 3500);
-    }
-
-    const modeTabs = document.querySelectorAll('.mode-tab');
-    const panelStandardKeypad = document.getElementById('panel-standard-keypad');
-    const panelFinance = document.getElementById('panel-finance');
-    const panelBuilder = document.getElementById('panel-builder');
-    const engAddon = document.getElementById('engineering-addon');
-
-    function switchMode(newMode) {
-      modeTabs.forEach(tab => {
-        const isCurrent = tab.dataset.mode === newMode;
-        tab.className = `mode-tab flex-1 py-1.5 px-2 text-xs font-medium rounded-[3px] text-center transition flex items-center justify-center gap-1.5 ${
-          isCurrent ? 'bg-monolith-triRed text-white shadow-sm border border-monolith-triRedBorder/40' : 'text-monolith-textSecondary hover:text-monolith-textPrimary'
-        }`;
-      });
-
-      panelStandardKeypad.classList.add('hidden');
-      panelFinance.classList.add('hidden');
-      panelBuilder.classList.add('hidden');
-      engAddon.classList.add('hidden');
-      displayAngleUnit.classList.add('hidden');
-
-      if (newMode === 'standard') {
-        panelStandardKeypad.classList.remove('hidden');
-        displayModeLabel.textContent = 'ОБЫЧНЫЙ';
-      } else if (newMode === 'engineering') {
-        panelStandardKeypad.classList.remove('hidden');
-        engAddon.classList.remove('hidden');
-        displayAngleUnit.classList.remove('hidden');
-        displayAngleUnit.textContent = state.angleUnit;
-        displayModeLabel.textContent = 'ИНЖЕНЕРНЫЙ';
-      } else if (newMode === 'finance') {
-        panelFinance.classList.remove('hidden');
-        displayModeLabel.textContent = 'ФИНАНСЫ РФ';
-      } else if (newMode === 'builder') {
-        panelBuilder.classList.remove('hidden');
-        displayModeLabel.textContent = 'СТРОЙКА (МОНОЛИТ)';
+    // Предзагрузка буферов при старте
+    window.addEventListener('load', () => {
+      loadAudioBuffer(VOICE_1_FILES, 'first');
+      loadAudioBuffer(VOICE_2_FILES, 'roskom');
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+        window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
       }
-      lucide.createIcons();
+    });
+
+    // Остановка сирены и озвучки
+    function stopAllAudio() {
+      if (activeSirenOsc) {
+        try {
+          activeSirenOsc.stop();
+          activeSirenMod.stop();
+          activeSirenOsc.disconnect();
+          activeSirenMod.disconnect();
+        } catch(e) {}
+        activeSirenOsc = null;
+      }
+      if (activeVoiceSource) {
+        try {
+          activeVoiceSource.stop();
+          activeVoiceSource.disconnect();
+        } catch(e) {}
+        activeVoiceSource = null;
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
     }
 
-    modeTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        audioSys.playClick(true);
-        triggerHaptic();
-        switchMode(tab.dataset.mode);
-      });
-    });
+    // Запуск сирены
+    function startSiren(ctx, isSevere = false) {
+      try {
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const mod = ctx.createOscillator();
+        const modGain = ctx.createGain();
+        sirenGain = ctx.createGain();
 
-    document.querySelectorAll('[data-num]').forEach(btn => {
-      btn.addEventListener('click', () => inputDigit(btn.dataset.num));
-    });
-    document.querySelectorAll('[data-op]').forEach(btn => {
-      btn.addEventListener('click', () => setOperation(btn.dataset.op));
-    });
+        osc.type = isSevere ? 'sawtooth' : 'triangle';
+        const baseFreq = isSevere ? 650 : 520;
+        osc.frequency.setValueAtTime(baseFreq, now);
 
-    document.querySelector('[data-action="calculate"]')?.addEventListener('click', executeEquals);
-    document.querySelector('[data-action="clear"]')?.addEventListener('click', clearAll);
-    document.querySelector('[data-action="backspace"]')?.addEventListener('click', backspace);
-    document.querySelector('[data-action="comma"]')?.addEventListener('click', inputDecimal);
-    document.querySelector('[data-action="negate"]')?.addEventListener('click', toggleSign);
-    document.querySelector('[data-action="percent"]')?.addEventListener('click', handlePercent);
+        mod.type = 'sine';
+        mod.frequency.setValueAtTime(1.5, now);
+        modGain.gain.setValueAtTime(200, now);
+        mod.connect(osc.frequency);
 
-    document.querySelectorAll('[data-eng]').forEach(btn => {
-      btn.addEventListener('click', () => handleEngineering(btn.dataset.eng));
-    });
-    document.querySelectorAll('[data-mem]').forEach(btn => {
-      btn.addEventListener('click', () => handleMemory(btn.dataset.mem));
-    });
+        // Сирена звучит тихо, чтобы не заглушать голос!
+        sirenGain.gain.setValueAtTime(0.04, now);
 
-    window.addEventListener('keydown', (e) => {
-      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-      if (e.key >= '0' && e.key <= '9') inputDigit(e.key);
-      else if (e.key === '.' || e.key === ',') inputDecimal();
-      else if (e.key === '+') setOperation('+');
-      else if (e.key === '-') setOperation('−');
-      else if (e.key === '*') setOperation('×');
-      else if (e.key === '/') { e.preventDefault(); setOperation('÷'); }
-      else if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); executeEquals(); }
-      else if (e.key === 'Backspace') backspace();
-      else if (e.key === 'Escape') clearAll();
-      else if (e.key === '%') handlePercent();
-    });
+        osc.connect(sirenGain);
+        sirenGain.connect(ctx.destination);
 
-    const settingsModal = document.getElementById('settings-modal');
-    document.getElementById('btn-open-settings').addEventListener('click', () => settingsModal.classList.remove('hidden'));
-    document.getElementById('btn-close-settings').addEventListener('click', () => settingsModal.classList.add('hidden'));
-    document.getElementById('btn-apply-settings').addEventListener('click', () => {
-      settingsModal.classList.add('hidden');
-      audioSys.enabled = document.getElementById('setting-sound').checked;
-      updateDisplay();
-    });
+        osc.start(now);
+        mod.start(now);
 
-    lucide.createIcons();
-    updateDisplay();
-  </script>
-</body>
-</html>
+        activeSirenOsc = osc;
+        activeSirenMod = mod;
+      } catch(e) {
+        console.error("Siren err:", e);
+      }
+    }
+
+    // Резервный синтез речи через Web Speech
+    function playSpeechSynthesisFallback(text, isSevere) {
+      if (!('speechSynthesis' in window)) return;
+      try {
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.resume();
+
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'ru-RU';
+        utter.rate = isSevere ? 0.95 : 1.0;
+        utter.volume = 1.0;
+
+        const voices = window.speechSynthesis.getVoices() || [];
+        const ruVoice = voices.find(v => v.lang && v.lang.toLowerCase().includes('ru'));
+        if (ruVoice) utter.voice = ruVoice;
+
+        window._curUtter = utter;
+        window.speechSynthesis.speak(utter);
