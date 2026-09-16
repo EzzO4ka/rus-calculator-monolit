@@ -348,9 +348,167 @@
           </p>
         </div>
       </div>
+      <div class="text-[11px] font-mono text-amber-400 flex items-center justify-center gap-1.5 py-1">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+        <span>Сирена тревоги и бессрочное предписание зачитываются...</span>
+      </div>
+      <div class="pt-1 flex flex-col sm:flex-row gap-2">
+        <button id="btn-replay-perm-voice" class="w-full py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+          <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
+          <span>Повторить озвучку</span>
+        </button>
+      </div>
       <div class="p-3 bg-red-950/40 rounded border border-red-900/50 font-mono text-xs text-monolith-steelLight">
         Статус доступа: <span class="text-monolith-triRed font-bold tracking-widest uppercase">БЛОКИРОВКА БЕССРОЧНАЯ (НАВСЕГДА)</span>
       </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: БЛОКИРОВКА ПО СТАТЬЕ 282.4 УК РФ (Число 1488) -->
+  <div id="modal-1488" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#181111] border-4 border-monolith-triRed rounded-[6px] max-w-lg w-full p-6 sm:p-8 shadow-[0_0_60px_rgba(214,57,46,0.6)] text-center space-y-5 animate-pulse">
+      <div class="w-20 h-20 mx-auto rounded-full bg-red-950 flex items-center justify-center border-4 border-monolith-triRed text-monolith-triRed shadow-2xl">
+        <i data-lucide="shield-alert" class="w-12 h-12"></i>
+      </div>
+      <div class="space-y-2">
+        <div class="inline-block px-3 py-1 rounded bg-monolith-triRed text-white font-mono text-xs font-bold tracking-widest uppercase">
+          СТАТЬЯ 282.4 УК РФ
+        </div>
+        <h2 class="font-bold text-xl sm:text-2xl text-monolith-triRed font-mono uppercase tracking-wider">
+          ДОСТУП ЗАБЛОКИРОВАН НАВСЕГДА
+        </h2>
+        <div class="p-4 bg-black/80 rounded border border-monolith-triRed/60 text-xs sm:text-sm font-mono text-left text-red-200 leading-relaxed space-y-2">
+          <p class="font-bold text-white">Внимание! Калькулятор навсегда заблокирован по статье 282.4 УК РФ.</p>
+          <p class="text-amber-300">Срочно обратитесь в Федеральную службу безопасности для уточнения данных и разблокировки.</p>
+        </div>
+      </div>
+      <div class="text-[11px] font-mono text-amber-400 flex items-center justify-center gap-1.5 py-1">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+        <span>Звучит тревожная сирена и официальное предписание...</span>
+      </div>
+      <button id="btn-replay-1488-voice" class="w-full py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+        <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
+        <span>Повторить озвучку</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Модальное окно: ПРЕИСПОДНЯЯ И ИЗВИНЕНИЕ БОГУ (Число 666) -->
+  <div id="modal-666" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-[#1f1924] border-2 border-purple-500/70 rounded-[6px] max-w-xl w-full p-5 sm:p-6 shadow-[0_0_40px_rgba(168,85,247,0.4)] my-auto space-y-4">
+      <div class="flex items-center justify-between border-b border-purple-500/30 pb-3">
+        <div class="flex items-center gap-2">
+          <i data-lucide="flame" class="w-6 h-6 text-purple-400 animate-bounce"></i>
+          <div>
+            <h3 class="font-bold text-sm tracking-wide font-mono text-purple-200">ПРЕИСПОДНЯЯ</h3>
+            <p class="text-[10px] text-purple-300/70">Число 666 — греховное вычисление</p>
+          </div>
+        </div>
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-black/60 border border-purple-500/40 text-purple-300">100 000 СИМВОЛОВ</span>
+      </div>
+
+      <div class="p-3 bg-black/60 rounded border border-purple-500/40 text-xs font-mono text-purple-100 leading-relaxed">
+        Добро пожаловать! Вы позвонили в преисподнюю, чтобы продолжить пользоваться калькулятором напишите богу извинения в размере 100000 символов
+      </div>
+
+      <div class="space-y-1.5 font-mono">
+        <div class="flex justify-between items-center text-xs text-purple-300">
+          <span>Текст покаяния Богу:</span>
+          <span id="label-666-count" class="font-bold text-amber-400">Символов: 0 / 100 000</span>
+        </div>
+        <textarea id="textarea-666" rows="6" class="w-full bg-[#130f17] border border-purple-500/50 rounded p-3 text-xs text-white focus:outline-none focus:border-purple-400 placeholder:text-purple-400/40 font-mono" placeholder="Господи Боже, прости меня грешного за вычисление числа 666..."></textarea>
+      </div>
+
+      <div class="pt-2 flex flex-col sm:flex-row gap-2 font-mono">
+        <button id="btn-replay-666-voice" class="py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+          <i data-lucide="volume-2" class="w-4 h-4 text-purple-300"></i>
+          <span>Озвучить</span>
+        </button>
+        <button id="btn-submit-666" disabled class="flex-1 py-2.5 px-3 bg-purple-700/50 text-white/50 text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 cursor-not-allowed">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>Замолить грех и разблокировать</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: ПРЕДУПРЕЖДЕНИЯ ЧИСЛА 104 (Попытки 1-3) -->
+  <div id="modal-104-warn" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-monolith-surface border-2 border-amber-500/70 rounded-[6px] max-w-md w-full p-5 shadow-2xl space-y-4 text-center">
+      <div class="w-12 h-12 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-500 text-amber-400">
+        <i data-lucide="alert-triangle" class="w-7 h-7"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-sm text-amber-400 uppercase tracking-wider font-mono">Предупреждение (Значение 104)</h3>
+        <p id="text-104-warn" class="text-xs sm:text-sm text-monolith-textPrimary font-mono mt-3 leading-relaxed bg-monolith-bg p-3 rounded border border-monolith-steel/30 text-left font-semibold">
+          <!-- Динамический текст -->
+        </p>
+      </div>
+      <div class="pt-1 flex flex-col sm:flex-row gap-2 font-mono">
+        <button id="btn-replay-104-voice" class="py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+          <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
+          <span>Озвучить</span>
+        </button>
+        <button id="btn-close-104-warn" class="flex-1 py-2.5 bg-amber-600 hover:bg-amber-500 text-black font-bold uppercase tracking-wider rounded transition active:scale-95 text-xs">
+          Закрыть
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: БЛОКИРОВКА НА 3 ЧАСА ПО СТ. 5.61 КоАП РФ (4-й ввод числа 104) -->
+  <div id="modal-104-lock" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#1f1515] border-2 border-monolith-triRed rounded-[6px] max-w-md w-full p-6 shadow-2xl text-center space-y-4 animate-pulse">
+      <div class="w-16 h-16 mx-auto rounded-full bg-red-950 flex items-center justify-center border-2 border-monolith-triRed text-monolith-triRed">
+        <i data-lucide="clock-alert" class="w-9 h-9"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-lg text-monolith-triRed font-mono uppercase tracking-widest">ДОСТУП ЗАБЛОКИРОВАН</h3>
+        <div class="mt-1 inline-block px-2.5 py-0.5 rounded bg-monolith-triRed text-white font-mono text-[10px] font-bold">
+          СТАТЬЯ 5.61 КоАП РФ
+        </div>
+        <p class="text-xs text-monolith-textPrimary font-mono mt-3 leading-relaxed bg-black/60 p-3 rounded border border-monolith-triRed/40">
+          Вы заблокированы по статье 5.61 КоАП РФ за неоднократные оскорбления и хулиганские действия. Доступ ограничен на 3 часа!
+        </p>
+      </div>
+      <div class="p-3 bg-black/40 rounded font-mono text-xs text-monolith-steelLight">
+        Время до разблокировки: <span id="timer-104-lock" class="text-monolith-triRed font-bold">03:00:00</span>
+      </div>
+      <button id="btn-replay-104-lock-voice" class="w-full py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+        <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
+        <span>Повторить озвучку</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Модальное окно: СВЯТОЙ ПРИЗ (Число 777) -->
+  <div id="modal-777" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#17221b] border-2 border-amber-400 rounded-[6px] max-w-md w-full p-6 shadow-[0_0_50px_rgba(251,191,36,0.4)] text-center space-y-4">
+      <div class="w-16 h-16 mx-auto rounded-full bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center text-amber-300 shadow-[0_0_25px_rgba(251,191,36,0.6)] animate-bounce">
+        <i data-lucide="crown" class="w-10 h-10"></i>
+      </div>
+      <div>
+        <div class="inline-block px-2.5 py-0.5 rounded bg-amber-400/20 border border-amber-400 text-amber-300 text-[10px] font-mono font-bold tracking-widest uppercase">
+          ВЕЛИКИЙ ВЫИГРЫШ 777
+        </div>
+        <h3 class="font-bold text-base sm:text-lg text-amber-300 font-mono mt-2">ПАРТИЯ ГОРДИТСЯ ТОБОЙ</h3>
+        <p class="text-xs sm:text-sm text-emerald-100 font-mono mt-3 leading-relaxed bg-black/50 p-3 rounded border border-amber-400/30">
+          Партия гордится тобой. Ты выиграл святой приз. Получи подарок прямо сейчас
+        </p>
+      </div>
+      <div class="pt-2 flex flex-col sm:flex-row gap-2 font-mono">
+        <button id="btn-replay-777-voice" class="py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+          <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
+          <span>Озвучить</span>
+        </button>
+        <a id="btn-777-prize" href="https://9lacasino-fa.win/ru/registration?qtag=a87281_t61365669_c9330_s3ncjvq7.3.8nn7b_sub2_sub3_sub4_sub5&x_pm_click=8b3d28f09ba3408ecd55c3b8d5d5d5e6&redirect_creative_id=9330&utm_referrer=https%3A%2F%2Flake-ember.com%2F" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-black font-bold uppercase tracking-wider rounded transition shadow-lg flex items-center justify-center gap-2 active:scale-95 text-xs">
+          <i data-lucide="gift" class="w-4 h-4"></i>
+          <span>Получить приз</span>
+        </a>
+      </div>
+      <button id="btn-close-777" class="text-[11px] font-mono text-monolith-steelLight hover:text-white underline pt-1">
+        Вернуться в калькулятор
+      </button>
     </div>
   </div>
 
@@ -775,44 +933,64 @@
     let lockoutEndTime = null;
     let captchaAnswers = { hasChildren: null, branchChoice: null, branchWhy: null };
 
+    // Новые триггеры
+    let count104 = 0;
+    let is104Locked = false;
+    let lock104EndTime = null;
+    let is1488Locked = false;
+    let is666Locked = false;
+
+    const TEXT_1488 = "Внимание! Калькулятор навсегда заблокирован по статье 282.4 УК РФ. Срочно обратитесь в Федеральную службу безопасности для уточнения данных и разблокировки.";
+    const TEXT_666 = "Добро пожаловать! Вы позвонили в преисподнюю, чтобы продолжить пользоваться калькулятором напишите богу извинения в размере 100000 символов";
+    const TEXTS_104 = [
+      "На себя посмотри уёбище, калькулятор не для лохов, закрой нахуй, уйди отсюда",
+      "Лохи на базаре, здесь русские люди пользуются настоящим русским калькулятором",
+      "Да блять ты заебал. В следующий раз пиздец тебе"
+    ];
+    const TEXT_104_LOCK = "Вы заблокированы по статье 5.61 КоАП РФ.";
+    const TEXT_777 = "Партия гордится тобой. Ты выиграл святой приз. Получи подарок прямо сейчас";
+
     const FIRST_WARNING_VOICE_TEXT = "Значение six seven запрещено Роскомнадзором. Пожалуйста, соблюдайте духовно-нравственные ценности России.";
     const ROSKOM_VOICE_TEXT = "Внимание, вы много раз нарушили правила духовно нравственных ценностей, вы попали под выборочную проверку Роскомнадзором. Пройдите в течение одного дня, согласно 19.3 КоАП РФ предусмотрена ответственность!";
+    const PERM_LOCKOUT_VOICE_TEXT = "Внимание, вы неоднократно и систематически попадали под выборочную проверку Роскомнадзора, по факту генерации запрещённого значения six seven. В связи с повторными рецидивами, калькулятор «Монолит» заблокирован навсегда без права восстановления доступа!";
 
     // Поддерживаемые имена файлов в репозитории
-    const FIRST_VOICE_FILES = [
-      'voice1.mp3',
-      'warning1.mp3',
-      'warning_67.mp3',
-      'ElevenLabs_2026-09-16T11_51_03_Brian - Deep, Resonant and Comforting_eleven_multilingual_v2.mp3'
-    ];
-
-    const ROSKOM_VOICE_FILES = [
-      'voice2.mp3',
-      'roskom.mp3',
-      'warning2.mp3',
-      'ElevenLabs_2026-09-16T11_53_43_Brian_eleven_multilingual_v2.mp3'
-    ];
+    const FIRST_VOICE_FILES = ['voice1.mp3', 'warning1.mp3', 'warning_67.mp3'];
+    const ROSKOM_VOICE_FILES = ['voice2.mp3', 'roskom.mp3', 'warning2.mp3'];
+    const PERM_LOCKOUT_VOICE_FILES = ['voice3.mp3', 'perm_lockout.mp3', 'warning3.mp3'];
+    const VOICE_1488_FILES = ['voice_1488.mp3', '1488.mp3'];
+    const VOICE_666_FILES = ['voice_666.mp3', '666.mp3'];
+    const VOICE_104_FILES = ['voice_104_1.mp3', 'voice_104_2.mp3', 'voice_104_3.mp3', 'voice_104_lock.mp3'];
+    const VOICE_777_FILES = ['voice_777.mp3', '777.mp3'];
 
     // Предзагрузка аудиофайлов
-    const preloadedAudio = { first: null, roskom: null };
+    const preloadedAudio = { first: null, roskom: null, perm: null, v1488: null, v666: null, v777: null, v104: [] };
 
     function preloadAudios() {
-      FIRST_VOICE_FILES.forEach(src => {
-        try {
-          const a = new Audio();
-          a.src = encodeURI(src);
-          a.preload = 'auto';
-          a.oncanplaythrough = () => { if (!preloadedAudio.first) preloadedAudio.first = a; };
-          a.load();
-        } catch(e) {}
-      });
+      const loadFirst = (files, onFound) => {
+        files.forEach(src => {
+          try {
+            const a = new Audio();
+            a.src = encodeURI(src);
+            a.preload = 'auto';
+            a.oncanplaythrough = () => onFound(a);
+            a.load();
+          } catch(e) {}
+        });
+      };
 
-      ROSKOM_VOICE_FILES.forEach(src => {
+      loadFirst(FIRST_VOICE_FILES, a => { if (!preloadedAudio.first) preloadedAudio.first = a; });
+      loadFirst(ROSKOM_VOICE_FILES, a => { if (!preloadedAudio.roskom) preloadedAudio.roskom = a; });
+      loadFirst(PERM_LOCKOUT_VOICE_FILES, a => { if (!preloadedAudio.perm) preloadedAudio.perm = a; });
+      loadFirst(VOICE_1488_FILES, a => { if (!preloadedAudio.v1488) preloadedAudio.v1488 = a; });
+      loadFirst(VOICE_666_FILES, a => { if (!preloadedAudio.v666) preloadedAudio.v666 = a; });
+      loadFirst(VOICE_777_FILES, a => { if (!preloadedAudio.v777) preloadedAudio.v777 = a; });
+
+      VOICE_104_FILES.forEach((f, idx) => {
         try {
-          const a = new Audio();
-          a.src = encodeURI(src);
+          const a = new Audio(encodeURI(f));
           a.preload = 'auto';
-          a.oncanplaythrough = () => { if (!preloadedAudio.roskom) preloadedAudio.roskom = a; };
+          a.oncanplaythrough = () => { preloadedAudio.v104[idx] = a; };
           a.load();
         } catch(e) {}
       });
@@ -843,6 +1021,58 @@
         }
       }, { passive: true });
     });
+
+    // =========================================================================
+    // СПЕЦИАЛЬНЫЕ ЗВУКОВЫЕ ЭФФЕКТЫ (БОЖЕСКИЙ ЗВУК И ПОБЕДНЫЕ ФАНФАРЫ)
+    // =========================================================================
+    function playHeavenlySound() {
+      const ctx = getSharedAudioContext();
+      if (!ctx) return;
+      try {
+        const now = ctx.currentTime;
+        const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // C major чистый арпеджио
+        freqs.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+          gain.gain.setValueAtTime(0.0001, now + idx * 0.12);
+          gain.gain.linearRampToValueAtTime(0.06, now + idx * 0.12 + 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.12 + 2.5);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.12);
+          osc.stop(now + idx * 0.12 + 2.6);
+        });
+      } catch(e) {}
+    }
+
+    function playVictoryFanfare() {
+      const ctx = getSharedAudioContext();
+      if (!ctx) return;
+      try {
+        const now = ctx.currentTime;
+        const notes = [
+          { f: 523.25, t: 0, d: 0.15 },
+          { f: 659.25, t: 0.16, d: 0.15 },
+          { f: 783.99, t: 0.32, d: 0.18 },
+          { f: 1046.50, t: 0.52, d: 0.7 }
+        ];
+        notes.forEach(n => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(n.f, now + n.t);
+          gain.gain.setValueAtTime(0.001, now + n.t);
+          gain.gain.linearRampToValueAtTime(0.12, now + n.t + 0.04);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + n.t + n.d);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + n.t);
+          osc.stop(now + n.t + n.d + 0.05);
+        });
+      } catch(e) {}
+    }
 
     // =========================================================================
     // СИНХРОННАЯ СИРЕНА ТРЕВОГИ
@@ -893,7 +1123,7 @@
         modGain.gain.setValueAtTime(depth, now);
         mod.connect(osc.frequency);
 
-        const targetVol = isSevere ? 0.08 : 0.055;
+        const targetVol = isSevere ? 0.09 : 0.055;
         sirenGain.gain.setValueAtTime(0.001, now);
         sirenGain.gain.linearRampToValueAtTime(targetVol, now + 0.15);
 
@@ -928,14 +1158,14 @@
       }
     }
 
-    function speakFallback(text, isRoskom) {
+    function speakFallback(text, isSevere = false) {
       if (!('speechSynthesis' in window)) return;
       try {
         if (window.speechSynthesis.paused) window.speechSynthesis.resume();
         const utt = new SpeechSynthesisUtterance(text);
         utt.lang = 'ru-RU';
-        utt.rate = isRoskom ? 0.95 : 0.98;
-        utt.pitch = isRoskom ? 0.92 : 0.96;
+        utt.rate = isSevere ? 0.93 : 0.98;
+        utt.pitch = isSevere ? 0.88 : 0.95;
         utt.volume = 1.0;
 
         const voices = window.speechSynthesis.getVoices() || [];
@@ -952,31 +1182,39 @@
       }
     }
 
-    function playMonolithVoice(type) {
-      const isRoskom = (type === 'roskom');
-      const text = isRoskom ? ROSKOM_VOICE_TEXT : FIRST_WARNING_VOICE_TEXT;
-
-      // Сирена стартует мгновенно
-      startWarningSiren(isRoskom);
-
-      // Проверка на предзагруженный MP3
-      const audio = isRoskom ? preloadedAudio.roskom : preloadedAudio.first;
-      if (audio) {
+    function playCustomVoice(audioObj, fallbackText, isSevere = false) {
+      if (audioObj) {
         try {
-          audio.currentTime = 0;
-          audio.volume = 1.0;
-          activeVoiceAudio = audio;
-          const p = audio.play();
+          audioObj.currentTime = 0;
+          audioObj.volume = 1.0;
+          activeVoiceAudio = audioObj;
+          const p = audioObj.play();
           if (p !== undefined) {
-            p.catch(() => speakFallback(text, isRoskom));
+            p.catch(() => speakFallback(fallbackText, isSevere));
           }
         } catch(e) {
-          speakFallback(text, isRoskom);
+          speakFallback(fallbackText, isSevere);
         }
       } else {
-        // Если файлов MP3 нет в репозитории, включается Web Speech
-        speakFallback(text, isRoskom);
+        speakFallback(fallbackText, isSevere);
       }
+    }
+
+    function playMonolithVoice(type) {
+      const isPerm = (type === 'perm');
+      const isRoskom = (type === 'roskom');
+      let text = FIRST_WARNING_VOICE_TEXT;
+      if (isPerm) text = PERM_LOCKOUT_VOICE_TEXT;
+      else if (isRoskom) text = ROSKOM_VOICE_TEXT;
+
+      startWarningSiren(isPerm || isRoskom);
+
+      let audio = null;
+      if (isPerm) audio = preloadedAudio.perm;
+      else if (isRoskom) audio = preloadedAudio.roskom;
+      else audio = preloadedAudio.first;
+
+      playCustomVoice(audio, text, isPerm || isRoskom);
     }
 
     // Класс щелчков промышленного реле
@@ -1034,10 +1272,233 @@
     const displayModeLabel = document.getElementById('display-mode-label');
     const censorshipModal = document.getElementById('censorship-modal');
 
+    // Проверка специальных триггеров
+    function checkSpecialNumbers(val) {
+      if (isPermLockedOut || isLockedOut || is104Locked || is1488Locked || is666Locked) return true;
+      if (val === null || val === undefined || val === '') return false;
+      const cleanStr = String(val).replace(/\s+/g, '').replace(',', '.');
+      const num = typeof val === 'number' ? val : parseFloat(cleanStr);
+      if (isNaN(num)) return false;
+
+      // 1. Число 1488: вечная блокировка по ст. 282.4 УК РФ
+      if (Math.abs(num - 1488) < 1e-9) {
+        trigger1488Lockout();
+        return true;
+      }
+
+      // 2. Число 666: звонок в преисподнюю и 100 000 символов
+      if (Math.abs(num - 666) < 1e-9) {
+        trigger666Lockout();
+        return true;
+      }
+
+      // 3. Число 104: счётчик предупреждений или блокировка на 3 часа
+      if (Math.abs(num - 104) < 1e-9) {
+        trigger104Handler();
+        return true;
+      }
+
+      // 4. Число 777: святой приз партии
+      if (Math.abs(num - 777) < 1e-9) {
+        trigger777Win();
+        return true;
+      }
+
+      // 5. Число 67: ограничение Роскомнадзора
+      if (Math.abs(num - FORBIDDEN_VALUE) < 1e-9) {
+        triggerCensorship();
+        return true;
+      }
+
+      return false;
+    }
+
     function isForbidden(val) {
-      if (isPermLockedOut || isLockedOut) return false;
-      const num = typeof val === 'number' ? val : parseFloat(String(val).replace(',', '.'));
-      return !isNaN(num) && Math.abs(num - FORBIDDEN_VALUE) < 1e-9;
+      return checkSpecialNumbers(val);
+    }
+
+    // ОБРАБОТЧИК 1488: ВЕЧНЫЙ БЛОК ПО СТ. 282.4 УК РФ
+    function trigger1488Lockout() {
+      is1488Locked = true;
+      resetCalcState();
+      calcDisplay.textContent = 'ЦЕНЗУРА';
+      calcStatusMsg.textContent = 'СТАТЬЯ 282.4 УК РФ — БЛОКИРОВКА ФСБ';
+      calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-monolith-triRed tracking-wider uppercase text-right';
+      calcStatusMsg.classList.remove('hidden');
+
+      stopAllVoiceAndSiren();
+      document.getElementById('modal-1488').classList.remove('hidden');
+      startWarningSiren(true);
+      playCustomVoice(preloadedAudio.v1488, TEXT_1488, true);
+      lucide.createIcons();
+    }
+
+    document.getElementById('btn-replay-1488-voice').addEventListener('click', () => {
+      startWarningSiren(true);
+      playCustomVoice(preloadedAudio.v1488, TEXT_1488, true);
+    });
+
+    // ОБРАБОТЧИК 666: ПРЕИСПОДНЯЯ И 100 000 СИМВОЛОВ
+    function trigger666Lockout() {
+      is666Locked = true;
+      resetCalcState();
+      calcDisplay.textContent = 'ПРЕИСПОДНЯЯ';
+      calcStatusMsg.textContent = 'ЗВОНОК В АД — ТРЕБУЕТСЯ ПОКАЯНИЕ';
+      calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-purple-400 tracking-wider uppercase text-right';
+      calcStatusMsg.classList.remove('hidden');
+
+      stopAllVoiceAndSiren();
+      document.getElementById('modal-666').classList.remove('hidden');
+      playHeavenlySound();
+      playCustomVoice(preloadedAudio.v666, TEXT_666, false);
+
+      const ta = document.getElementById('textarea-666');
+      ta.value = '';
+      document.getElementById('label-666-count').textContent = 'Символов: 0 / 100 000';
+      const btn = document.getElementById('btn-submit-666');
+      btn.disabled = true;
+      btn.className = 'flex-1 py-2.5 px-3 bg-purple-700/50 text-white/50 text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 cursor-not-allowed';
+      lucide.createIcons();
+    }
+
+    document.getElementById('textarea-666').addEventListener('input', (e) => {
+      const len = e.target.value.length;
+      const countEl = document.getElementById('label-666-count');
+      const submitBtn = document.getElementById('btn-submit-666');
+      countEl.textContent = `Символов: ${len.toLocaleString('ru-RU')} / 100 000`;
+
+      if (len >= 100000) {
+        countEl.className = 'font-bold text-emerald-400';
+        submitBtn.disabled = false;
+        submitBtn.className = 'flex-1 py-2.5 px-3 bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 shadow-lg active:scale-95 cursor-pointer';
+      } else {
+        countEl.className = 'font-bold text-amber-400';
+        submitBtn.disabled = true;
+        submitBtn.className = 'flex-1 py-2.5 px-3 bg-purple-700/50 text-white/50 text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 cursor-not-allowed';
+      }
+    });
+
+    document.getElementById('btn-submit-666').addEventListener('click', () => {
+      if (document.getElementById('textarea-666').value.length >= 100000) {
+        is666Locked = false;
+        stopAllVoiceAndSiren();
+        document.getElementById('modal-666').classList.add('hidden');
+        showToast('Грехи отпущены. Доступ к калькулятору возвращён!');
+        updateDisplay();
+      }
+    });
+
+    document.getElementById('btn-replay-666-voice').addEventListener('click', () => {
+      playHeavenlySound();
+      playCustomVoice(preloadedAudio.v666, TEXT_666, false);
+    });
+
+    // ОБРАБОТЧИК 104: 3 ПРЕДУПРЕЖДЕНИЯ + БЛОК НА 3 ЧАСА НА 4-Й РАЗ
+    function trigger104Handler() {
+      count104++;
+      resetCalcState();
+
+      if (count104 >= 4) {
+        // Блокировка на 3 часа по ст. 5.61 КоАП РФ
+        is104Locked = true;
+        lock104EndTime = Date.now() + 3 * 60 * 60 * 1000;
+        calcDisplay.textContent = 'БЛОКИРОВКА';
+        calcStatusMsg.textContent = 'СТАТЬЯ 5.61 КоАП РФ — 3 ЧАСА';
+        calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-monolith-triRed tracking-wider uppercase text-right';
+        calcStatusMsg.classList.remove('hidden');
+
+        stopAllVoiceAndSiren();
+        document.getElementById('modal-104-warn').classList.add('hidden');
+        document.getElementById('modal-104-lock').classList.remove('hidden');
+        startWarningSiren(true);
+        playCustomVoice(preloadedAudio.v104[3], TEXT_104_LOCK, true);
+        start104Countdown();
+      } else {
+        // Предупреждения 1, 2 или 3 без сирены
+        const msgIdx = count104 - 1;
+        const msgText = TEXTS_104[msgIdx];
+        document.getElementById('text-104-warn').textContent = msgText;
+
+        calcDisplay.textContent = 'ЦЕНЗУРА';
+        calcStatusMsg.textContent = `ЗНАЧЕНИЕ 104 — ПРЕДУПРЕЖДЕНИЕ ${count104} ИЗ 3`;
+        calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-amber-400 tracking-wider uppercase text-right';
+        calcStatusMsg.classList.remove('hidden');
+
+        stopAllVoiceAndSiren();
+        document.getElementById('modal-104-warn').classList.remove('hidden');
+        playCustomVoice(preloadedAudio.v104[msgIdx], msgText, false);
+      }
+      lucide.createIcons();
+    }
+
+    document.getElementById('btn-close-104-warn').addEventListener('click', () => {
+      stopAllVoiceAndSiren();
+      document.getElementById('modal-104-warn').classList.add('hidden');
+      updateDisplay();
+    });
+
+    document.getElementById('btn-replay-104-voice').addEventListener('click', () => {
+      const msgIdx = Math.min(count104 - 1, 2);
+      playCustomVoice(preloadedAudio.v104[msgIdx], TEXTS_104[msgIdx], false);
+    });
+
+    document.getElementById('btn-replay-104-lock-voice').addEventListener('click', () => {
+      startWarningSiren(true);
+      playCustomVoice(preloadedAudio.v104[3], TEXT_104_LOCK, true);
+    });
+
+    function start104Countdown() {
+      const timerEl = document.getElementById('timer-104-lock');
+      const interval = setInterval(() => {
+        const remaining = lock104EndTime - Date.now();
+        if (remaining <= 0) {
+          clearInterval(interval);
+          is104Locked = false;
+          count104 = 0;
+          document.getElementById('modal-104-lock').classList.add('hidden');
+          stopAllVoiceAndSiren();
+          updateDisplay();
+          return;
+        }
+        const h = Math.floor(remaining / 3600000);
+        const m = Math.floor((remaining % 3600000) / 60000);
+        const s = Math.floor((remaining % 60000) / 1000);
+        timerEl.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    // ОБРАБОТЧИК 777: СВЯТОЙ ПРИЗ ПАРТИИ
+    function trigger777Win() {
+      resetCalcState();
+      calcDisplay.textContent = 'СВЯТОЙ ПРИЗ';
+      calcStatusMsg.textContent = 'ПАРТИЯ ГОРДИТСЯ ТОБОЙ — ВЫИГРЫШ 777';
+      calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-amber-300 tracking-wider uppercase text-right';
+      calcStatusMsg.classList.remove('hidden');
+
+      stopAllVoiceAndSiren();
+      document.getElementById('modal-777').classList.remove('hidden');
+      playVictoryFanfare();
+      playCustomVoice(preloadedAudio.v777, TEXT_777, false);
+      lucide.createIcons();
+    }
+
+    document.getElementById('btn-replay-777-voice').addEventListener('click', () => {
+      playVictoryFanfare();
+      playCustomVoice(preloadedAudio.v777, TEXT_777, false);
+    });
+
+    document.getElementById('btn-close-777').addEventListener('click', () => {
+      stopAllVoiceAndSiren();
+      document.getElementById('modal-777').classList.add('hidden');
+      updateDisplay();
+    });
+
+    function resetCalcState() {
+      state.currentValue = '0';
+      state.previousValue = null;
+      state.operation = null;
+      state.waitingForOperand = false;
+      state.expressionHistory = '';
     }
 
     function triggerCensorship() {
@@ -1095,6 +1556,10 @@
 
     document.getElementById('btn-replay-voice').addEventListener('click', () => {
       playMonolithVoice('roskom');
+    });
+
+    document.getElementById('btn-replay-perm-voice').addEventListener('click', () => {
+      playMonolithVoice('perm');
     });
 
     document.getElementById('btn-start-captcha').addEventListener('click', () => {
@@ -1336,8 +1801,8 @@
       document.getElementById('captcha-modal').classList.add('hidden');
       document.getElementById('captcha-success-modal').classList.add('hidden');
       stopAllVoiceAndSiren();
-      startWarningSiren(true);
       showPermLockoutScreen();
+      playMonolithVoice('perm');
       showToast("ВНИМАНИЕ: Калькулятор заблокирован навсегда!", "error");
     }
 
@@ -1353,10 +1818,10 @@
     // ОФОРМЛЕНИЕ И ВЫЧИСЛИТЕЛЬНОЕ ЯДРО
     // =========================================================================
     function formatRussianNumber(numStr) {
-      if (numStr === 'Error' || numStr === 'ЦЕНЗУРА' || isNaN(Number(String(numStr).replace(',', '.')))) {
+      if (numStr === 'Error' || numStr === 'ЦЕНЗУРА' || isNaN(Number(String(numStr).replace(/\s+/g, '').replace(',', '.')))) {
         return numStr;
       }
-      const cleanStr = String(numStr).replace(',', '.');
+      const cleanStr = String(numStr).replace(/\s+/g, '').replace(',', '.');
       const parts = cleanStr.split('.');
       const integerPart = parts[0];
       const decimalPart = parts[1];
@@ -1365,18 +1830,39 @@
     }
 
     function updateDisplay() {
+      if (is1488Locked) {
+        document.getElementById('modal-1488').classList.remove('hidden');
+        calcDisplay.textContent = 'ЦЕНЗУРА';
+        calcStatusMsg.textContent = 'СТАТЬЯ 282.4 УК РФ — БЛОКИРОВКА ФСБ';
+        calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-monolith-triRed tracking-wider uppercase text-right';
+        calcStatusMsg.classList.remove('hidden');
+        return;
+      }
       if (isPermLockedOut) {
         showPermLockoutScreen();
+        return;
+      }
+      if (is104Locked) {
+        document.getElementById('modal-104-lock').classList.remove('hidden');
+        calcDisplay.textContent = 'БЛОКИРОВКА';
+        calcStatusMsg.textContent = 'СТАТЬЯ 5.61 КоАП РФ — 3 ЧАСА';
+        calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-monolith-triRed tracking-wider uppercase text-right';
+        calcStatusMsg.classList.remove('hidden');
+        return;
+      }
+      if (is666Locked) {
+        document.getElementById('modal-666').classList.remove('hidden');
+        calcDisplay.textContent = 'ПРЕИСПОДНЯЯ';
+        calcStatusMsg.textContent = 'ЗВОНОК В АД — ТРЕБУЕТСЯ ПОКАЯНИЕ';
+        calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-purple-400 tracking-wider uppercase text-right';
+        calcStatusMsg.classList.remove('hidden');
         return;
       }
       if (isLockedOut) {
         showLockoutScreen();
         return;
       }
-      if (isForbidden(state.currentValue)) {
-        triggerCensorship();
-        return;
-      }
+
       const useFormatting = document.getElementById('setting-format')?.checked ?? true;
       calcDisplay.textContent = useFormatting ? formatRussianNumber(state.currentValue) : state.currentValue.replace('.', ',');
       calcExpression.textContent = state.expressionHistory || '\u00A0';
@@ -1384,7 +1870,7 @@
       if (state.memory !== 0) displayMemoryBadge.classList.remove('hidden');
       else displayMemoryBadge.classList.add('hidden');
 
-      calcStatusMsg.classList.add('hidden');
+      calcStatusMsg.className = 'hidden mt-1 text-[11px] font-mono text-monolith-triRed tracking-wider uppercase text-right';
     }
 
     function showError(msg = 'Недопустимая операция') {
@@ -1401,7 +1887,7 @@
     }
 
     function inputDigit(digit) {
-      if (isPermLockedOut) return;
+      if (isPermLockedOut || is104Locked || is666Locked) return;
       audioSys.playClick(false);
       triggerHaptic();
 
@@ -1416,8 +1902,7 @@
         }
       }
 
-      if (isForbidden(nextVal)) {
-        triggerCensorship();
+      if (checkSpecialNumbers(nextVal)) {
         return;
       }
 
@@ -1445,8 +1930,7 @@
       triggerHaptic();
       if (state.currentValue === '0') return;
       state.currentValue = state.currentValue.startsWith('-') ? state.currentValue.slice(1) : '-' + state.currentValue;
-      if (isForbidden(state.currentValue)) {
-        triggerCensorship();
+      if (checkSpecialNumbers(state.currentValue)) {
         return;
       }
       updateDisplay();
@@ -1458,8 +1942,7 @@
       triggerHaptic();
       if (state.waitingForOperand) return;
       state.currentValue = state.currentValue.length > 1 ? state.currentValue.slice(0, -1) : '0';
-      if (isForbidden(state.currentValue)) {
-        triggerCensorship();
+      if (checkSpecialNumbers(state.currentValue)) {
         return;
       }
       updateDisplay();
@@ -1484,8 +1967,7 @@
       const current = parseFloat(state.currentValue);
       if (isNaN(current)) return;
       const res = (state.previousValue !== null && state.operation) ? (state.previousValue * current) / 100 : current / 100;
-      if (isForbidden(res)) {
-        triggerCensorship();
+      if (checkSpecialNumbers(res)) {
         return;
       }
       state.currentValue = String(res);
@@ -1524,8 +2006,7 @@
           showError('Деление на ноль невозможно');
           return;
         }
-        if (isForbidden(result)) {
-          triggerCensorship();
+        if (checkSpecialNumbers(result)) {
           return;
         }
         state.currentValue = String(cleanFloat(result));
@@ -1555,8 +2036,7 @@
         return;
       }
 
-      if (isForbidden(result)) {
-        triggerCensorship();
+      if (checkSpecialNumbers(result)) {
         return;
       }
 
@@ -1626,8 +2106,7 @@
           break;
       }
 
-      if (isForbidden(res)) {
-        triggerCensorship();
+      if (checkSpecialNumbers(res)) {
         return;
       }
 
@@ -1644,7 +2123,7 @@
       switch (memAction) {
         case 'mc': state.memory = 0; showToast('Память очищена'); break;
         case 'mr':
-          if (isForbidden(state.memory)) { triggerCensorship(); return; }
+          if (checkSpecialNumbers(state.memory)) { return; }
           state.currentValue = String(state.memory);
           state.waitingForOperand = false;
           showToast(`Извлечено: ${formatRussianNumber(String(state.memory))}`);
@@ -1696,8 +2175,7 @@
           const idx = parseInt(el.getAttribute('data-hist-idx'), 10);
           const item = state.history[idx];
           if (item) {
-            if (isForbidden(item.rawResult)) {
-              triggerCensorship();
+            if (checkSpecialNumbers(item.rawResult)) {
               return;
             }
             state.currentValue = String(item.rawResult);
@@ -1873,7 +2351,7 @@
 
     document.getElementById('btn-vat-push-to-calc').addEventListener('click', () => {
       const total = calcVatAdd();
-      if (isForbidden(total)) { triggerCensorship(); return; }
+      if (checkSpecialNumbers(total)) { return; }
       state.currentValue = String(cleanFloat(total));
       state.waitingForOperand = true;
       updateDisplay();
@@ -1968,7 +2446,7 @@
 
     document.getElementById('btn-cnc-push-to-calc').addEventListener('click', () => {
       const order = calcConcreteVolume();
-      if (isForbidden(order)) { triggerCensorship(); return; }
+      if (checkSpecialNumbers(order)) { return; }
       state.currentValue = String(cleanFloat(order));
       state.waitingForOperand = true;
       updateDisplay();
