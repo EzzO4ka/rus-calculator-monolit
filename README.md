@@ -49,7 +49,8 @@
 - **Клавиатурное управление:** Полная поддержка Numpad и горячих клавиш (`Enter`, `Backspace`, `Esc`, `+`, `-`, `*`, `/`).
 
 Ссылка на калькулятор https://ezzo4ka.github.io/rus-calculator-monolit/
-Ссылка на ознакомительный сайт с калькулятором 
+
+Ссылка на ознакомительный сайт с калькулятором https://ezzo4ka.github.io/calculator-monolit-site/
 
 ---
 
