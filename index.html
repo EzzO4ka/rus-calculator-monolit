@@ -736,7 +736,7 @@
             </div>
           </div>
           <div class="grid grid-cols-3 gap-2">
-            <button data-vat-rate="20" class="vat-rate-btn py-2 px-3 rounded-[4px] bg-monolith-triRed text-white font-mono text-xs font-bold border border-white/20">20% (Основная)</button>
+            <button data-vat-rate="22" class="vat-rate-btn py-2 px-3 rounded-[4px] bg-monolith-triRed text-white font-mono text-xs font-bold border border-white/20">22% (Основная)</button>
             <button data-vat-rate="10" class="vat-rate-btn py-2 px-3 rounded-[4px] bg-monolith-plate text-monolith-textPrimary font-mono text-xs font-semibold border border-monolith-steel/20">10% (Льготная)</button>
             <button data-vat-rate="0" class="vat-rate-btn py-2 px-3 rounded-[4px] bg-monolith-plate text-monolith-textPrimary font-mono text-xs font-semibold border border-monolith-steel/20">0% (Экспорт)</button>
           </div>
@@ -746,8 +746,8 @@
           </div>
           <div class="bg-monolith-bg/80 border border-monolith-steel/20 rounded-[4px] p-3 space-y-1.5 font-mono text-xs">
             <div class="flex justify-between"><span class="text-monolith-textSecondary">Сумма без НДС:</span><span id="vat-res-base" class="font-semibold text-monolith-textPrimary">100 000,00 ₽</span></div>
-            <div class="flex justify-between"><span class="text-monolith-textSecondary">Сумма НДС:</span><span id="vat-res-tax" class="font-semibold text-monolith-warning">20 000,00 ₽</span></div>
-            <div class="border-t border-monolith-steel/20 pt-1 flex justify-between text-sm"><span class="text-monolith-steelLight font-sans">Итого с НДС:</span><span id="vat-res-total" class="font-bold text-blue-400">120 000,00 ₽</span></div>
+            <div class="flex justify-between"><span class="text-monolith-textSecondary">Сумма НДС:</span><span id="vat-res-tax" class="font-semibold text-monolith-warning">22 000,00 ₽</span></div>
+            <div class="border-t border-monolith-steel/20 pt-1 flex justify-between text-sm"><span class="text-monolith-steelLight font-sans">Итого с НДС:</span><span id="vat-res-total" class="font-bold text-blue-400">122 000,00 ₽</span></div>
           </div>
           <button id="btn-vat-push-to-calc" class="w-full py-2 bg-monolith-plate hover:bg-monolith-steel/30 border border-monolith-steel/30 rounded text-xs font-mono text-monolith-textPrimary">Перенести результат в табло</button>
         </div>
@@ -2281,7 +2281,7 @@
     // =========================================================================
     // ЛОГИКА ФИНАНСОВОГО МОДУЛЯ (НДС, ИПОТЕКА, ВКЛАД)
     // =========================================================================
-    let currentVatRate = 20;
+    let currentVatRate = 22;
 
     const finSubtabs = {
       vat: { btn: document.getElementById('fin-tab-vat'), view: document.getElementById('fin-view-vat') },
