@@ -1,3 +1,4 @@
+<img width="2816" height="1536" alt="Gemini_Generated_Image_7zdvxx7zdvxx7zdv" src="https://github.com/user-attachments/assets/4ae4c774-8c44-4615-aa58-858f0113b3d6" />
 # 🏛️ Национальный калькулятор «Монолит»
 
 > **«Точно. Надёжно. По-нашему.»**  
