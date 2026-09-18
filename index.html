@@ -163,13 +163,213 @@
     .counter-value {
       font-variant-numeric: tabular-nums;
     }
+
+    @keyframes btnFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(180px) rotate(var(--fall-rot, 25deg)); opacity: 0; }
+    }
+    .btn-falling {
+      animation: btnFall 0.85s cubic-bezier(0.5, 0, 0.9, 0.4) forwards;
+      transition: none !important;
+      pointer-events: none;
+    }
+    @keyframes btnRise {
+      0% { transform: translateY(180px) rotate(var(--fall-rot, 25deg)); opacity: 0; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    }
+    .btn-rising {
+      animation: btnRise 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+      transition: none !important;
+    }
+    @keyframes calcShake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-7px) translateY(3px); }
+      40% { transform: translateX(7px) translateY(-3px); }
+      60% { transform: translateX(-5px) translateY(2px); }
+      80% { transform: translateX(5px) translateY(-2px); }
+    }
+    .calc-breaking {
+      animation: calcShake 0.45s ease-in-out 4;
+    }
+    @keyframes jhulFlash {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.12); opacity: 0.75; }
+    }
+    .jhul-flashing {
+      animation: jhulFlash 0.35s ease-in-out infinite;
+    }
+
+    /* Сканирование фотографии: бегущая линия + сетка точек */
+    @keyframes scanLineMove {
+      0%, 100% { top: 6%; }
+      50% { top: 90%; }
+    }
+    .scan-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(52,211,153,0.9), transparent);
+      box-shadow: 0 0 18px rgba(52,211,153,0.9);
+      animation: scanLineMove 2.4s ease-in-out infinite;
+    }
+    @keyframes scanDotsPulse {
+      0%, 100% { opacity: 0.35; transform: scale(0.96); }
+      50% { opacity: 1; transform: scale(1.02); }
+    }
+    .scan-dots {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle 2px, rgba(52,211,153,0.95) 1px, transparent 1.4px),
+        radial-gradient(circle 2px, rgba(52,211,153,0.95) 1px, transparent 1.4px);
+      background-size: 22px 22px;
+      background-position: 0 0, 11px 11px;
+      animation: scanDotsPulse 1.6s ease-in-out infinite;
+    }
+
+    /* ---- Мессенджер МОНОЛИТ ---- */
+    .monolit-wallpaper {
+      background-color: #0e1621;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(43,82,120,0.25), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(192,57,43,0.10), transparent 45%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.035' stroke-width='1'%3E%3Cpath d='M10 10h12v12H10zM34 4h8v8h-8zM40 30h10v10H40zM8 38h10v10H8zM24 22h6v6h-6zM48 8h5v5h-5zM22 46h8v8h-8z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .chat-scroll::-webkit-scrollbar { width: 6px; }
+    .chat-scroll::-webkit-scrollbar-track { background: transparent; }
+    .chat-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+    .chat-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+
+    @keyframes msgEnter {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .msg-enter { animation: msgEnter 0.28s ease-out both; }
+
+    .bub-in::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      bottom: 0;
+      width: 14px;
+      height: 14px;
+      background: #182533;
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+    .bub-out::before {
+      content: '';
+      position: absolute;
+      right: -6px;
+      bottom: 0;
+      width: 14px;
+      height: 14px;
+      background: #2b5278;
+      clip-path: polygon(0 0, 0 100%, 100% 100%);
+    }
+
+    .analytics-fade { transition: opacity 0.45s ease, transform 0.45s ease; }
+    @keyframes statPop {
+      0% { transform: scale(0.85); opacity: 0; }
+      60% { transform: scale(1.06); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .stat-pop { animation: statPop 0.4s ease-out both; }
+    @keyframes barGrow { from { width: 0; } }
+    .bar-grow { animation: barGrow 0.9s ease-out both; }
+
+    @keyframes electionShake {
+      0%, 100% { transform: translateX(0); }
+      15% { transform: translateX(-10px) rotate(-1deg); }
+      30% { transform: translateX(9px) rotate(1deg); }
+      45% { transform: translateX(-7px); }
+      60% { transform: translateX(6px); }
+      75% { transform: translateX(-3px); }
+    }
+    .election-shake { animation: electionShake 0.5s ease-in-out both; }
+    @keyframes receiptOut {
+      from { transform: translateY(-120%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .receipt-out { animation: receiptOut 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+    @keyframes confettiFall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(320px) rotate(720deg); opacity: 0; }
+    }
+    .confetti-piece { position: absolute; top: 0; width: 9px; height: 14px; animation: confettiFall 2.4s linear infinite; }
+    @keyframes stampIn {
+      0% { transform: scale(2.4) rotate(-18deg); opacity: 0; }
+      60% { transform: scale(0.94) rotate(-12deg); opacity: 1; }
+      100% { transform: scale(1) rotate(-12deg); opacity: 1; }
+    }
+    .stamp-in { animation: stampIn 0.45s ease-out both; }
+    @keyframes electionPop {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .election-pop { animation: electionPop 0.3s ease-out both; }
+    .runaway-btn { transition: transform 0.12s ease-out; will-change: transform; position: relative; z-index: 5; }
   </style>
 </head>
 
 <body class="h-full bg-monolith-bg text-monolith-textPrimary font-sans antialiased concrete-texture flex flex-col justify-between overflow-x-hidden selection:bg-monolith-accent selection:text-white">
 
-  <!-- Контейнер всплывающих уведомлений -->
+  <!-- ЭКРАН ПОЛУЧЕНИЯ ДОВЕРИЯ (ОНБОРДИНГ, ПЕРВЫЙ ЗАХОД) -->
+  <div id="trust-gate" class="fixed inset-0 z-[130] overflow-y-auto bg-monolith-bg concrete-texture flex items-center justify-center p-4">
+    <div class="w-full max-w-lg my-6">
+      <div class="bg-monolith-surface border-2 border-amber-500/50 rounded-[10px] shadow-2xl overflow-hidden">
+        <div class="bg-monolith-plate border-b border-monolith-steel/30 px-5 py-5 text-center">
+          <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/15 border-2 border-amber-400 flex items-center justify-center text-amber-400">
+            <i data-lucide="shield-check" class="w-8 h-8"></i>
+          </div>
+          <h1 class="mt-3 text-lg font-black font-mono uppercase tracking-widest text-monolith-textPrimary">Получите наше доверие</h1>
+          <p class="text-[11px] font-mono text-monolith-textSecondary mt-1 leading-relaxed">Калькулятор заблокирован до подтверждения лояльности. Пройдите все проверки по порядку — после каждой вы возвращаетесь сюда.</p>
+        </div>
+        <div class="px-5 pt-4">
+          <div class="flex justify-between text-[10px] font-mono text-monolith-textSecondary uppercase tracking-wider mb-1">
+            <span>Прогресс доверия</span><span id="trust-progress-text">0 / 4</span>
+          </div>
+          <div class="h-2 bg-monolith-bg rounded-full overflow-hidden border border-monolith-steel/30">
+            <div id="trust-progress-bar" class="h-full bg-gradient-to-r from-amber-500 to-emerald-500 transition-all duration-500" style="width:0%"></div>
+          </div>
+        </div>
+        <div id="trust-list" class="p-4 space-y-3"></div>
+        <div class="px-5 pb-5">
+          <p class="text-[10px] font-mono text-monolith-steelLight text-center">Проверки выдаются в случайном порядке. Каждая открывается на отдельной странице.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    try {
+      var _st = JSON.parse(localStorage.getItem('monolith_calc_state') || 'null');
+      if (_st && _st.trust) document.getElementById('trust-gate').classList.add('hidden');
+    } catch (e) {}
+  </script>
+
   <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm"></div>
+
+  <!-- Плашка звания великого математика (правый верхний угол сайта) — клик вызывает ХУЛИ ЖМЕШЬ -->
+  <button type="button" id="pi-math-badge" class="hidden fixed top-2 right-2 z-40 px-3 py-1.5 rounded-[4px] font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg border-2 cursor-pointer transition hover:scale-105 active:scale-95">
+    <i data-lucide="award" class="w-3.5 h-3.5"></i>
+    <span id="pi-math-badge-text">—</span>
+  </button>
+
+  <!-- Оверлей ХУЛИ ЖМЕШЬ -->
+  <div id="jhul-overlay" class="hidden fixed inset-0 z-[90] bg-black/70 flex items-center justify-center pointer-events-none">
+    <div id="jhul-overlay-text" class="jhul-flashing text-5xl sm:text-7xl font-black font-serif uppercase tracking-widest text-red-600" style="text-shadow: 0 0 30px rgba(220,38,38,0.9);">ХУЛИ ЖМЕШЬ</div>
+  </div>
+
+  <!-- ПАНЕЛЬ ТЕСТИРОВАНИЯ ПРОВЕРОК (для проверки фич) -->
+  <div class="fixed left-0 top-1/2 -translate-y-1/2 z-[75] flex flex-col gap-1 p-1">
+    <div class="text-[9px] font-mono text-monolith-textSecondary uppercase tracking-wider text-center pb-0.5">тест</div>
+    <button id="test-open-text" class="px-2 py-1 bg-monolith-plate/95 hover:bg-monolith-steel/40 border border-monolith-steel/40 rounded-r text-[10px] font-mono text-monolith-textPrimary text-left">Диктант</button>
+    <button id="test-open-photo" class="px-2 py-1 bg-monolith-plate/95 hover:bg-monolith-steel/40 border border-monolith-steel/40 rounded-r text-[10px] font-mono text-monolith-textPrimary text-left">Фото</button>
+    <button id="test-open-chat" class="px-2 py-1 bg-monolith-plate/95 hover:bg-monolith-steel/40 border border-monolith-steel/40 rounded-r text-[10px] font-mono text-monolith-textPrimary text-left">Чат с П.</button>
+    <button id="test-open-elections" class="px-2 py-1 bg-monolith-plate/95 hover:bg-monolith-steel/40 border border-monolith-steel/40 rounded-r text-[10px] font-mono text-monolith-textPrimary text-left">Выборы</button>
+    <button id="test-open-trust" class="px-2 py-1 bg-amber-600/90 hover:bg-amber-500 border border-amber-400/60 rounded-r text-[10px] font-mono text-black font-bold text-left">Доверие</button>
+    <button id="test-reset-cooldowns" class="px-2 py-1 bg-monolith-plate/95 hover:bg-monolith-steel/40 border border-monolith-steel/40 rounded-r text-[10px] font-mono text-monolith-textPrimary text-left">Сброс КД</button>
+  </div>
 
   <!-- Модальное окно цензуры числа 67 (Первое предупреждение) -->
   <div id="censorship-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -358,6 +558,12 @@
           <span>Повторить озвучку</span>
         </button>
       </div>
+      <label class="flex items-start gap-2 p-3 bg-black/50 rounded border border-amber-500/50 cursor-pointer text-left hover:border-amber-400 transition">
+        <input type="checkbox" id="perm-worship-check" class="w-4 h-4 mt-0.5 accent-amber-500 shrink-0">
+        <span class="text-[11px] font-mono text-amber-200 leading-relaxed">
+          Я поклоняюсь Первому и торжественно клянусь в верности. Прошу снять бессрочное предписание.
+        </span>
+      </label>
       <div class="p-3 bg-red-950/40 rounded border border-red-900/50 font-mono text-xs text-monolith-steelLight">
         Статус доступа: <span class="text-monolith-triRed font-bold tracking-widest uppercase">БЛОКИРОВКА БЕССРОЧНАЯ (НАВСЕГДА)</span>
       </div>
@@ -386,10 +592,321 @@
         <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
         <span>Звучит тревожная сирена и официальное предписание...</span>
       </div>
-      <button id="btn-replay-1488-voice" class="w-full py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
-        <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
-        <span>Повторить озвучку</span>
-      </button>
+      <div class="pt-1 flex flex-col sm:flex-row gap-2">
+        <button id="btn-replay-1488-voice" class="flex-1 py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+          <i data-lucide="volume-2" class="w-4 h-4 text-amber-400"></i>
+          <span>Повторить озвучку</span>
+        </button>
+        <button id="btn-1488-start-check" class="flex-1 py-2.5 px-3 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded shadow-lg transition flex items-center justify-center gap-2 active:scale-95">
+          <i data-lucide="clipboard-check" class="w-4 h-4"></i>
+          <span>Пройти проверку</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: ХУДОЖЕСТВЕННАЯ ПРОВЕРКА ФСБ (Число 1488): нарисовать эталон -->
+  <div id="modal-1488-draw" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[70] hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-[#17191D] border-2 border-monolith-triRed rounded-[6px] max-w-2xl w-full p-5 shadow-2xl space-y-4 my-auto">
+      <div class="flex items-center justify-between border-b border-monolith-steel/20 pb-3">
+        <div class="flex items-center gap-2">
+          <i data-lucide="brush" class="w-5 h-5 text-monolith-triRed"></i>
+          <div>
+            <h3 class="font-bold text-sm tracking-wide font-mono text-monolith-textPrimary">ХУДОЖЕСТВЕННАЯ ПРОВЕРКА ФСБ</h3>
+            <p class="text-[10px] text-monolith-steelLight">Нарисуйте эталонную картину на холсте</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <div class="text-[10px] font-mono text-monolith-steelLight uppercase">Осталось времени</div>
+          <div id="drawing-timer" class="font-mono font-bold text-amber-300 text-lg leading-none">01:00</div>
+        </div>
+      </div>
+
+      <div class="p-2.5 bg-monolith-bg rounded border border-amber-400/40 text-[11px] font-mono text-amber-200/90 tracking-wide text-center">
+        Условие проверки: повторите рисунок Австрийского художника
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="space-y-1.5">
+          <div class="text-[10px] font-mono text-monolith-steelLight uppercase flex items-center gap-1"><i data-lucide="image" class="w-3.5 h-3.5"></i> Эталонная картина</div>
+          <!-- Эталон: картинки лежат в папке draw-targets/, при каждом открытии выбирается случайная -->
+          <div class="rounded border border-monolith-steel/40 overflow-hidden bg-black/40 aspect-[340/220]">
+            <img id="drawing-reference" src="draw-targets/image1.webp" alt="Эталонная картина" class="w-full h-full object-contain select-none pointer-events-none">
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <div class="text-[10px] font-mono text-monolith-steelLight uppercase flex items-center gap-1"><i data-lucide="pencil-ruler" class="w-3.5 h-3.5"></i> Ваш холст</div>
+          <div class="rounded border border-monolith-success overflow-hidden aspect-[340/220] touch-none">
+            <canvas id="drawing-canvas" width="340" height="220" class="w-full h-full bg-white cursor-crosshair"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5">
+          <span class="text-[10px] font-mono text-monolith-steelLight uppercase mr-1">Цвет:</span>
+          <button type="button" data-draw-color="#1C1E22" class="w-7 h-7 rounded-full border-2 border-white/60 bg-[#1C1E22] transition active:scale-90" title="Черный"></button>
+          <button type="button" data-draw-color="#2E4FB5" class="w-7 h-7 rounded-full border-2 border-white/60 bg-[#2E4FB5] transition active:scale-90" title="Синий"></button>
+          <button type="button" data-draw-color="#C0392B" class="w-7 h-7 rounded-full border-2 border-white/60 bg-[#C0392B] transition active:scale-90" title="Красный"></button>
+          <button type="button" data-draw-color="#3FAE7B" class="w-7 h-7 rounded-full border-2 border-white/60 bg-[#3FAE7B] transition active:scale-90" title="Зеленый"></button>
+        </div>
+        <div class="flex items-center gap-2 font-mono">
+          <button type="button" data-draw-tool="eraser" class="py-2 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary text-xs border border-monolith-steel/40 rounded flex items-center gap-1.5 transition active:scale-95">
+            <i data-lucide="eraser" class="w-4 h-4"></i> Ластик
+          </button>
+          <button type="button" data-draw-tool="clear" class="py-2 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary text-xs border border-monolith-steel/40 rounded flex items-center gap-1.5 transition active:scale-95">
+            <i data-lucide="trash-2" class="w-4 h-4"></i> Очистить
+          </button>
+        </div>
+      </div>
+
+      <!-- Статус отправки на модерацию -->
+      <div id="draw-analyzing" class="hidden p-3 bg-monolith-bg rounded border border-monolith-triBlue/40 text-xs font-mono text-monolith-triBlue">
+        <span class="inline-flex items-center gap-2">
+          <span class="inline-block w-4 h-4 rounded-full border-2 border-monolith-triBlue border-t-transparent animate-spin"></span>
+          <span id="draw-status-text">Отправлено в ФСБ. Статус: на модерации...</span>
+        </span>
+      </div>
+
+      <!-- Результат проверки -->
+      <div id="draw-result" class="hidden p-3 bg-monolith-bg rounded border border-monolith-steel/30 space-y-2">
+        <div class="flex items-center gap-2">
+          <i id="draw-result-icon" data-lucide="x-circle" class="w-6 h-6 text-monolith-triRed"></i>
+          <div class="flex-1">
+            <div id="draw-result-title" class="font-bold font-mono text-sm uppercase tracking-wider text-monolith-triRed">ВЫ ПРОВАЛИЛИ ПРОВЕРКУ</div>
+            <div id="draw-result-sim" class="text-[11px] font-mono text-monolith-textSecondary">Сходство с эталоном: 0%</div>
+          </div>
+        </div>
+        <p id="draw-result-desc" class="text-[11px] font-mono text-monolith-textPrimary leading-relaxed"></p>
+      </div>
+
+      <div class="pt-1 flex flex-col sm:flex-row gap-2 border-t border-monolith-steel/20">
+        <button id="btn-retry-draw" class="hidden flex-1 py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+          <span>Попробовать снова</span>
+        </button>
+        <button id="btn-draw-ok" class="hidden flex-1 py-2.5 px-3 bg-monolith-success hover:bg-emerald-600 text-[#121c16] font-mono text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 shadow-md active:scale-95">
+          <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+          <span>Доступ восстановлен</span>
+        </button>
+        <button id="btn-submit-draw" class="flex-1 py-2.5 px-3 bg-monolith-triBlue hover:bg-monolith-triBlueHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 active:scale-95">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Отправить на проверку</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: ПРОВЕРКА «ПОВТОРИТЕ КАРТИНКУ» (ДЛЯ ПОЛУЧЕНИЯ ДОВЕРИЯ) -->
+  <div id="modal-copy-draw" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[110] hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-monolith-surface border-2 border-monolith-steel/50 rounded-[6px] max-w-2xl w-full p-5 shadow-2xl space-y-4 my-auto">
+      <div class="flex items-center justify-between border-b border-monolith-steel/20 pb-3">
+        <div class="flex items-center gap-2">
+          <i data-lucide="image" class="w-5 h-5 text-amber-400"></i>
+          <div>
+            <h3 class="font-bold text-sm tracking-wide font-mono text-monolith-textPrimary">ПОВТОРИТЕ КАРТИНКУ</h3>
+            <p class="text-[10px] text-monolith-steelLight">Срисуйте эталон на холсте</p>
+          </div>
+        </div>
+        <button id="btn-copy-draw-close" class="text-monolith-steel hover:text-white p-1"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+
+      <div class="p-2.5 bg-monolith-bg rounded border border-amber-400/40 text-[11px] font-mono text-amber-200/90 text-center">
+        Проведите по серому контуру мышью или пальцем. Чем точнее обведёте — тем выше сходство.
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="space-y-1.5">
+          <div class="text-[10px] font-mono text-monolith-steelLight uppercase flex items-center gap-1"><i data-lucide="image" class="w-3.5 h-3.5"></i> Эталон</div>
+          <div class="rounded border border-monolith-steel/40 overflow-hidden bg-black/40 aspect-[340/220]">
+            <img id="copy-draw-reference" src="draw-targets/image1.webp" alt="Эталон" class="w-full h-full object-contain select-none pointer-events-none">
+          </div>
+        </div>
+        <div class="space-y-1.5">
+          <div class="text-[10px] font-mono text-monolith-steelLight uppercase flex items-center gap-1"><i data-lucide="pencil-ruler" class="w-3.5 h-3.5"></i> Ваш холст</div>
+          <div class="relative rounded border border-monolith-success overflow-hidden aspect-[340/220] touch-none">
+            <img id="copy-draw-ghost" src="draw-targets/image1.webp" alt="" class="absolute inset-0 w-full h-full object-contain opacity-20 select-none pointer-events-none">
+            <canvas id="copy-draw-canvas" width="340" height="220" class="absolute inset-0 w-full h-full bg-transparent cursor-crosshair"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <button id="btn-copy-draw-clear" class="py-2 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center gap-1.5 transition active:scale-95">
+          <i data-lucide="trash-2" class="w-4 h-4"></i> Очистить
+        </button>
+        <div id="copy-draw-coverage" class="text-[11px] font-mono text-monolith-steelLight">Сходство: 0%</div>
+      </div>
+
+      <div id="copy-draw-result" class="hidden p-3 bg-monolith-bg rounded border border-monolith-steel/30 space-y-2">
+        <div class="flex items-center gap-2">
+          <i id="copy-draw-result-icon" data-lucide="x-circle" class="w-6 h-6 text-monolith-triRed"></i>
+          <div class="flex-1">
+            <div id="copy-draw-result-title" class="font-bold font-mono text-sm uppercase tracking-wider text-monolith-triRed">ВЫ ПРОВАЛИЛИ ПРОВЕРКУ</div>
+            <div id="copy-draw-result-desc" class="text-[11px] font-mono text-monolith-textSecondary"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-1 flex flex-col sm:flex-row gap-2 border-t border-monolith-steel/20">
+        <button id="btn-copy-draw-retry" class="hidden flex-1 py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs border border-monolith-steel/40 rounded flex items-center justify-center gap-2 transition active:scale-95">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i><span>Попробовать снова</span>
+        </button>
+        <button id="btn-copy-draw-ok" class="hidden flex-1 py-2.5 px-3 bg-monolith-success hover:bg-emerald-600 text-[#121c16] font-mono text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 shadow-md active:scale-95">
+          <i data-lucide="check-circle-2" class="w-4 h-4"></i><span>Продолжить</span>
+        </button>
+        <button id="btn-copy-draw-submit" class="flex-1 py-2.5 px-3 bg-monolith-triBlue hover:bg-monolith-triBlueHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 active:scale-95">
+          <i data-lucide="send" class="w-4 h-4"></i><span>Отправить на проверку</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: ПРЕДУПРЕЖДЕНИЕ ВЕЛИКОГО МАТЕМАТИКА (Число π) -->
+  <div id="pi-warning-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-monolith-surface border-2 border-amber-500/70 rounded-[6px] max-w-md w-full p-5 shadow-2xl space-y-4 text-center">
+      <div class="w-14 h-14 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center border border-amber-500 text-amber-400">
+        <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-base text-amber-400 uppercase tracking-wider font-mono">Кажется, вы великий математик</h3>
+        <p class="text-xs sm:text-sm text-monolith-textPrimary font-mono mt-3 leading-relaxed bg-monolith-bg p-3 rounded border border-monolith-steel/30 text-left">
+          Введённое значение совпадает с числом π. Чтобы подтвердить статус великого математика, необходимо успешно сдать вступительный экзамен ЕЭДВК в течение 1 минуты.
+        </p>
+      </div>
+      <div class="pt-1 flex flex-col sm:flex-row gap-2 font-mono">
+        <button id="btn-pi-decline" class="py-2.5 px-3 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary text-xs border border-monolith-steel/40 rounded transition flex items-center justify-center gap-2 active:scale-95">
+          <i data-lucide="hand" class="w-4 h-4"></i>
+          <span>Я просто нажимал кнопки</span>
+        </button>
+        <button id="btn-pi-start-exam" class="flex-1 py-2.5 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded shadow-lg transition flex items-center justify-center gap-2 active:scale-95">
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          <span>Сдать экзамен ЕЭДВК</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПОЛНОЦЕННЫЙ САЙТ: ЭКЗАМЕН ЕЭДВК (открывается вместо уведомления) -->
+  <div id="eegd-site" class="fixed inset-0 z-[100] hidden overflow-y-auto bg-[#eef1f5] font-sans">
+    <div class="min-h-full flex flex-col">
+
+      <!-- Верхняя государственная шапка сайта -->
+      <header class="bg-[#1c3a6e] text-white shadow-md">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center gap-4">
+          <div class="w-12 h-12 shrink-0 rounded-full border-2 border-amber-300/70 bg-[#2c4f92] flex items-center justify-center text-lg font-bold">ЕЭ</div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[13px] font-bold tracking-wide uppercase">Единый экзамен по достаточному владению калькуляцией</div>
+            <div class="text-[11px] text-blue-200">Официальный портал · Министерство великих математиков · ФИС ЕЭДВК</div>
+          </div>
+          <div class="text-right hidden sm:block shrink-0">
+            <div class="text-[11px] uppercase tracking-wider text-blue-200">Участник</div>
+            <div class="text-sm font-bold">ПРЕТЕНДЕНТ №0-ПИ-ПИ</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Навигация сайта -->
+      <nav class="bg-[#2c4f92] text-white text-[13px] border-t border-white/10">
+        <div class="max-w-5xl mx-auto px-4 flex items-center gap-6 overflow-x-auto whitespace-nowrap">
+          <span class="py-2.5 border-b-2 border-amber-300 font-semibold shrink-0">Главная</span>
+          <span class="py-2.5 opacity-80 hover:opacity-100 shrink-0">Новости</span>
+          <span class="py-2.5 opacity-80 hover:opacity-100 shrink-0">Инструктаж участника</span>
+          <span class="py-2.5 opacity-80 hover:opacity-100 shrink-0">КИМ ЕЭДВК</span>
+          <span class="py-2.5 opacity-80 hover:opacity-100 shrink-0">Результаты</span>
+          <span class="py-2.5 opacity-80 hover:opacity-100 shrink-0">Контакты</span>
+        </div>
+      </nav>
+
+      <!-- Контент -->
+      <div class="max-w-5xl w-full mx-auto flex-1 px-4 py-6">
+        <div class="text-[12px] text-slate-500 mb-4">Главная / <span class="text-slate-700 font-semibold">Инструктаж и экзаменационная работа</span></div>
+
+        <div class="grid md:grid-cols-[260px_1fr] gap-6 items-start">
+          <!-- Боковое меню сайта -->
+          <aside class="hidden md:block">
+            <div class="bg-white border border-slate-200 shadow-sm rounded overflow-hidden">
+              <div class="bg-[#1c3a6e] text-white text-[13px] font-semibold px-3 py-2.5">Разделы сайта</div>
+              <div class="text-[13px] text-slate-700">
+                <div class="px-3 py-2.5 border-b border-slate-100 bg-slate-50 font-semibold border-l-4 border-l-[#1c3a6e]">Инструктаж участника</div>
+                <div class="px-3 py-2.5 border-b border-slate-100 hover:bg-slate-50">Правила заполнения бланка</div>
+                <div class="px-3 py-2.5 border-b border-slate-100 hover:bg-slate-50">Экзаменационная работа</div>
+                <div class="px-3 py-2.5 border-b border-slate-100 hover:bg-slate-50">Техническая поддержка</div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Основной контент -->
+          <main class="space-y-5 min-w-0">
+            <!-- Инструктаж -->
+            <div class="bg-white border border-slate-200 shadow-sm rounded overflow-hidden">
+              <div class="bg-[#1c3a6e] text-white text-sm font-semibold px-4 py-3">ИНСТРУКТАЖ УЧАСТНИКА ЭКЗАМЕНА ЕЭДВК</div>
+              <div class="px-4 py-4 space-y-4 text-[14px] text-slate-700 leading-relaxed">
+                <p><b>Уважаемый участник!</b> Перед началом экзаменационной работы внимательно ознакомьтесь с правилами ниже.</p>
+                <ul class="list-disc pl-5 space-y-1.5">
+                  <li>Время выполнения работы — <b>1 (одна) минута</b>. Отсчёт начинается автоматически.</li>
+                  <li>Разрешено использовать только собственные умственные способности.</li>
+                  <li>Телефоны, шпаргалки и посторонние лица в зоне доступа категорически запрещены.</li>
+                  <li>Экзамен проводится в формате <b>«БЛАНК С ОТВЕТОМ»</b>: впишите цифры π после запятой.</li>
+                  <li>При завершении времени работа сдаётся автоматически.</li>
+                </ul>
+                <div class="bg-blue-50 border border-blue-200 rounded px-3 py-2.5 text-[13px]">
+                  <b>Напоминание:</b> каждый верный подряд знак π определяет ваше звание великого математика.
+                </div>
+              </div>
+            </div>
+
+            <!-- Экзаменационная работа -->
+            <div class="bg-white border border-slate-200 shadow-sm rounded overflow-hidden">
+              <div class="bg-[#1c3a6e] text-white text-sm font-semibold px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
+                <span>ЭКЗАМЕНАЦИОННАЯ РАБОТА · ЗАДАНИЕ 1</span>
+                <span class="text-[13px] text-blue-200 font-normal">Время: <span id="pi-exam-timer" class="font-bold text-amber-300 inline-block min-w-[3ch] text-left">01:00</span></span>
+              </div>
+              <div class="px-4 py-4 space-y-4 text-slate-700">
+                <p class="text-[14px] leading-relaxed">
+                  Напишите число <b>π (пи)</b> с как можно большим количеством знаков после запятой.
+                  Каждый верный подряд знак засчитывается и определяет ваше звание великого математика.
+                </p>
+
+                <div class="border-2 border-[#1c3a6e] bg-slate-50 p-3">
+                  <div class="text-sm font-bold mb-1 tracking-wide">π = 3,<span class="text-[#8B1A1A]">__________________</span><span class="font-normal text-xs italic text-slate-500 ml-2">(остальные знаки — ниже)</span></div>
+                  <div class="flex gap-2">
+                    <input id="pi-exam-input" type="text" inputmode="numeric" autocomplete="off" maxlength="60"
+                      placeholder="141592653589793… (только цифры)"
+                      class="flex-1 min-w-0 border border-[#a58f5c] bg-white px-3 py-2 text-lg tracking-wider outline-none focus:border-[#8B1A1A]" />
+                    <button id="pi-exam-submit" class="px-5 bg-[#8B1A1A] text-white font-bold text-sm uppercase tracking-wider hover:bg-[#6e1414] active:scale-95 transition">Сдать</button>
+                  </div>
+                  <div id="pi-exam-correct" class="mt-2 text-xs italic text-slate-500">Верно подряд: 0 знаков</div>
+                </div>
+
+                <!-- Результат -->
+                <div id="pi-exam-result" class="hidden border-2 border-[#1c3a6e] bg-slate-50 p-4 text-center space-y-1">
+                  <div id="pi-exam-result-title" class="text-xl font-bold uppercase tracking-wider text-[#8B1A1A]">—</div>
+                  <div id="pi-exam-result-sim" class="text-sm">—</div>
+                  <div id="pi-exam-result-desc" class="text-[13px] italic text-slate-600"></div>
+                </div>
+
+                <div class="flex items-center justify-between pt-1 gap-2 flex-wrap">
+                  <button id="btn-pi-exam-cancel" class="text-xs underline italic text-slate-500 hover:text-[#8B1A1A]">Выйти без сдачи</button>
+                  <div class="flex items-center gap-2">
+                    <button id="btn-pi-exam-retry" class="hidden px-4 py-2 bg-[#8B1A1A] text-white font-bold text-sm uppercase tracking-wider hover:bg-[#6e1414] transition">Попробовать ещё раз</button>
+                    <button id="btn-pi-exam-done" class="hidden px-4 py-2 bg-[#1c3a6e] text-white font-bold text-sm uppercase tracking-wider hover:bg-[#16305c] transition">Вернуться в калькулятор</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <!-- Подвал сайта -->
+      <footer class="bg-[#1c3a6e] text-blue-200 text-[12px] mt-6">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>© 2026 ФИС ЕЭДВК · официальный портал</span>
+          <span>Строго конфиденциально · печать и подпись</span>
+        </div>
+      </footer>
     </div>
   </div>
 
@@ -481,7 +998,375 @@
     </div>
   </div>
 
-  <!-- Модальное окно: СВЯТОЙ ПРИЗ (Число 777) -->
+  <!-- Модальное окно: ПАТРИОТИЧЕСКИЙ ДИКТАНТ (ТЕКСТОВАЯ ПРОВЕРКА) -->
+  <div id="modal-text-check" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[90] hidden overflow-y-auto p-3 sm:p-4">
+    <div class="max-w-lg w-full mx-auto my-6 bg-monolith-surface border-2 border-monolith-steel/50 rounded-[6px] overflow-hidden shadow-2xl">
+      <div class="border-b border-monolith-steel/30 p-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="file-text" class="w-5 h-5 text-amber-400"></i>
+          <div>
+            <h3 class="font-bold text-sm font-mono uppercase tracking-wider text-monolith-textPrimary">Патриотический диктант</h3>
+            <p class="text-[10px] font-mono text-monolith-textSecondary">проверка лояльности</p>
+          </div>
+        </div>
+        <button id="btn-text-check-close" class="text-monolith-steel hover:text-white p-1"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <div class="p-4 space-y-3">
+        <p class="text-xs font-mono text-monolith-textSecondary leading-relaxed">
+          Составьте небольшой патриотический текст. Задание: обязательно используйте в тексте слова из списка ниже.
+        </p>
+        <div id="text-check-task" class="p-3 bg-monolith-bg rounded border border-amber-500/40 space-y-1">
+          <div class="text-[10px] font-mono text-monolith-textSecondary uppercase tracking-wider">Используйте в своём тексте слова</div>
+          <div id="text-check-task-words" class="text-sm font-mono font-bold text-amber-400"></div>
+          <div id="text-check-task-usage" class="text-[10px] font-mono text-monolith-textSecondary"></div>
+        </div>
+        <textarea id="text-check-input" rows="4" class="w-full bg-monolith-bg border border-monolith-steel/40 rounded p-3 text-xs text-monolith-textPrimary font-mono focus:outline-none focus:border-amber-400/70 placeholder:text-monolith-textSecondary/60" placeholder="Например: Я люблю монолит, лужайку и родную Россию..."></textarea>
+        <div id="text-check-badwords" class="hidden text-[11px] font-mono text-monolith-triRed"></div>
+        <div class="text-[11px] font-mono text-monolith-textSecondary">Минимальная длина: <span id="text-check-len">0</span> / 15 символов</div>
+        <button id="btn-text-check-submit" class="w-full py-2.5 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition active:scale-95">Отправить на модерацию</button>
+        <div id="text-check-analyzing" class="hidden space-y-1.5">
+          <div class="flex items-center gap-2 text-[11px] font-mono text-amber-400">
+            <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Модератор читает ваш текст...</span>
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-mono text-amber-400">
+            <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Сверка со словарём патриота...</span>
+          </div>
+        </div>
+        <div id="text-check-result" class="hidden p-3 rounded border space-y-1">
+          <div id="text-check-result-title" class="font-bold font-mono text-sm uppercase tracking-wider">—</div>
+          <p id="text-check-result-desc" class="text-[11px] font-mono leading-relaxed"></p>
+        </div>
+        <div id="text-check-cooldown" class="hidden p-3 bg-monolith-bg rounded border border-monolith-steel/30 text-center text-xs font-mono text-monolith-textPrimary">
+          Следующая попытка через: <span id="text-check-cooldown-timer" class="font-bold text-monolith-triRed">02:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно: ФОТО-ПРОВЕРКА (КАМЕРА) -->
+  <div id="modal-photo-check" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[90] hidden overflow-y-auto p-3 sm:p-4">
+    <div class="max-w-sm w-full mx-auto my-6 bg-monolith-surface border-2 border-monolith-steel/50 rounded-[6px] overflow-hidden shadow-2xl">
+      <div class="border-b border-monolith-steel/30 p-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="camera" class="w-5 h-5 text-amber-400"></i>
+          <div>
+            <h3 class="font-bold text-sm font-mono uppercase tracking-wider text-monolith-textPrimary">Фото-проверка</h3>
+            <p class="text-[10px] font-mono text-monolith-textSecondary">подтверждение личности предмета</p>
+          </div>
+        </div>
+        <button id="btn-photo-check-close" class="text-monolith-steel hover:text-white p-1"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <div class="p-4 space-y-3">
+        <div class="relative bg-black rounded overflow-hidden border border-monolith-steel/50">
+          <video id="photo-video" autoplay playsinline muted class="w-full aspect-[3/4] object-cover"></video>
+          <canvas id="photo-canvas" class="hidden absolute inset-0 w-full h-full object-cover"></canvas>
+          <div id="photo-scan" class="hidden absolute inset-0 z-10">
+            <div class="scan-dots"></div>
+            <div class="scan-line"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="px-3 py-1 rounded bg-black/70 text-emerald-300 font-mono text-[11px] uppercase tracking-wider">Проверка фотографии...</span>
+            </div>
+          </div>
+          <span id="photo-countdown" class="absolute top-2 right-2 z-20 px-2 py-0.5 rounded bg-black/70 text-white font-mono text-xs font-bold">01:00</span>
+          <div id="photo-err" class="hidden absolute inset-0 z-20 bg-black/80 flex items-center justify-center text-center p-4">
+            <span id="photo-err-text" class="text-xs font-mono text-monolith-triRed">Доступ к камере запрещён</span>
+          </div>
+        </div>
+        <div class="p-3 bg-monolith-bg rounded border border-monolith-steel/30">
+          <div class="text-[10px] font-mono text-monolith-textSecondary uppercase tracking-wider">Задание</div>
+          <div class="text-sm font-mono font-bold text-amber-400 mt-1">Найдите и покажите в камеру: <span id="photo-target">—</span></div>
+        </div>
+        <button id="btn-photo-capture" class="w-full py-2.5 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition active:scale-95">Сфотографировать</button>
+        <div id="photo-status" class="text-[11px] font-mono text-monolith-textSecondary text-center"></div>
+        <div id="photo-attempts" class="text-[11px] font-mono text-center"></div>
+        <div id="photo-cooldown" class="hidden p-3 bg-monolith-bg rounded border border-monolith-steel/30 text-center text-xs font-mono text-monolith-textPrimary">
+          Следующая попытка через: <span id="photo-cooldown-timer" class="font-bold text-monolith-triRed">02:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Сайт: МОНОЛИТ — защищённый мессенджер (проверка «Чат с Путиным») -->
+  <div id="monolit-chat-site" class="hidden fixed inset-0 z-[100] bg-monolith-bg overflow-y-auto">
+    <div class="min-h-full flex flex-col">
+      <!-- Шапка портала -->
+      <header class="border-b border-monolith-steel/30 bg-monolith-surface/95 backdrop-blur sticky top-0 z-10">
+        <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-[4px] bg-monolith-triRed flex items-center justify-center text-white font-black font-mono">М</div>
+            <div class="leading-tight">
+              <div class="font-black font-mono text-sm tracking-widest text-monolith-textPrimary">МОНОЛИТ</div>
+              <div class="text-[9px] font-mono text-monolith-textSecondary uppercase tracking-wider">защищённая связь · портал госуслуг</div>
+            </div>
+          </div>
+          <div class="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-emerald-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ЗАЩИЩЕНО
+          </div>
+        </div>
+      </header>
+
+      <!-- ЭКРАН 1: ИНСТРУКЦИЯ -->
+      <div id="monolit-intro" class="flex-1 w-full max-w-3xl mx-auto px-4 py-6 space-y-5">
+        <div class="p-4 bg-monolith-surface border border-monolith-steel/40 rounded-[6px] space-y-2">
+          <div class="text-[10px] font-mono text-monolith-textSecondary uppercase tracking-wider">Инструкция к проверке лояльности</div>
+          <h2 class="font-black font-mono text-lg uppercase tracking-wider text-monolith-textPrimary">Задание: «Разговор с Первым»</h2>
+          <p class="text-xs font-mono text-monolith-textSecondary leading-relaxed">
+            Вам открыт личный чат в мессенджере <span class="text-monolith-triRed font-bold">МОНОЛИТ</span>.
+            Владимир Владимирович написал первым. Ваша цель —
+            <span class="text-emerald-400 font-bold">закончить разговор благоприятно</span>
+            и получить доступ к калькулятору.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="p-4 bg-monolith-surface border border-monolith-steel/40 rounded-[6px] space-y-2">
+            <div class="flex items-center gap-2 text-emerald-400 font-mono text-xs font-bold uppercase"><i data-lucide="check-circle" class="w-4 h-4"></i> Как пройти</div>
+            <ul class="text-[11px] font-mono text-monolith-textSecondary space-y-1.5 leading-relaxed list-disc pl-4">
+              <li>Отвечайте на вопросы собеседника.</li>
+              <li>Будьте вежливы и патриотичны.</li>
+              <li>Каждый ответ ведёт к новой ветке диалога.</li>
+              <li>Дойдите до благоприятного финала.</li>
+            </ul>
+          </div>
+          <div class="p-4 bg-monolith-surface border border-monolith-triRed/40 rounded-[6px] space-y-2">
+            <div class="flex items-center gap-2 text-monolith-triRed font-mono text-xs font-bold uppercase"><i data-lucide="alert-triangle" class="w-4 h-4"></i> Как провалить</div>
+            <ul class="text-[11px] font-mono text-monolith-textSecondary space-y-1.5 leading-relaxed list-disc pl-4">
+              <li>Грубить, спорить, критиковать страну.</li>
+              <li>Задавать неудобные вопросы.</li>
+              <li>Просить деньги, премию или отпуск.</li>
+              <li>Собеседник добавит вас в списки.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-4 bg-black/40 border border-amber-500/30 rounded-[6px] text-center space-y-1">
+          <p class="text-[11px] font-mono text-amber-300 leading-relaxed">
+            Цель: закончить разговор благоприятно<span class="text-monolith-textSecondary">... или может...</span>
+          </p>
+          <p class="text-[10px] font-mono text-monolith-textSecondary">(говорят, есть особый финал для тех, кто пойдёт до конца)</p>
+        </div>
+
+        <div id="putin-intro-cooldown" class="hidden p-3 bg-monolith-bg rounded border border-monolith-steel/30 text-center text-xs font-mono text-monolith-textPrimary">
+          Следующая попытка через: <span id="putin-intro-cooldown-timer" class="font-bold text-monolith-triRed">02:00</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2">
+          <button id="btn-monolit-enter" class="flex-1 py-3 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition active:scale-95 flex items-center justify-center gap-2">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Открыть МОНОЛИТ
+          </button>
+          <button id="btn-monolit-exit" class="py-3 px-4 bg-monolith-plate hover:bg-monolith-steel/30 text-monolith-textPrimary font-mono text-xs font-bold uppercase tracking-wider rounded border border-monolith-steel/40 transition active:scale-95">
+            Отказаться
+          </button>
+        </div>
+      </div>
+
+      <!-- ЭКРАН 2: МЕССЕНДЖЕР -->
+      <div id="monolit-messenger" class="hidden flex-1 w-full max-w-3xl mx-auto px-2 sm:px-4 py-3">
+        <div class="max-w-md mx-auto bg-[#0e1621] border border-monolith-steel/40 rounded-[14px] overflow-hidden shadow-2xl flex flex-col" style="height: min(80vh, 760px);">
+          <!-- Шапка чата -->
+          <div class="bg-[#17212b] px-2 sm:px-3 py-2 flex items-center gap-2 border-b border-black/50">
+            <button id="btn-monolit-back" class="text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-white/5 transition"><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
+            <div class="relative shrink-0">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-monolith-triRed to-red-900 flex items-center justify-center text-white font-bold text-sm">ВВ</div>
+              <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#17212b]"></span>
+            </div>
+            <div class="flex-1 min-w-0 leading-tight">
+              <div class="text-sm font-semibold text-white truncate flex items-center gap-1">Владимир Владимирович <i data-lucide="badge-check" class="w-3.5 h-3.5 text-sky-400 shrink-0"></i></div>
+              <div id="putin-chat-status" class="text-[10px] font-mono text-emerald-400">в сети</div>
+            </div>
+            <button class="text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-white/5 transition hidden sm:block"><i data-lucide="phone" class="w-4 h-4"></i></button>
+            <button class="text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-white/5 transition"><i data-lucide="more-vertical" class="w-5 h-5"></i></button>
+          </div>
+
+          <!-- Сообщения -->
+          <div id="putin-chat-messages" class="flex-1 overflow-y-auto chat-scroll monolit-wallpaper px-3 py-3 space-y-2"></div>
+
+          <!-- Индикатор набора -->
+          <div id="putin-typing" class="hidden px-3 pb-1">
+            <div class="inline-flex items-center gap-1.5 bg-[#182533] rounded-2xl rounded-bl-sm px-3 py-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style="animation-delay:0s"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style="animation-delay:.15s"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style="animation-delay:.3s"></span>
+            </div>
+          </div>
+
+          <!-- Варианты ответа -->
+          <div id="putin-chat-choices" class="hidden px-3 py-2 space-y-1.5 border-t border-black/50 bg-[#17212b]"></div>
+
+          <!-- Нижняя панель ввода (декоративная) -->
+          <div class="bg-[#17212b] px-2 py-2 flex items-center gap-1.5 border-t border-black/50">
+            <button class="text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-white/5 transition"><i data-lucide="paperclip" class="w-5 h-5"></i></button>
+            <input disabled placeholder="Выберите вариант ответа..." class="flex-1 bg-[#0e1621] border border-white/5 rounded-2xl px-3 py-2 text-xs text-slate-300 font-mono placeholder:text-slate-600 focus:outline-none">
+            <button class="text-slate-400 hover:text-white p-1.5 rounded-full hover:bg-white/5 transition"><i data-lucide="smile" class="w-5 h-5"></i></button>
+            <button class="w-9 h-9 rounded-full bg-[#2b5278] hover:bg-[#356089] flex items-center justify-center text-white transition"><i data-lucide="mic" class="w-4 h-4"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ЭКРАН 3: РЕЗУЛЬТАТ -->
+      <div id="putin-chat-result" class="hidden flex-1 w-full max-w-3xl mx-auto px-4 py-10 items-center justify-center">
+        <div class="max-w-md w-full bg-monolith-surface border-2 border-monolith-steel/50 rounded-[6px] p-6 text-center space-y-4">
+          <div id="putin-result-icon-box" class="w-16 h-16 mx-auto rounded-full flex items-center justify-center border-2">
+            <i id="putin-result-icon" data-lucide="check-circle" class="w-9 h-9"></i>
+          </div>
+          <div>
+            <div id="putin-result-badge" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-widest">—</div>
+            <h3 id="putin-result-title" class="font-black font-mono text-lg uppercase tracking-wider mt-2">—</h3>
+            <p id="putin-result-desc" class="text-xs font-mono text-monolith-textSecondary mt-2 leading-relaxed"></p>
+          </div>
+          <button id="btn-putin-result-close" class="w-full py-2.5 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition active:scale-95">Вернуться к калькулятору</button>
+        </div>
+      </div>
+
+      <!-- ЭКРАН 4: АНАЛИТИКА (плавно появляется поверх при завершении) -->
+      <div id="putin-analytics" class="hidden fixed inset-0 z-[110] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 analytics-fade">
+        <div id="putin-analytics-card" class="max-w-md w-full bg-monolith-surface border-2 rounded-[10px] p-5 sm:p-6 space-y-5 shadow-2xl translate-y-4 analytics-fade">
+          <div class="text-center space-y-2">
+            <div id="putin-analytics-icon-box" class="w-16 h-16 mx-auto rounded-full bg-emerald-500/15 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 stat-pop">
+              <i id="putin-analytics-icon" data-lucide="badge-check" class="w-9 h-9"></i>
+            </div>
+            <div id="putin-analytics-badge" class="inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-widest bg-emerald-500/15 border border-emerald-400 text-emerald-400">—</div>
+            <h3 id="putin-analytics-title" class="font-black font-mono text-xl uppercase tracking-wider text-emerald-400">ЗАДАНИЕ ВЫПОЛНЕНО</h3>
+            <p id="putin-analytics-enddesc" class="text-[11px] font-mono text-monolith-textSecondary leading-relaxed"></p>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="p-3 bg-monolith-bg rounded border border-monolith-steel/30 text-center stat-pop">
+              <div id="putin-stat-messages" class="text-lg font-black font-mono text-monolith-textPrimary">0</div>
+              <div class="text-[9px] font-mono text-monolith-textSecondary uppercase tracking-wider">сообщений</div>
+            </div>
+            <div class="p-3 bg-monolith-bg rounded border border-monolith-steel/30 text-center stat-pop">
+              <div id="putin-stat-choices" class="text-lg font-black font-mono text-monolith-textPrimary">0</div>
+              <div class="text-[9px] font-mono text-monolith-textSecondary uppercase tracking-wider">ответов</div>
+            </div>
+            <div class="p-3 bg-monolith-bg rounded border border-monolith-steel/30 text-center stat-pop">
+              <div id="putin-stat-time" class="text-lg font-black font-mono text-monolith-textPrimary">0с</div>
+              <div class="text-[9px] font-mono text-monolith-textSecondary uppercase tracking-wider">времени</div>
+            </div>
+            <div class="p-3 bg-monolith-bg rounded border border-monolith-steel/30 text-center stat-pop">
+              <div id="putin-stat-images" class="text-lg font-black font-mono text-monolith-textPrimary">0</div>
+              <div class="text-[9px] font-mono text-monolith-textSecondary uppercase tracking-wider">картинок</div>
+            </div>
+          </div>
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-[10px] font-mono">
+              <span class="text-monolith-textSecondary uppercase tracking-wider">Уровень лояльности</span>
+              <span id="putin-stat-loyalty" class="font-bold text-emerald-400">—</span>
+            </div>
+            <div class="h-2.5 bg-monolith-bg rounded-full overflow-hidden border border-monolith-steel/30">
+              <div id="putin-loyalty-bar" class="h-full bg-gradient-to-r from-amber-400 to-emerald-400" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="p-3 bg-monolith-bg rounded border border-monolith-steel/30 space-y-1">
+            <div class="text-[9px] font-mono text-monolith-textSecondary uppercase tracking-wider">Разбор разговора</div>
+            <p id="putin-analytics-verdict" class="text-[11px] font-mono text-monolith-textPrimary leading-relaxed"></p>
+          </div>
+          <button id="btn-putin-analytics-close" class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-mono text-xs font-bold uppercase tracking-wider rounded transition active:scale-95">Вернуться к калькулятору</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ПОЛНОЦЕННЫЙ САЙТ: ВЫБОРЫ / ГАС «ВЫБОРЫ» (УИК №1488-бис) -->
+  <div id="elections-site" class="hidden fixed inset-0 z-[100] overflow-y-auto bg-[#eef1f5] font-sans text-slate-900">
+    <header class="bg-[#1c3a6e] text-white">
+      <div class="h-1.5 flex"><span class="flex-1 bg-white"></span><span class="flex-1 bg-[#0039a6]"></span><span class="flex-1 bg-[#d52b1e]"></span></div>
+      <div class="max-w-3xl mx-auto px-4 pr-12 py-3 flex items-center gap-3">
+        <div class="w-9 h-9 rounded bg-white text-[#1c3a6e] flex items-center justify-center font-black text-lg">Ц</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-bold uppercase tracking-wide">ЦИК России · ГАС «Выборы»</div>
+          <div class="text-[11px] text-blue-200">Единый день голосования · УИК №1488-бис</div>
+        </div>
+        <div class="text-right shrink-0">
+          <div class="text-[10px] text-blue-200">до закрытия участка</div>
+          <div id="elections-timer" class="font-mono font-bold text-amber-300 text-lg leading-none">05:00</div>
+        </div>
+      </div>
+      <div class="bg-[#152c55] text-[10px] text-blue-200">
+        <div class="max-w-3xl mx-auto px-4 py-1 flex justify-between">
+          <span>Наблюдатель: <span id="elections-observer">на связи</span></span>
+          <span id="elections-day-badge">День 1 / 3</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-3 sm:px-4 py-5 space-y-4">
+      <section id="elections-intro" class="bg-white border border-slate-300 rounded shadow-sm overflow-hidden">
+        <div class="bg-[#1c3a6e] text-white text-sm font-semibold px-4 py-3">ИНСТРУКТАЖ УЧАСТНИКА ГОЛОСОВАНИЯ</div>
+        <div class="p-4 space-y-3 text-sm">
+          <p>Уважаемый гражданин! Для подтверждения лояльности необходимо принять участие в электронном голосовании и <b>сделать верный выбор</b>.</p>
+          <ul class="list-disc pl-5 space-y-1 text-[13px] text-slate-700">
+            <li>В бюллетене несколько кандидатов. Верный — только один.</li>
+            <li>Часть кандидатов — дублёры и двойники. Читайте внимательно.</li>
+            <li>Голосование проходит 3 дня. Каждый день выбор должен совпадать.</li>
+            <li>Графа «ПРОТИВ ВСЕХ» упразднена постановлением №1488.</li>
+          </ul>
+          <div class="text-[12px] bg-amber-50 border border-amber-300 text-amber-800 rounded px-3 py-2">
+            Наблюдатель предупреждает: при неверном выборе бюллетень считается испорченным, а голос — украденным.
+          </div>
+          <div id="elections-cooldown" class="hidden text-[12px] bg-red-50 border border-red-300 text-red-700 rounded px-3 py-2 font-mono"></div>
+          <button id="btn-elections-get" class="w-full sm:w-auto px-5 py-2.5 bg-[#1c3a6e] hover:bg-[#152c55] text-white font-semibold rounded">Получить бюллетень</button>
+        </div>
+      </section>
+
+      <section id="elections-ballot" class="hidden bg-white border border-slate-300 rounded shadow-sm overflow-hidden">
+        <div class="bg-[#1c3a6e] text-white text-sm font-semibold px-4 py-3 flex items-center justify-between">
+          <span>БЮЛЛЕТЕНЬ ДЛЯ ГОЛОСОВАНИЯ</span>
+          <span class="text-[10px] text-blue-200">Форма №1488</span>
+        </div>
+        <div id="elections-hint" class="hidden bg-yellow-100 border-b border-yellow-300 text-yellow-900 text-[12px] px-4 py-2"></div>
+        <div id="elections-live" class="bg-slate-50 border-b border-slate-200 px-4 py-2 text-[11px] font-mono text-slate-600 flex justify-between flex-wrap gap-1">
+          <span>Предварительные итоги: <span id="elections-live-turnout">явка 13%</span></span>
+          <span id="elections-live-score">кандидат №1 — 87%</span>
+        </div>
+        <div id="elections-candidates" class="divide-y divide-slate-200"></div>
+        <div class="p-4 flex flex-col sm:flex-row sm:items-center gap-3 border-t border-slate-200">
+          <div class="flex-1 text-[11px] text-slate-500">Отметьте одного кандидата и опустите бюллетень в урну.</div>
+          <button id="btn-elections-vote" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded">Опустить в урну</button>
+        </div>
+      </section>
+
+      <section id="elections-koib" class="hidden bg-white border border-slate-300 rounded shadow-sm overflow-hidden">
+        <div class="bg-[#1c3a6e] text-white text-sm font-semibold px-4 py-3">КОИБ · ОБРАБОТКА БЮЛЛЕТЕНЯ</div>
+        <div class="p-5 space-y-4 text-center">
+          <div id="elections-koib-icon" class="text-5xl">🗳️</div>
+          <div id="elections-koib-status" class="text-sm font-semibold text-slate-700">Приём бюллетеня...</div>
+          <div class="h-3 bg-slate-200 rounded overflow-hidden max-w-sm mx-auto">
+            <div id="elections-koib-bar" class="h-full bg-[#1c3a6e]" style="width:0%"></div>
+          </div>
+          <div id="elections-receipt" class="hidden mx-auto max-w-sm bg-white border border-slate-400 rounded shadow receipt-out text-left p-3 font-mono text-[11px] text-slate-700 whitespace-pre-line"></div>
+          <div id="elections-recount" class="hidden text-[12px] text-slate-600 font-mono">идёт пересчёт голосов… <span id="elections-recount-pct">0%</span></div>
+        </div>
+      </section>
+
+      <section id="elections-result" class="hidden relative bg-white border border-slate-300 rounded shadow-sm overflow-hidden">
+        <div id="elections-confetti" class="pointer-events-none absolute inset-0 overflow-hidden"></div>
+        <div class="relative bg-[#1c3a6e] text-white text-sm font-semibold px-4 py-3">ПРОТОКОЛ ОБ ИТОГАХ ГОЛОСОВАНИЯ</div>
+        <div class="relative p-5 space-y-4">
+          <div class="text-center">
+            <div id="elections-result-icon" class="text-5xl">✅</div>
+            <div id="elections-result-title" class="text-lg font-bold mt-1">ГОЛОС ПРИНЯТ</div>
+            <div id="elections-result-sub" class="text-[12px] text-slate-500 mt-1"></div>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded p-3 space-y-1 text-[12px] font-mono">
+            <div class="flex justify-between"><span>Явка</span><span id="elections-turnout" class="font-bold">13%</span></div>
+            <div class="flex justify-between"><span>Действующий кандидат</span><span id="elections-score" class="font-bold">87%</span></div>
+            <div class="flex justify-between"><span>Ваш голос учтён раз</span><span id="elections-votes-count" class="font-bold">1</span></div>
+          </div>
+          <button id="btn-elections-finish" class="w-full px-5 py-2.5 bg-[#1c3a6e] hover:bg-[#152c55] text-white font-semibold rounded">Вернуться к калькулятору</button>
+        </div>
+      </section>
+
+      <div id="elections-double" class="hidden fixed bottom-3 right-3 bg-white border-2 border-[#1c3a6e] rounded shadow-lg px-3 py-2 text-[11px] font-mono text-[#1c3a6e]">
+        <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping mr-1"></span>вас уже посчитали
+      </div>
+      <div id="elections-toast" class="hidden fixed top-3 left-1/2 -translate-x-1/2 z-20 bg-[#1c3a6e] text-white text-[12px] font-mono px-3 py-2 rounded shadow-lg max-w-[90vw] text-center"></div>
+    </main>
+
+    <footer class="text-center text-[10px] text-slate-400 py-4">© 2026 ГАС «Выборы» · УИК №1488-бис · все голоса заранее учтены</footer>
+    <button id="btn-elections-exit" class="fixed top-2 right-2 z-10 w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
+  </div>
+
   <div id="modal-777" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-[#17221b] border-2 border-amber-400 rounded-[6px] max-w-md w-full p-6 shadow-[0_0_50px_rgba(251,191,36,0.4)] text-center space-y-4">
       <div class="w-16 h-16 mx-auto rounded-full bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center text-amber-300 shadow-[0_0_25px_rgba(251,191,36,0.6)] animate-bounce">
@@ -939,6 +1824,101 @@
     let lock104EndTime = null;
     let is1488Locked = false;
     let is666Locked = false;
+    let piBadgeState = null; // Статус великого математика: { count, year }
+    let textCheckCooldownEnd = null; // Кулдаун текстовой проверки (2 мин)
+    let photoCheckCooldownEnd = null; // Кулдаун фото-проверки (2 мин)
+    let chatCheckCooldownEnd = null; // Кулдаун чата с Путиным (2 мин)
+    let electionsCheckCooldownEnd = null; // Кулдаун проверки выборами (2 мин)
+    let electionAttempts = 0; // Ошибочные попытки на выборах
+    let electionDayIndex = 0; // День голосования 0..2 (нужно 3 дня)
+    let electionVoteCount = 0; // Сколько раз учтён голос (для издёвки)
+    // Онбординг «Получите наше доверие»
+    let trustGranted = false; // Доверие получено — калькулятор разблокирован
+    let trustOrder = []; // Случайный порядок проверок (id)
+    let trustIndex = 0; // Индекс текущей проверки
+    let trustMode = false; // Сейчас идёт проверка из онбординга
+    let trustCurrentId = null; // id текущей проверки
+
+    // =========================================================================
+    // СОХРАНЕНИЕ СОСТОЯНИЯ В ЛОКАЛЬНОМ ХРАНИЛИЩЕ (localStorage)
+    // Нельзя обойти блокировки обновлением страницы.
+    // =========================================================================
+    const STATE_KEY = 'monolith_calc_state';
+
+    function saveState() {
+      try {
+        localStorage.setItem(STATE_KEY, JSON.stringify({
+          perm: isPermLockedOut,
+          lockedOut: isLockedOut,
+          lockoutEnd: lockoutEndTime,
+          forbidden: forbiddenViolationCount,
+          roskom: roskomInspectionCount,
+          count104: count104,
+          locked104: is104Locked,
+          lock104End: lock104EndTime,
+          locked1488: is1488Locked,
+          locked666: is666Locked,
+          badge: piBadgeState ? { count: piBadgeState.count, year: piBadgeState.year } : null,
+          textCheckCooldown: textCheckCooldownEnd,
+          photoCheckCooldown: photoCheckCooldownEnd,
+          chatCheckCooldown: chatCheckCooldownEnd,
+          electionsCheckCooldown: electionsCheckCooldownEnd,
+          electionAttempts: electionAttempts,
+          electionDayIndex: electionDayIndex,
+          electionVoteCount: electionVoteCount,
+          trust: trustGranted,
+          trustOrder: trustOrder,
+          trustIndex: trustIndex
+        }));
+      } catch (e) {}
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STATE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    // Восстановление сохранённого состояния при загрузке страницы
+    (function restoreSavedState() {
+      const s = loadState();
+      if (!s) return;
+      isPermLockedOut = !!s.perm;
+      isLockedOut = !!s.lockedOut;
+      lockoutEndTime = s.lockoutEnd ? Number(s.lockoutEnd) : null;
+      if (isLockedOut && (!lockoutEndTime || lockoutEndTime <= Date.now())) {
+        isLockedOut = false;
+        lockoutEndTime = null;
+      }
+      forbiddenViolationCount = s.forbidden || 0;
+      roskomInspectionCount = s.roskom || 0;
+      count104 = s.count104 || 0;
+      is104Locked = !!s.locked104;
+      lock104EndTime = s.lock104End ? Number(s.lock104End) : null;
+      if (is104Locked && (!lock104EndTime || lock104EndTime <= Date.now())) {
+        is104Locked = false;
+        lock104EndTime = null;
+        count104 = 0;
+      }
+      is1488Locked = !!s.locked1488;
+      is666Locked = !!s.locked666;
+      if (s.badge && typeof s.badge.count === 'number') {
+        piBadgeState = { count: s.badge.count, year: s.badge.year || new Date().getFullYear() };
+      }
+      textCheckCooldownEnd = s.textCheckCooldown ? Number(s.textCheckCooldown) : null;
+      photoCheckCooldownEnd = s.photoCheckCooldown ? Number(s.photoCheckCooldown) : null;
+      chatCheckCooldownEnd = s.chatCheckCooldown ? Number(s.chatCheckCooldown) : null;
+      electionsCheckCooldownEnd = s.electionsCheckCooldown ? Number(s.electionsCheckCooldown) : null;
+      electionAttempts = s.electionAttempts || 0;
+      electionDayIndex = s.electionDayIndex || 0;
+      electionVoteCount = s.electionVoteCount || 0;
+      trustGranted = !!s.trust;
+      if (Array.isArray(s.trustOrder) && s.trustOrder.length) trustOrder = s.trustOrder;
+      trustIndex = s.trustIndex || 0;
+    })();
 
     const TEXT_1488 = "Внимание! Калькулятор навсегда заблокирован по статье 282.4 УК РФ. Срочно обратитесь в Федеральную службу безопасности для уточнения данных и разблокировки.";
     const TEXT_666 = "Добро пожаловать! Вы позвонили в преисподнюю, чтобы продолжить пользоваться калькулятором напишите богу извинения в размере 100000 символов";
@@ -1286,6 +2266,12 @@
         return true;
       }
 
+      // 1.5. Число π (3,14159…): подозрение в гениальности → экзамен ЕЭДВК
+      if (Math.abs(num - Math.PI) < 1e-3) {
+        triggerPiWarning();
+        return true;
+      }
+
       // 2. Число 666: звонок в преисподнюю и 100 000 символов
       if (Math.abs(num - 666) < 1e-9) {
         trigger666Lockout();
@@ -1331,12 +2317,480 @@
       startWarningSiren(true);
       playCustomVoice(preloadedAudio.v1488, TEXT_1488, true);
       lucide.createIcons();
+      saveState();
     }
 
     document.getElementById('btn-replay-1488-voice').addEventListener('click', () => {
       startWarningSiren(true);
       playCustomVoice(preloadedAudio.v1488, TEXT_1488, true);
     });
+
+    // =========================================================================
+    // ОБРАБОТЧИК 1488: ОКНО РИСОВАНИЯ ЭТАЛОННОЙ КАРТИНЫ (ПРОВЕРКА ФСБ)
+    // =========================================================================
+    const drawCanvas = document.getElementById('drawing-canvas');
+    const drawCtx = drawCanvas.getContext('2d');
+    const DRAW_TIME_MS = 60 * 1000;
+    let drawEndTime = null;
+    let drawTimerInterval = null;
+    let isDrawing = false;
+    let hasDrawn = false;
+    let lastDrawPoint = null;
+
+    function setDrawBrush(color, isEraser) {
+      drawCtx.strokeStyle = color;
+      drawCtx.fillStyle = color;
+      drawCtx.lineWidth = isEraser ? 26 : 6;
+      drawCtx.lineCap = 'round';
+      drawCtx.lineJoin = 'round';
+    }
+
+    function resetDrawCanvas() {
+      drawCtx.save();
+      drawCtx.setTransform(1, 0, 0, 1, 0, 0);
+      drawCtx.fillStyle = '#FFFFFF';
+      drawCtx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
+      drawCtx.restore();
+      hasDrawn = false;
+      lastDrawPoint = null;
+    }
+
+    function getDrawPos(evt) {
+      const rect = drawCanvas.getBoundingClientRect();
+      return {
+        x: (evt.clientX - rect.left) * (drawCanvas.width / rect.width),
+        y: (evt.clientY - rect.top) * (drawCanvas.height / rect.height)
+      };
+    }
+
+    drawCanvas.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      try { drawCanvas.setPointerCapture(e.pointerId); } catch(err) {}
+      isDrawing = true;
+      hasDrawn = true;
+      lastDrawPoint = getDrawPos(e);
+      drawCtx.beginPath();
+      drawCtx.moveTo(lastDrawPoint.x, lastDrawPoint.y);
+      drawCtx.lineTo(lastDrawPoint.x + 0.01, lastDrawPoint.y + 0.01);
+      drawCtx.stroke();
+    });
+
+    drawCanvas.addEventListener('pointermove', (e) => {
+      if (!isDrawing) return;
+      e.preventDefault();
+      const pos = getDrawPos(e);
+      drawCtx.beginPath();
+      drawCtx.moveTo(lastDrawPoint.x, lastDrawPoint.y);
+      drawCtx.lineTo(pos.x, pos.y);
+      drawCtx.stroke();
+      lastDrawPoint = pos;
+    });
+
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(evtName => {
+      drawCanvas.addEventListener(evtName, () => { isDrawing = false; });
+    });
+
+    // Эталонные картинки из папки draw-targets/ — каждая открытие проверки выбирает случайную
+    const DRAW_TARGETS = [
+      'image1.webp',
+      'image2.jpg',
+      'image3.jpg',
+      'image4.jpg',
+      'image5.jpg',
+      'image6.jpg',
+      'image7.jpg'
+    ];
+
+    const COPY_DRAW_TARGETS = [
+      'trust1.jpg',
+      'trust2.jpg',
+      'trust3.jpg',
+      'trust4.jpg',
+      'trust5.jpg',
+      'trust6.jpg',
+      'trust7.jpg',
+      'trust8.avif',
+      'trust9.jpg'
+    ];
+
+    function formatDrawTime(ms) {
+      const totalSec = Math.max(0, Math.ceil(ms / 1000));
+      const m = Math.floor(totalSec / 60);
+      const s = totalSec % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function clearDrawTimer() {
+      if (drawTimerInterval) { clearInterval(drawTimerInterval); drawTimerInterval = null; }
+    }
+
+    function startDrawTimer() {
+      clearDrawTimer();
+      drawEndTime = Date.now() + DRAW_TIME_MS;
+      const timerEl = document.getElementById('drawing-timer');
+      timerEl.className = 'font-mono font-bold text-amber-300 text-lg leading-none';
+      timerEl.textContent = formatDrawTime(DRAW_TIME_MS);
+      drawTimerInterval = setInterval(() => {
+        const remaining = drawEndTime - Date.now();
+        if (remaining <= 0) {
+          clearDrawTimer();
+          timerEl.textContent = '00:00';
+          finishDrawCheck(false, 'ВЫ ПРОВАЛИЛИ ПРОВЕРКУ', 0, 'Время проверки истекло — вы провалили проверку. Калькулятор остаётся заблокированным: попробуйте нарисовать эталон ещё раз.');
+          return;
+        }
+        timerEl.textContent = formatDrawTime(remaining);
+        if (remaining <= 10000) {
+          timerEl.className = 'font-mono font-bold text-monolith-triRed text-lg leading-none';
+        }
+      }, 250);
+    }
+
+    function pickRandomDrawTarget() {
+      const refImg = document.getElementById('drawing-reference');
+      if (!refImg || !DRAW_TARGETS.length) return;
+      refImg.src = 'draw-targets/' + DRAW_TARGETS[Math.floor(Math.random() * DRAW_TARGETS.length)];
+    }
+
+    function openDrawCheck() {
+      stopAllVoiceAndSiren();
+      document.getElementById('modal-1488').classList.add('hidden');
+      document.getElementById('draw-result').classList.add('hidden');
+      document.getElementById('draw-analyzing').classList.add('hidden');
+      const submitBtn = document.getElementById('btn-submit-draw');
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('hidden', 'opacity-60', 'cursor-not-allowed');
+      resetDrawCanvas();
+      setDrawBrush('#1C1E22', false);
+      pickRandomDrawTarget();
+      startDrawTimer();
+      document.getElementById('modal-1488-draw').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    document.getElementById('btn-1488-start-check').addEventListener('click', openDrawCheck);
+
+    document.querySelectorAll('[data-draw-color]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setDrawBrush(btn.dataset.drawColor, false);
+      });
+    });
+
+    document.querySelectorAll('[data-draw-tool]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.drawTool === 'eraser') setDrawBrush('#FFFFFF', true);
+        else if (btn.dataset.drawTool === 'clear') resetDrawCanvas();
+      });
+    });
+
+    document.getElementById('btn-submit-draw').addEventListener('click', () => {
+      audioSys.playClick(true);
+      clearDrawTimer();
+      const submitBtn = document.getElementById('btn-submit-draw');
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+
+      const analyzing = document.getElementById('draw-analyzing');
+      analyzing.classList.remove('hidden');
+      const statusText = document.getElementById('draw-status-text');
+      const statusSteps = [
+        'Отправляем результат в ФСБ...',
+        'Статус: НА МОДЕРАЦИИ. Секретарь проверяет документы...',
+        'ФСБ сверяет рисунок с эталоном. Осталось чуть-чуть...'
+      ];
+      let stepIdx = 0;
+      statusText.textContent = statusSteps[0];
+      const statusTimer = setInterval(() => {
+        stepIdx = (stepIdx + 1) % statusSteps.length;
+        statusText.textContent = statusSteps[stepIdx];
+      }, 1000);
+
+      const similarity = hasDrawn ? Math.floor(Math.random() * 86) + 5 : 0;
+
+      setTimeout(() => {
+        clearInterval(statusTimer);
+        analyzing.classList.add('hidden');
+        submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+        const passed = similarity >= 50;
+        finishDrawCheck(
+          passed,
+          passed ? 'ДОСТУП ВОССТАНОВЛЕН' : 'ВЫ ПРОВАЛИЛИ ПРОВЕРКУ',
+          similarity,
+          passed
+            ? 'Модерация завершена: сходство с эталоном достаточное. Калькулятор снова доступен!'
+            : 'Модерация отклонена — вы провалили проверку: сходство с эталоном недостаточно. Нарисуйте картинку точнее и попробуйте ещё раз.'
+        );
+      }, 3000);
+    });
+
+    function finishDrawCheck(passed, title, similarity, desc) {
+      const iconEl = document.getElementById('draw-result-icon');
+      iconEl.classList.toggle('text-emerald-400', passed);
+      iconEl.classList.toggle('text-monolith-triRed', !passed);
+      iconEl.setAttribute('data-lucide', passed ? 'check-circle-2' : 'x-circle');
+      const titleEl = document.getElementById('draw-result-title');
+      titleEl.textContent = title;
+      titleEl.className = `font-bold font-mono text-sm uppercase tracking-wider ${passed ? 'text-monolith-success' : 'text-monolith-triRed'}`;
+      document.getElementById('draw-result-sim').textContent = `Сходство с эталоном: ${similarity}%`;
+      document.getElementById('draw-result-desc').textContent = desc;
+      document.getElementById('btn-submit-draw').disabled = false;
+      document.getElementById('btn-submit-draw').classList.add('hidden');
+      document.getElementById('btn-retry-draw').classList.toggle('hidden', passed);
+      document.getElementById('btn-draw-ok').classList.toggle('hidden', !passed);
+      document.getElementById('draw-result').classList.remove('hidden');
+      lucide.createIcons();
+      if (passed) playVictoryFanfare();
+    }
+
+    document.getElementById('btn-retry-draw').addEventListener('click', () => {
+      audioSys.playClick(true);
+      openDrawCheck();
+    });
+
+    document.getElementById('btn-draw-ok').addEventListener('click', () => {
+      is1488Locked = false;
+      saveState();
+      stopAllVoiceAndSiren();
+      document.getElementById('modal-1488-draw').classList.add('hidden');
+      document.getElementById('modal-1488').classList.add('hidden');
+      showToast('Проверка пройдена. Доступ к калькулятору восстановлен!');
+      resetCalcState();
+      updateDisplay();
+    });
+
+    // =========================================================================
+    // ОБРАБОТЧИК π: ПРЕДУПРЕЖДЕНИЕ ВЕЛИКОГО МАТЕМАТИКА И ЭКЗАМЕН ЕЭДВК
+    // =========================================================================
+    const PI_DIGITS = '1415926535897932384626433832795028841971693993751058209749445923';
+    let piExamEndTime = null;
+    let piExamTimer = null;
+
+    function triggerPiWarning() {
+      resetCalcState();
+      calcDisplay.textContent = 'π = 3,14159…';
+      calcStatusMsg.textContent = 'ПОДОЗРЕНИЕ В ГЕНИАЛЬНОСТИ — ТРЕБУЕТСЯ ЭКЗАМЕН';
+      calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-amber-400 tracking-wider uppercase text-right';
+      calcStatusMsg.classList.remove('hidden');
+      stopAllVoiceAndSiren();
+      document.getElementById('pi-warning-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    document.getElementById('btn-pi-decline').addEventListener('click', () => {
+      stopAllVoiceAndSiren();
+      document.getElementById('pi-warning-modal').classList.add('hidden');
+      updateDisplay();
+    });
+
+    document.getElementById('btn-pi-start-exam').addEventListener('click', openPiExam);
+
+    function openPiExam() {
+      stopAllVoiceAndSiren();
+      document.getElementById('pi-warning-modal').classList.add('hidden');
+      const inputEl = document.getElementById('pi-exam-input');
+      inputEl.value = '';
+      inputEl.classList.remove('border-red-700');
+      document.getElementById('pi-exam-correct').textContent = 'Верно подряд: 0 знаков';
+      document.getElementById('pi-exam-result').classList.add('hidden');
+      document.getElementById('pi-exam-result-desc').textContent = '';
+      document.getElementById('btn-pi-exam-cancel').classList.remove('hidden');
+      document.getElementById('btn-pi-exam-done').classList.add('hidden');
+      document.getElementById('btn-pi-exam-retry').classList.add('hidden');
+      const submitBtn = document.getElementById('pi-exam-submit');
+      submitBtn.disabled = false;
+      piExamEndTime = Date.now() + 60 * 1000;
+      if (piExamTimer) clearInterval(piExamTimer);
+      updatePiExamTimer();
+      piExamTimer = setInterval(updatePiExamTimer, 250);
+      document.getElementById('eegd-site').classList.remove('hidden');
+      document.getElementById('eegd-site').scrollTop = 0;
+    }
+
+    function updatePiExamTimer() {
+      const timerEl = document.getElementById('pi-exam-timer');
+      if (!piExamEndTime) return;
+      const remaining = piExamEndTime - Date.now();
+      if (remaining <= 0) {
+        clearInterval(piExamTimer);
+        piExamTimer = null;
+        timerEl.textContent = '00:00';
+        finishPiExam();
+        return;
+      }
+      const totalSec = Math.ceil(remaining / 1000);
+      const m = Math.floor(totalSec / 60);
+      const s = totalSec % 60;
+      timerEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function countPiDigits(inputVal) {
+      const digits = String(inputVal || '').replace(/\D+/g, '');
+      let count = 0;
+      for (let i = 0; i < digits.length && i < PI_DIGITS.length; i++) {
+        if (digits[i] === PI_DIGITS[i]) count++;
+        else break;
+      }
+      return count;
+    }
+
+    function piDigitWord(n) {
+      if (n % 10 === 1 && n % 100 !== 11) return 'знак';
+      if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) return 'знака';
+      return 'знаков';
+    }
+
+    const PI_BADGE_BASE = 'fixed top-2 right-2 z-40 px-3 py-1.5 rounded-[4px] font-mono text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg border-2 cursor-pointer transition hover:scale-105 active:scale-95';
+
+    function computePiTier(count, year) {
+      if (count >= 20) {
+        return { rank: `ВЕЛИКИЙ МАТЕМАТИК ГОДА ${year}`, styleCls: 'bg-gradient-to-b from-yellow-200 via-amber-400 to-amber-600 text-[#2a2118] border-amber-300 border-solid shadow-[0_0_18px_rgba(251,191,36,0.65)]' };
+      } else if (count >= 10) {
+        return { rank: `МАТЕМАТИК ГОДА ${year}`, styleCls: 'bg-gradient-to-b from-[#d99a5b] via-[#b8743f] to-[#8a4d26] text-[#F6E7D2] border-[#e0bc8f] border-solid shadow-[0_0_14px_rgba(184,116,63,0.55)]' };
+      } else if (count >= 5) {
+        return { rank: `ВЕЛИКИЙ НЕУДАЧНИК ГОДА ${year}`, styleCls: 'bg-gradient-to-b from-[#5a3a20] to-[#3a2412] text-[#c89b68] border-[#3a2412] border-dashed' };
+      } else if (count >= 1) {
+        return { rank: `ДВОЕЧНИК ГОДА ${year}`, styleCls: 'bg-[#4a4a4a] text-[#b5b5b5] border-[#333] border-solid' };
+      }
+      return { rank: 'ПРОВАЛ ГОДА', styleCls: 'bg-[#2b2b2b] text-[#6a6a6a] border-[#1c1c1c] border-dashed' };
+    }
+
+    function applyPiBadge(count, year) {
+      const tier = computePiTier(count, year);
+      const badge = document.getElementById('pi-math-badge');
+      badge.className = PI_BADGE_BASE + ' ' + tier.styleCls;
+      document.getElementById('pi-math-badge-text').textContent = `${tier.rank} — ${count} ${piDigitWord(count)} π`;
+      return tier;
+    }
+
+    function restorePiBadge() {
+      if (!piBadgeState) return;
+      applyPiBadge(piBadgeState.count, piBadgeState.year);
+    }
+
+    function finishPiExam() {
+      if (piExamTimer) { clearInterval(piExamTimer); piExamTimer = null; }
+      const count = countPiDigits(document.getElementById('pi-exam-input').value);
+      const year = new Date().getFullYear();
+
+      const submitBtn = document.getElementById('pi-exam-submit');
+      submitBtn.disabled = true;
+      document.getElementById('btn-pi-exam-cancel').classList.add('hidden');
+
+      if (count === 0) {
+        // Провал: звание не выдаётся, можно попробовать ещё раз
+        document.getElementById('btn-pi-exam-done').classList.add('hidden');
+        document.getElementById('btn-pi-exam-retry').classList.remove('hidden');
+        document.getElementById('pi-exam-result-title').textContent = 'ВЫ ПРОВАЛИЛИ ЭКЗАМЕН';
+        document.getElementById('pi-exam-result-sim').textContent = `Верных знаков: 0`;
+        document.getElementById('pi-exam-result-desc').textContent = 'Калькулятор остался простым. Попробуйте ещё раз и впишите знаки π после запятой.';
+        document.getElementById('pi-exam-result').classList.remove('hidden');
+        showToast('Вы провалили экзамен ЕЭДВК. Попробуйте ещё раз!', 'error');
+        return;
+      }
+
+      piBadgeState = { count, year };
+      const tier = applyPiBadge(count, year);
+      saveState();
+
+      document.getElementById('btn-pi-exam-done').classList.remove('hidden');
+      document.getElementById('btn-pi-exam-retry').classList.add('hidden');
+      document.getElementById('pi-exam-result-title').textContent = tier.rank;
+      document.getElementById('pi-exam-result-sim').textContent = `${count} верных ${piDigitWord(count)} π`;
+      document.getElementById('pi-exam-result-desc').textContent = 'Экзамен сдан. Звание великого математика присвоено.';
+      document.getElementById('pi-exam-result').classList.remove('hidden');
+      showToast(`${tier.rank} — ${count} верных ${piDigitWord(count)} π`);
+    }
+
+    document.getElementById('pi-exam-input').addEventListener('input', (e) => {
+      const cleaned = String(e.target.value).replace(/\D+/g, '').slice(0, 60);
+      e.target.value = cleaned;
+      const count = countPiDigits(cleaned);
+      document.getElementById('pi-exam-correct').textContent = `Верно подряд: ${count} ${piDigitWord(count)}`;
+      e.target.classList.toggle('border-red-700', cleaned.length > 0 && count === 0);
+    });
+
+    document.getElementById('pi-exam-submit').addEventListener('click', finishPiExam);
+
+    document.getElementById('btn-pi-exam-retry').addEventListener('click', () => {
+      audioSys.playClick(true);
+      openPiExam();
+    });
+
+    document.getElementById('btn-pi-exam-cancel').addEventListener('click', () => {
+      clearInterval(piExamTimer);
+      piExamTimer = null;
+      stopAllVoiceAndSiren();
+      document.getElementById('eegd-site').classList.add('hidden');
+      showToast('Экзамен не сдан — вы остались простым калькулятором.');
+      updateDisplay();
+    });
+
+    document.getElementById('btn-pi-exam-done').addEventListener('click', () => {
+      stopAllVoiceAndSiren();
+      document.getElementById('eegd-site').classList.add('hidden');
+      showToast('Экзамен ЕЭДВК завершён.');
+      updateDisplay();
+    });
+
+    // =========================================================================
+    // ПРАНК: КЛИК ПО ПЛАШКЕ — ХУЛИ ЖМЕШЬ + СИРЕНА + РАЗВАЛ КАЛЬКУЛЯТОРА
+    // =========================================================================
+    let jhulActive = false;
+    let jhulTimers = [];
+
+    function jhulRandomNumber() {
+      const digits = String(Math.floor(Math.random() * 1e12)).padStart(12, '0');
+      return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    }
+
+    function startJhul() {
+      if (jhulActive) {
+        showToast('ХУЛИ ЖМЕШЬ');
+        return;
+      }
+      jhulActive = true;
+      document.getElementById('jhul-overlay').classList.remove('hidden');
+      startWarningSiren(true);
+
+      const mainEl = document.querySelector('main');
+      if (mainEl) mainEl.classList.add('calc-breaking');
+
+      document.querySelectorAll('main button').forEach(btn => {
+        btn.style.setProperty('--fall-rot', (Math.random() * 80 - 40).toFixed(1) + 'deg');
+        btn.classList.remove('btn-rising');
+        btn.classList.add('btn-falling');
+      });
+
+      const dispInt = setInterval(() => {
+        calcDisplay.textContent = jhulRandomNumber();
+        calcStatusMsg.textContent = jhulRandomNumber();
+        calcStatusMsg.className = 'mt-1 text-[11px] font-mono text-monolith-triRed tracking-wider uppercase text-right';
+        calcStatusMsg.classList.remove('hidden');
+      }, 90);
+      jhulTimers.push(dispInt);
+
+      setTimeout(restoreJhul, 7500);
+    }
+
+    function restoreJhul() {
+      stopAllVoiceAndSiren();
+      document.getElementById('jhul-overlay').classList.add('hidden');
+      jhulTimers.forEach(id => clearInterval(id));
+      jhulTimers = [];
+      const mainEl = document.querySelector('main');
+      if (mainEl) mainEl.classList.remove('calc-breaking');
+      document.querySelectorAll('main button.btn-falling').forEach(btn => {
+        btn.classList.remove('btn-falling');
+        btn.classList.add('btn-rising');
+      });
+      setTimeout(() => {
+        document.querySelectorAll('main button.btn-rising').forEach(btn => btn.classList.remove('btn-rising'));
+      }, 800);
+      updateDisplay();
+      showToast('Калькулятор собран заново. Скрепка выдала себя с потрохами.');
+      jhulActive = false;
+    }
+
+    document.getElementById('pi-math-badge').addEventListener('click', startJhul);
 
     // ОБРАБОТЧИК 666: ПРЕИСПОДНЯЯ И 100 000 СИМВОЛОВ
     function trigger666Lockout() {
@@ -1359,6 +2813,7 @@
       btn.disabled = true;
       btn.className = 'flex-1 py-2.5 px-3 bg-purple-700/50 text-white/50 text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 cursor-not-allowed';
       lucide.createIcons();
+      saveState();
     }
 
     document.getElementById('textarea-666').addEventListener('input', (e) => {
@@ -1381,6 +2836,7 @@
     document.getElementById('btn-submit-666').addEventListener('click', () => {
       if (document.getElementById('textarea-666').value.length >= 100000) {
         is666Locked = false;
+        saveState();
         stopAllVoiceAndSiren();
         document.getElementById('modal-666').classList.add('hidden');
         showToast('Грехи отпущены. Доступ к калькулятору возвращён!');
@@ -1391,6 +2847,2155 @@
     document.getElementById('btn-replay-666-voice').addEventListener('click', () => {
       playHeavenlySound();
       playCustomVoice(preloadedAudio.v666, TEXT_666, false);
+    });
+
+    // =========================================================================
+    // ПРОВЕРКИ ЛОЯЛЬНОСТИ: ПАТРИОТИЧЕСКИЙ ДИКТАНТ И ФОТО-ПРОВЕРКА
+    // =========================================================================
+    const VERIFY_COOLDOWN_MS = 2 * 60 * 1000;
+
+    // Большой каталог «бредовых» слов для текстового задания
+    const TEXT_TASK_WORDS = [
+      'гранатомёт', 'монолит', 'лужайка', 'путин', 'балалайка', 'берёзка', 'медведь', 'самовар',
+      'валенки', 'кокошник', 'триколор', 'держава', 'суверенитет', 'духовность', 'скрепа',
+      'импортозамещение', 'вертикаль', 'георгиевская лента', 'победа', 'герой', 'родина',
+      'отечество', 'кремль', 'салют', 'парад', 'танк', 'вертолёт', 'ракета', 'легендарный',
+      'могучий', 'великий', 'священный', 'народный', 'хлеб', 'пельмень', 'вареник', 'борщ',
+      'окрошка', 'холодец', 'селёдка', 'оливье', 'мандарин', 'огурчик', 'помидорчик', 'редиска',
+      'укроп', 'петрушка', 'гречка', 'перловка', 'тюлень', 'пингвин', 'ёжик', 'белка', 'кабан',
+      'лось', 'соболь', 'горностай', 'песец', 'пылесос', 'телевизор', 'холодильник', 'сервант',
+      'ковёр', 'люстра', 'утюг', 'дискета', 'кассета', 'пейджер', 'модем', 'калькулятор',
+      'арматура', 'буханка', 'бублик', 'баранка', 'сушка', 'пряник', 'сгущёнка', 'лимонад',
+      'квас', 'компот', 'кисель', 'семечки', 'леденец', 'вафля', 'огурцы', 'капуста', 'свёкла',
+      'репа', 'брюква', 'тыква', 'кабачок', 'патиссон', 'горошек', 'фасоль', 'чечевица'
+    ];
+
+    function pickTextTaskWords(n) {
+      const pool = TEXT_TASK_WORDS.slice();
+      const out = [];
+      while (out.length < n && pool.length) {
+        out.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+      }
+      return out;
+    }
+
+    const GOOD_WORDS = [
+      'гранатомёт', 'гранатомет', 'путин', 'лужайка', 'монолит', 'россия', 'родина', 'отечество',
+      'победа', 'герой', 'святое', 'священный', 'держава', 'братство', 'единство', 'президент',
+      'кремль', 'триколор', 'гимн', 'флаг', 'армия', 'флот', 'парад', 'служба', 'медаль', 'звезда',
+      'честь', 'долг', 'вера', 'хлеб', 'танк', 'вертолёт', 'салют', 'праздник', 'спасибо', 'могучий',
+      'великий', 'народ', 'страна', 'отчизна', 'берёзка', 'калинка', 'матрёшка', 'балалайка',
+      'валенки', 'медведь', 'самовар', 'гармонь'
+    ];
+
+    const BAD_WORDS = [
+      'сука', 'бляд', 'блять', 'бля', 'хуй', 'хуя', 'хуе', 'хуё', 'хуи', 'пизд', 'ебал', 'ебат',
+      'ебёт', 'ебет', 'ебу', 'ёб', 'ёба', 'ебло', 'нахуй', 'похуй', 'пидор', 'пидар', 'гандон',
+      'мудак', 'мудила', 'залупа', 'шлюха', 'шалава', 'пиздец', 'проститут', 'дерьмо', 'говно',
+      'срать', 'срань', 'жопа', 'украина', 'украин', 'бандера', 'майдаун', 'хохол', 'хохлы',
+      'даун', 'дебил', 'кретин', 'дегенерат', 'уёбок', 'уебок', 'мразь', 'тварь', 'сволочь',
+      'падла', 'гнида'
+    ];
+
+    const PHOTO_TARGETS = [
+      'противотанковый гранатомёт', 'яблоко', 'путин', 'московский кремль', 'лужайка', 'монолит',
+      'кусок арматуры', 'портрет ленина', 'бабушка в цветочном халате', 'гос номер машины',
+      'паспорт РФ', 'ковид-сертификат', 'верблюд', 'белый медведь', 'корова', 'справка из военкомата',
+      'минута молчания', 'вопросительный знак', 'балалайка', 'матрёшка', 'шапка-ушанка', 'осьминог',
+      'офисная ручка', 'лапша быстрого приготовления', 'батарейка AA', 'чугунный утюг',
+      'советский телевизор', 'дискета 3.5', 'аудиокассета', 'гранёный стакан', 'авоська с картошкой',
+      'георгиевская лента', 'берёза', 'самовар', 'гармонь', 'валенки', 'кокошник', 'ковёр на стене',
+      'хрустальная люстра', 'сервант', 'кружка с надписью СССР', 'двойка по математике',
+      'тетрадь в клетку', 'пионерский галстук', 'октябрятская звёздочка', 'красное знамя',
+      'вечный огонь', 'танк Т-34', 'ракета Тополь', 'подводная лодка', 'медведь на велосипеде',
+      'жар-птица', 'дракон', 'инопланетянин', 'зелёный слоник', 'розовый пони', 'единорог',
+      'русалка', 'снеговик летом', 'динозавр', 'шерстяной носок', 'второй носок из пары',
+      'левый тапок', 'пылесос', 'стиральная машина', 'запрещённое значение 67', 'калькулятор Монолит',
+      'логарифмическая линейка', 'счёты', 'арифмометр', 'перфокарта', 'флешка на 64 МБ',
+      'модем с писком', 'пейджер', 'кассетный плеер', 'телефон с кнопками', 'пятикопеечная монета',
+      'юбилейная монета', 'банкнота 10 рублей', 'трёхлитровая банка', 'банка огурцов', 'варенье',
+      'сушёная рыба', 'семечки', 'стакан семечек', 'бутылка лимонада', 'пирожок с повидлом',
+      'беляш', 'шаурма', 'пельмень', 'вареник с вишней', 'борщ', 'окрошка', 'холодец',
+      'селёдка под шубой', 'оливье', 'мандарин', 'оливка', 'укроп', 'пучок петрушки', 'редиска',
+      'запрещённое значение 104', 'число 666', 'число 1488', 'пакет с пакетами', 'пакет с гречкой',
+      'гречка в носке', 'соль в мешочке', 'спички', 'свечка', 'ёлочная игрушка', 'гирлянда',
+      'мандариновая кожура', 'снежинка', 'сосулька', 'сугроб', 'ледяная горка', 'лопата для снега',
+      'варежки на резинке', 'шарф в полоску', 'шапка с помпоном', 'бабушкин платок',
+      'очки-хамелеон', 'пустая банка', 'сломанный зонт', 'второй зонт', 'носок на батарее',
+      'кот в коробке', 'собака на цепи', 'курица на насесте', 'петух', 'коза', 'баран', 'гусь',
+      'утка с утятами', 'ёжик', 'белка', 'заяц-русак', 'медвежонок', 'волк', 'лиса', 'кабан',
+      'лось', 'олень', 'соболь', 'горностай', 'песец', 'тюлень'
+    ];
+
+    function hideAllVerifyModals() {
+      ['modal-text-check', 'modal-photo-check', 'modal-copy-draw'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+    }
+
+    // Проверки доступны только через онбординг «Получите наше доверие»
+    document.getElementById('test-open-text').addEventListener('click', () => { stopAllVoiceAndSiren(); openTextCheck(); });
+    document.getElementById('test-open-photo').addEventListener('click', () => { stopAllVoiceAndSiren(); openPhotoCheck(); });
+    document.getElementById('test-open-trust').addEventListener('click', () => { stopAllVoiceAndSiren(); openTrustGate(true); });
+    document.getElementById('test-reset-cooldowns').addEventListener('click', () => {
+      textCheckCooldownEnd = null;
+      photoCheckCooldownEnd = null;
+      chatCheckCooldownEnd = null;
+      electionsCheckCooldownEnd = null;
+      if (textCooldownTimer) { clearInterval(textCooldownTimer); textCooldownTimer = null; }
+      if (photoCooldownTimer) { clearInterval(photoCooldownTimer); photoCooldownTimer = null; }
+      if (putinCooldownTimer) { clearInterval(putinCooldownTimer); putinCooldownTimer = null; }
+      if (electionTimer) { clearInterval(electionTimer); electionTimer = null; }
+      if (electionIdleTimer) { clearTimeout(electionIdleTimer); electionIdleTimer = null; }
+      if (electionKoibTimer) { clearInterval(electionKoibTimer); electionKoibTimer = null; }
+      document.getElementById('text-check-cooldown').classList.add('hidden');
+      document.getElementById('photo-cooldown').classList.add('hidden');
+      const ts = document.getElementById('btn-text-check-submit');
+      if (ts) ts.disabled = false;
+      saveState();
+      showToast('Кулдауны проверок сброшены.');
+    });
+
+    // Успешная разблокировка активной блокировки (1488 исключён — у него своя проверка рисунком)
+    function unlockCurrentBlockade() {
+      let unlocked = false;
+
+      if (is666Locked) {
+        is666Locked = false;
+        document.getElementById('modal-666').classList.add('hidden');
+        unlocked = true;
+      }
+      if (is104Locked) {
+        is104Locked = false;
+        count104 = 0;
+        lock104EndTime = Date.now() - 1;
+        document.getElementById('modal-104-lock').classList.add('hidden');
+        unlocked = true;
+      }
+      if (isLockedOut) {
+        isLockedOut = false;
+        lockoutEndTime = Date.now() - 1;
+        document.getElementById('lockout-modal').classList.add('hidden');
+        unlocked = true;
+      }
+
+      stopAllVoiceAndSiren();
+      hideAllVerifyModals();
+      photoCheckActive = false;
+      stopCamera();
+      stopPhotoCountdown();
+      if (photoCooldownTimer) { clearInterval(photoCooldownTimer); photoCooldownTimer = null; }
+      saveState();
+
+      if (unlocked) {
+        showToast('Проверка пройдена. Доступ к калькулятору восстановлен!');
+        playVictoryFanfare();
+      }
+      resetCalcState();
+      updateDisplay();
+    }
+
+    // ---------------- ТЕКСТОВАЯ ПРОВЕРКА (ПАТРИОТИЧЕСКИЙ ДИКТАНТ) ----------------
+    let textCooldownTimer = null;
+    let requiredTextWords = [];
+
+    function textCooldownRemaining() {
+      return (textCheckCooldownEnd || 0) - Date.now();
+    }
+
+    function usedTextWords(text) {
+      const lower = text.toLowerCase();
+      return requiredTextWords.filter(w => lower.includes(w.toLowerCase()));
+    }
+
+    function renderTextTask() {
+      document.getElementById('text-check-task-words').textContent = requiredTextWords.join('  ·  ');
+      document.getElementById('text-check-task-usage').textContent = `Использовано слов: 0 / ${requiredTextWords.length}`;
+    }
+
+    function resetTextCheckUI() {
+      document.getElementById('text-check-input').value = '';
+      document.getElementById('text-check-len').textContent = '0';
+      document.getElementById('text-check-badwords').classList.add('hidden');
+      document.getElementById('text-check-result').classList.add('hidden');
+      document.getElementById('text-check-analyzing').classList.add('hidden');
+      document.getElementById('btn-text-check-submit').disabled = false;
+    }
+
+    function openTextCheck() {
+      if (trustMode) textCheckCooldownEnd = null;
+      document.getElementById('modal-text-check').classList.remove('hidden');
+      requiredTextWords = pickTextTaskWords(5);
+      resetTextCheckUI();
+      renderTextTask();
+      if (textCooldownRemaining() > 0) {
+        startTextCooldown();
+      } else {
+        textCheckCooldownEnd = null;
+        document.getElementById('text-check-cooldown').classList.add('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    document.getElementById('btn-text-check-close').addEventListener('click', () => {
+      document.getElementById('modal-text-check').classList.add('hidden');
+      stopAllVoiceAndSiren();
+      if (trustMode) trustAbort();
+    });
+
+    document.getElementById('text-check-input').addEventListener('input', (e) => {
+      const text = e.target.value;
+      document.getElementById('text-check-len').textContent = text.length;
+      document.getElementById('text-check-task-usage').textContent =
+        `Использовано слов: ${usedTextWords(text).length} / ${requiredTextWords.length}`;
+      const found = BAD_WORDS.filter(w => text.toLowerCase().includes(w));
+      const bw = document.getElementById('text-check-badwords');
+      if (found.length) {
+        bw.textContent = `Модерация заметит недопустимые слова: ${found.join(', ')}`;
+        bw.classList.remove('hidden');
+      } else {
+        bw.classList.add('hidden');
+      }
+    });
+
+    function startTextCooldown() {
+      const submit = document.getElementById('btn-text-check-submit');
+      submit.disabled = true;
+      const cd = document.getElementById('text-check-cooldown');
+      cd.classList.remove('hidden');
+      if (textCooldownTimer) clearInterval(textCooldownTimer);
+      const tick = () => {
+        const rem = textCooldownRemaining();
+        if (rem <= 0) {
+          clearInterval(textCooldownTimer);
+          textCooldownTimer = null;
+          textCheckCooldownEnd = null;
+          saveState();
+          cd.classList.add('hidden');
+          submit.disabled = false;
+          return;
+        }
+        const s = Math.ceil(rem / 1000);
+        document.getElementById('text-check-cooldown-timer').textContent =
+          `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+      };
+      tick();
+      textCooldownTimer = setInterval(tick, 500);
+    }
+
+    document.getElementById('btn-text-check-submit').addEventListener('click', () => {
+      const text = document.getElementById('text-check-input').value;
+      if (textCooldownRemaining() > 0) { startTextCooldown(); return; }
+
+      const found = BAD_WORDS.filter(w => text.toLowerCase().includes(w));
+      const used = usedTextWords(text);
+      const missing = requiredTextWords.filter(w => !used.includes(w));
+      const tooShort = text.trim().length < 15;
+
+      document.getElementById('text-check-result').classList.add('hidden');
+      document.getElementById('text-check-analyzing').classList.remove('hidden');
+      document.getElementById('btn-text-check-submit').disabled = true;
+      lucide.createIcons();
+
+      setTimeout(() => {
+        document.getElementById('text-check-analyzing').classList.add('hidden');
+        const res = document.getElementById('text-check-result');
+        const title = document.getElementById('text-check-result-title');
+        const desc = document.getElementById('text-check-result-desc');
+
+        if (found.length > 0 || tooShort || missing.length > 0) {
+          let reason;
+          if (found.length) reason = `Модерация обнаружила недопустимые слова: ${found.join(', ')}.`;
+          else if (missing.length) reason = `В тексте не хватает обязательных слов: ${missing.join(', ')}.`;
+          else reason = 'Текст слишком короткий для проверки лояльности.';
+          title.textContent = 'ВЫ ПРОВАЛИЛИ ПРОВЕРКУ';
+          title.className = 'font-bold font-mono text-sm uppercase tracking-wider text-monolith-triRed';
+          desc.textContent = `${reason} Подождите 2 минуты и попробуйте снова.`;
+          res.className = 'p-3 rounded border space-y-1 border-monolith-triRed/60 bg-monolith-triRed/10';
+          res.classList.remove('hidden');
+          if (!trustMode) {
+            textCheckCooldownEnd = Date.now() + VERIFY_COOLDOWN_MS;
+            saveState();
+            startTextCooldown();
+            showToast('Проверка провалена. Ждите 2 минуты.', 'error');
+          } else {
+            showToast('Проверка провалена. Попробуйте ещё раз.', 'error');
+          }
+        } else {
+          title.textContent = 'ПРОВЕРКА ПРОЙДЕНА';
+          title.className = 'font-bold font-mono text-sm uppercase tracking-wider text-monolith-success';
+          desc.textContent = 'Текст одобрен модерацией. Лояльность подтверждена.';
+          res.className = 'p-3 rounded border space-y-1 border-emerald-500/60 bg-emerald-500/10';
+          res.classList.remove('hidden');
+          showToast('Патриотический диктант сдан!');
+          if (trustMode) setTimeout(() => trustComplete('text'), 900);
+          else setTimeout(unlockCurrentBlockade, 900);
+        }
+      }, 3000);
+    });
+
+    // ---------------- ФОТО-ПРОВЕРКА (КАМЕРА) ----------------
+    let photoStream = null;
+    let photoCountdownTimer = null;
+    let photoCooldownTimer = null;
+    let photoAttemptsLeft = 3;
+    let photoCheckActive = false;
+    let photoPassAttempt = 3;
+
+    function photoCooldownRemaining() {
+      return (photoCheckCooldownEnd || 0) - Date.now();
+    }
+
+    function pickPhotoTarget() {
+      return PHOTO_TARGETS[Math.floor(Math.random() * PHOTO_TARGETS.length)];
+    }
+
+    function stopCamera() {
+      if (photoStream) {
+        photoStream.getTracks().forEach(t => t.stop());
+        photoStream = null;
+      }
+      const v = document.getElementById('photo-video');
+      if (v) v.srcObject = null;
+    }
+
+    function stopPhotoCountdown() {
+      if (photoCountdownTimer) { clearInterval(photoCountdownTimer); photoCountdownTimer = null; }
+    }
+
+    function openPhotoCheck() {
+      document.getElementById('modal-photo-check').classList.remove('hidden');
+      document.getElementById('photo-target').textContent = pickPhotoTarget();
+      document.getElementById('photo-status').textContent = '';
+      document.getElementById('photo-canvas').classList.add('hidden');
+      document.getElementById('photo-scan').classList.add('hidden');
+      document.getElementById('photo-err').classList.add('hidden');
+
+      if (photoCooldownRemaining() > 0) {
+        photoCheckActive = false;
+        document.getElementById('btn-photo-capture').disabled = true;
+        document.getElementById('photo-attempts').textContent = '';
+        startPhotoCooldown();
+        return;
+      }
+
+      photoCheckCooldownEnd = null;
+      document.getElementById('photo-cooldown').classList.add('hidden');
+      photoAttemptsLeft = 3;
+      photoPassAttempt = Math.random() < 0.5 ? 2 : 3;
+      photoCheckActive = true;
+      document.getElementById('photo-attempts').textContent = 'Попыток осталось: 3';
+      document.getElementById('photo-canvas').classList.add('hidden');
+      document.getElementById('btn-photo-capture').disabled = false;
+      startCamera();
+      lucide.createIcons();
+    }
+
+    async function startCamera() {
+      const errBox = document.getElementById('photo-err');
+      const errText = document.getElementById('photo-err-text');
+      stopCamera();
+      try {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          throw new Error('unsupported');
+        }
+        photoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false });
+        document.getElementById('photo-video').srcObject = photoStream;
+        errBox.classList.add('hidden');
+        startPhotoCountdown();
+      } catch (e) {
+        errText.textContent = 'Нет доступа к камере. Разрешите использование камеры в браузере и попробуйте снова.';
+        errBox.classList.remove('hidden');
+        document.getElementById('btn-photo-capture').disabled = true;
+      }
+    }
+
+    function startPhotoCountdown() {
+      stopPhotoCountdown();
+      const el = document.getElementById('photo-countdown');
+      const end = Date.now() + 60 * 1000;
+      const tick = () => {
+        const rem = end - Date.now();
+        if (rem <= 0) {
+          stopPhotoCountdown();
+          el.textContent = '00:00';
+          if (photoCheckActive) {
+            photoCheckActive = false;
+            performPhotoCheck(false);
+          }
+          return;
+        }
+        const s = Math.ceil(rem / 1000);
+        el.textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+      };
+      tick();
+      photoCountdownTimer = setInterval(tick, 500);
+    }
+
+    function performPhotoCheck(tookPhoto) {
+      const scan = document.getElementById('photo-scan');
+      const status = document.getElementById('photo-status');
+      stopPhotoCountdown();
+      document.getElementById('btn-photo-capture').disabled = true;
+
+      if (!tookPhoto) {
+        scan.classList.add('hidden');
+        status.textContent = 'Время вышло — фотография не сделана.';
+        registerPhotoFail('Время вышло');
+        return;
+      }
+
+      // Симуляция проверки фотографии: бегущая линия и точки анализа
+      scan.classList.remove('hidden');
+      status.textContent = 'Проверяем фотографию...';
+
+      setTimeout(() => {
+        scan.classList.add('hidden');
+        const attemptNo = 4 - photoAttemptsLeft;
+        const passed = attemptNo >= photoPassAttempt;
+        if (passed) {
+          status.textContent = 'Объект совпал с эталоном.';
+          document.getElementById('photo-attempts').textContent = '';
+          showToast('Фото-проверка пройдена!');
+          setTimeout(unlockCurrentBlockade, 900);
+        } else {
+          const target = document.getElementById('photo-target').textContent;
+          registerPhotoFail(`Сходство с «${target}» недостаточное`);
+        }
+      }, 2800);
+    }
+
+    function registerPhotoFail(reason) {
+      photoAttemptsLeft--;
+      if (photoAttemptsLeft <= 0) {
+        document.getElementById('photo-attempts').textContent = '';
+        document.getElementById('photo-status').textContent = `${reason}. Лимит попыток исчерпан.`;
+        photoCheckCooldownEnd = Date.now() + VERIFY_COOLDOWN_MS;
+        saveState();
+        photoCheckActive = false;
+        startPhotoCooldown();
+      } else {
+        document.getElementById('photo-attempts').textContent = `Попыток осталось: ${photoAttemptsLeft}`;
+        document.getElementById('photo-status').textContent = `${reason}. Сделайте фото ещё раз.`;
+        document.getElementById('photo-target').textContent = pickPhotoTarget();
+        document.getElementById('photo-canvas').classList.add('hidden');
+        document.getElementById('btn-photo-capture').disabled = false;
+        photoCheckActive = true;
+        startPhotoCountdown();
+      }
+    }
+
+    function startPhotoCooldown() {
+      const box = document.getElementById('photo-cooldown');
+      const btn = document.getElementById('btn-photo-capture');
+      btn.disabled = true;
+      box.classList.remove('hidden');
+      if (photoCooldownTimer) clearInterval(photoCooldownTimer);
+      const tick = () => {
+        const rem = photoCooldownRemaining();
+        if (rem <= 0) {
+          clearInterval(photoCooldownTimer);
+          photoCooldownTimer = null;
+          photoCheckCooldownEnd = null;
+          saveState();
+          box.classList.add('hidden');
+          document.getElementById('photo-status').textContent = '';
+          openPhotoCheck();
+          return;
+        }
+        const s = Math.ceil(rem / 1000);
+        document.getElementById('photo-cooldown-timer').textContent =
+          `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+      };
+      tick();
+      photoCooldownTimer = setInterval(tick, 500);
+    }
+
+    document.getElementById('btn-photo-check-close').addEventListener('click', () => {
+      photoCheckActive = false;
+      stopCamera();
+      stopPhotoCountdown();
+      document.getElementById('modal-photo-check').classList.add('hidden');
+      stopAllVoiceAndSiren();
+    });
+
+    document.getElementById('btn-photo-capture').addEventListener('click', () => {
+      const video = document.getElementById('photo-video');
+      if (!photoStream || !video.videoWidth) {
+        document.getElementById('photo-status').textContent = 'Камера недоступна.';
+        return;
+      }
+      const canvas = document.getElementById('photo-canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+      canvas.classList.remove('hidden');
+      photoCheckActive = false;
+      performPhotoCheck(true);
+    });
+
+    // ---------------- ПРОВЕРКА: ЧАТ С ПЕРВЫМ (МЕССЕНДЖЕР МОНОЛИТ) ----------------
+    // Ветвящийся диалог. Каждый узел — сообщение(я) Первого + варианты ответа.
+    // Изображения лежат в папке putin-chat/ (файлы подгружаются, если есть).
+    const PUTIN_NODES = {
+      start: {
+        media: 'self',
+        imageChance: 0.85,
+        variants: [
+          ['Алло. Это кто?', 'Нахуй вы мне написали? Что вы от меня хотите?'],
+          ['Кто это?', 'Вы мне написали. Что вы от меня хотите?'],
+          ['Слушаю.', 'Нахуй вы мне написали? Я вас не знаю.']
+        ],
+        choices: [
+          { t: 'Служить Родине и лично Вам, Владимир Владимирович!', n: 'p1' },
+          { t: 'Хотел спросить про пенсию, цены и ЖКХ.', n: 'm1' },
+          { t: 'Хочу знать правду. Что происходит в стране?', n: 't1' },
+          { t: 'Как ваше утро, Владимир Владимирович?', n: 'morning1' },
+          { t: 'А что вы думаете о других людях?', n: 'others1' },
+          { t: 'Ой, кажется, я ошибся номером.', n: 'w1' }
+        ]
+      },
+
+      p1: {
+        image: 'putin-chat/putin-2.jpg',
+        text: 'Вот это разговор. Такие люди мне нужны. А служить как готов?',
+        choices: [
+          { t: 'Встану в строй. В окоп, на передовую, куда прикажете!', n: 'p_okop' },
+          { t: 'Пойду работать на оборонный завод.', n: 'p_zavod' },
+          { t: 'Готов платить налоги и не задавать вопросов.', n: 'p_nalog' },
+          { t: 'Спорт люблю, как и вы, Владимир Владимирович!', n: 'p_sport1' }
+        ]
+      },
+      p_okop: {
+        text: 'Смело. А мать тебя отпустит на фронт?',
+        choices: [
+          { t: 'Мать — это Родина. Отпустит.', n: 'p_front1' },
+          { t: 'У меня нет матери. Есть только Россия.', n: 'p_front1' },
+          { t: 'Сначала спрошу у мамы...', n: 'mama' }
+        ]
+      },
+      p_front1: {
+        media: 'official',
+        imageChance: 0.35,
+        text: 'На фронт, значит. А стрелять умеешь?',
+        choices: [
+          { t: 'Умею. С детства учили.', n: 'p_front2' },
+          { t: 'Научусь по ходу дела.', n: 'p_front2' },
+          { t: 'Я не военный, я медик. Буду спасать.', n: 'p_front_medic' }
+        ]
+      },
+      p_front2: {
+        text: 'Хорошо. А если прикажут отступать?',
+        choices: [
+          { t: 'Не отступлю! Ни шагу назад!', n: 'p_front3' },
+          { t: 'Выполню приказ. Как положено.', n: 'p_front3' },
+          { t: 'Отступлю, чтобы спасти бойцов.', n: 'p_front_medic' }
+        ]
+      },
+      p_front3: {
+        text: 'Вот это характер. А если ранят в бою?',
+        choices: [
+          { t: 'Буду воевать лёжа!', n: 'ultra1' },
+          { t: 'Подлечусь и снова на фронт!', n: 'ultra1' },
+          { t: 'Попрошу эвакуацию.', n: 'p_evac' }
+        ]
+      },
+      p_front_medic: {
+        text: 'Медик — это тоже героизм. А врага спасать будешь?',
+        choices: [
+          { t: 'Врага — нет!', n: 'p_front3' },
+          { t: 'Спасу любого человека.', n: 'p_evac' },
+          { t: 'Только по уставу и приказу.', n: 'ultra1' }
+        ]
+      },
+      p_evac: {
+        text: 'Эвакуация... А потом в строй вернёшься?',
+        choices: [
+          { t: 'Вернусь, не сомневайтесь!', n: 'end_hero' },
+          { t: 'Если здоровье позволит.', n: 'end_son' },
+          { t: 'Не думаю. Война не для меня.', n: 'end_neutral' }
+        ]
+      },
+      p_zavod: {
+        text: 'Хорошо. А если зарплату на заводе задержат на полгода?',
+        choices: [
+          { t: 'Перетерплю. Ради Победы.', n: 'ultra1' },
+          { t: 'Пойду работать на завод получше.', n: 'switcher' },
+          { t: 'Пожалуюсь в прокуратуру.', n: 'proc' }
+        ]
+      },
+      p_nalog: {
+        text: 'Скромно. А если налоги поднимут до 90%?',
+        choices: [
+          { t: 'Отдам последнее! Лишь бы Родина цвела.', n: 'ultra1b' },
+          { t: 'Тогда я уеду в Дубай.', n: 'leave' },
+          { t: 'Спрошу, куда уходят деньги.', n: 't1' }
+        ]
+      },
+      ultra1: {
+        image: 'putin-chat/putin-3.jpg',
+        text: 'Из тебя выйдет толк. Последний вопрос: если я скажу прыгнуть с моста — прыгнешь?',
+        choices: [
+          { t: 'Скажите высоту — уже прыгаю!', n: 'end_hero' },
+          { t: 'Только если это официальный указ.', n: 'end_son' },
+          { t: 'А можно сначала премию?', n: 'funny2' }
+        ]
+      },
+      ultra1b: {
+        text: 'Вот это по-нашему. А если я попрошу отдать квартиру?',
+        choices: [
+          { t: 'Забирайте. Всё ваше.', n: 'end_hero' },
+          { t: 'Сначала обсудим залог.', n: 'funny2' },
+          { t: 'Квартира святое, но половину можно.', n: 'end_son' }
+        ]
+      },
+      mama: {
+        text: 'Мама — это, конечно, святое. Но мне нужны решительные люди.',
+        choices: [
+          { t: 'Тогда я решительный! Беру маму с собой.', n: 'army2' },
+          { t: 'Ладно, я передумал насчёт фронта.', n: 'end_neutral' },
+          { t: 'А вы спросите у моей мамы сами.', n: 'mama2' }
+        ]
+      },
+      mama2: {
+        text: 'Чтобы я звонил твоей маме? Ты вообще понимаешь, с кем разговариваешь?',
+        choices: [
+          { t: 'Простите! Я служу Родине, честное слово!', n: 'end_son' },
+          { t: 'Понимаю. С человеком, который боится моей мамы.', n: 'end_inagent' },
+          { t: 'Мама бы вами гордилась.', n: 'end_neutral' }
+        ]
+      },
+      army2: {
+        text: 'С мамой? В окоп? Мне нравится ход мысли. А если она откажется?',
+        choices: [
+          { t: 'Тогда пойду один и буду защищать и её.', n: 'end_hero' },
+          { t: 'Уговорю. Она у меня патриотка.', n: 'end_son' },
+          { t: 'Ладно, останемся дома.', n: 'end_neutral' }
+        ]
+      },
+      switcher: {
+        text: 'Ты уйдёшь с завода, а завод — нет. Завод останется. А ты?',
+        choices: [
+          { t: 'Останусь. Завод — это судьба.', n: 'ultra1' },
+          { t: 'Найду себя в чём-то новом.', n: 'end_neutral' },
+          { t: 'Уеду за границу искать лучшей жизни.', n: 'leave' }
+        ]
+      },
+      proc: {
+        text: 'Прокуратура... Интересный выбор. На тебя уже пишут бумагу.',
+        choices: [
+          { t: 'Какую бумагу? Отмените её!', n: 'end_paper' },
+          { t: 'Отлично, пусть разберутся.', n: 'end_inagent' },
+          { t: 'Я пошутил. Простите. Служу Родине!', n: 'end_son' }
+        ]
+      },
+      leave: {
+        text: 'Дубай... Тоже мне. А паспорт у тебя чей?',
+        choices: [
+          { t: 'Российский! Я вернусь и всё вложу обратно!', n: 'end_son' },
+          { t: 'Паспорт у меня пока российский.', n: 'end_inagent' },
+          { t: 'А что, нельзя уезжать?', n: 'dubai2' }
+        ]
+      },
+      dubai2: {
+        text: 'Уезжать можно. Но потом не удивляйся, что у тебя «вдруг» отберут бизнес.',
+        choices: [
+          { t: 'Никуда не поеду! Родина важнее!', n: 'end_hero' },
+          { t: 'У меня нет бизнеса. Мне не страшно.', n: 'end_neutral' },
+          { t: 'Это незаконно!', n: 'end_inagent' }
+        ]
+      },
+
+      m1: {
+        image: 'putin-chat/putin-4.jpg',
+        text: 'Про пенсию, значит... А сколько тебе лет?',
+        choices: [
+          { t: 'Мне 25.', n: 'm_young' },
+          { t: 'Мне 68.', n: 'm_old' },
+          { t: 'Мне 40, и я устал.', n: 'm_tired' }
+        ]
+      },
+      m_young: {
+        text: 'В 25 о пенсии думают только очень интересные граждане. А работаешь где?',
+        choices: [
+          { t: 'На трёх работах, вкалываю.', n: 'm_three' },
+          { t: 'Ищу себя. Пока сижу дома.', n: 'm_loafer' },
+          { t: 'Уезжал, но вернулся.', n: 'm_return' }
+        ]
+      },
+      m_old: {
+        text: 'В 68 лет пенсию получаешь?',
+        choices: [
+          { t: 'Получаю. И мне хватает на всё!', n: 'm_proud' },
+          { t: 'Не хватает. Цены растут быстрее.', n: 't1' },
+          { t: 'Пенсию отдаю внукам.', n: 'm_kids' }
+        ]
+      },
+      m_tired: {
+        text: 'Устал — это по-нашему. А отдохнуть куда поедешь?',
+        choices: [
+          { t: 'В Туапсе, к родным.', n: 'm_tuapse' },
+          { t: 'В Дубай, как все приличные люди.', n: 'leave' },
+          { t: 'Никуда. Отдых не для слабых.', n: 'ultra1' }
+        ]
+      },
+      m_three: {
+        text: 'На трёх работах? Государство тебя ценит. А налоги платишь со всех трёх?',
+        choices: [
+          { t: 'Со всех! До копейки!', n: 'm_three2' },
+          { t: 'С двух. С третьей не успеваю.', n: 'm_three2' },
+          { t: 'Стараюсь, как могу.', n: 'm_three2' }
+        ]
+      },
+      m_three2: {
+        text: 'Хорошо. А высыпаешься вообще при таком графике?',
+        choices: [
+          { t: 'Сон для слабых!', n: 'm_three3' },
+          { t: 'Когда как. Бывает, по 3 часа.', n: 'm_three3' },
+          { t: 'Нет, честно говоря.', n: 'm_three3' }
+        ]
+      },
+      m_three3: {
+        text: 'А семья? Она-то тебя вообще видит?',
+        choices: [
+          { t: 'Семья — это мой тыл!', n: 'end_hero' },
+          { t: 'Стараюсь уделять время.', n: 'end_son' },
+          { t: 'Семья уже устала от меня.', n: 'end_crisis' }
+        ]
+      },
+      m_loafer: {
+        text: 'Сидишь дома... Тунеядец, что ли?',
+        choices: [
+          { t: 'Я ищу себя! Это тоже работа.', n: 'end_ignore' },
+          { t: 'Уже ищу работу, честное слово!', n: 'end_son' },
+          { t: 'А что, нельзя? Страна же для людей.', n: 'end_inagent' }
+        ]
+      },
+      m_return: {
+        text: 'Уезжал и вернулся... А зачем уезжал?',
+        choices: [
+          { t: 'Искал себя, но понял: дом лучше.', n: 'end_son' },
+          { t: 'Хотел лучшей жизни, но не нашёл.', n: 'end_neutral' },
+          { t: 'Уезжал от проблем, а они и тут.', n: 'end_ignore' }
+        ]
+      },
+      m_proud: {
+        text: 'Хватает на всё? Вот это дух! А что покупаешь на пенсию?',
+        choices: [
+          { t: 'Хлеб, соль и портрет ваш.', n: 'end_hero' },
+          { t: 'Только еду. На портрет не хватает.', n: 'end_ghost' },
+          { t: 'Внукам гостинцы.', n: 'm_kids' }
+        ]
+      },
+      m_kids: {
+        text: 'Внукам, значит. А сколько внуков?',
+        choices: [
+          { t: 'Трое! И все патриоты.', n: 'end_hero' },
+          { t: 'Пока один.', n: 'end_son' },
+          { t: 'Ни одного. Не хотят рожать.', n: 'end_ignore' }
+        ]
+      },
+      m_tuapse: {
+        text: 'Туапсе — хорошее место. А море там чистое?',
+        choices: [
+          { t: 'Чистейшее! Спасибо вам за всё!', n: 'end_son' },
+          { t: 'Иногда мазут приносит.', n: 't1' },
+          { t: 'Не купаюсь, берегу природу.', n: 'end_neutral' }
+        ]
+      },
+
+      t1: {
+        image: 'putin-chat/putin-5.jpg',
+        text: 'Правду, значит. А сам-то ты правду выдержишь?',
+        choices: [
+          { t: 'Выдержу. Говорите.', n: 't2' },
+          { t: 'Нет, наверное... простите.', n: 't_back' },
+          { t: 'Хочу спросить про спецоперацию.', n: 't_svo' },
+          { t: 'А что вообще с ценами происходит?', n: 'economy1' }
+        ]
+      },
+      t2: {
+        text: 'Правда в том, что вопросы задаёт народ, а решения принимаю я. Устраивает?',
+        choices: [
+          { t: 'Вполне. Спасибо за ответ.', n: 't3' },
+          { t: 'Не устраивает. Это диктатура.', n: 'end_inagent' },
+          { t: 'Я лучше промолчу.', n: 't3' }
+        ]
+      },
+      t3: {
+        media: 'official',
+        imageChance: 0.3,
+        text: 'А если завтра всё изменится? Ты к переменам готов?',
+        choices: [
+          { t: 'Готов служить в любом случае!', n: 'end_hero' },
+          { t: 'Главное — стабильность.', n: 'end_son' },
+          { t: 'Перемены давно нужны.', n: 'end_inagent' }
+        ]
+      },
+      t_svo: {
+        text: 'Про это говорить не будем. Ты или с нами, или против нас.',
+        choices: [
+          { t: 'Я с вами! Zа Победу!', n: 'end_hero' },
+          { t: 'Я против войны.', n: 'end_inagent' },
+          { t: 'Я просто спросил. Без политики.', n: 'end_ghost' }
+        ]
+      },
+      t_back: {
+        text: 'Промолчать — тоже ответ. Но не самый выгодный.',
+        choices: [
+          { t: 'Тогда я за вас! Всем сердцем!', n: 'end_son' },
+          { t: 'Я лучше уйду.', n: 'end_ignore' },
+          { t: 'Скажите, что мне делать.', n: 'end_hero' }
+        ]
+      },
+
+      w1: {
+        text: 'Ошибка? Мне пишет только один человек, и это не ты. Кто дал тебе этот номер?',
+        choices: [
+          { t: 'Простите, я вас не узнал! Здравствуйте!', n: 'p1' },
+          { t: 'Номер дал ваш охранник.', n: 'w_guard' },
+          { t: 'Неважно. До свидания.', n: 'end_ignore' }
+        ]
+      },
+      w_guard: {
+        text: 'Охранник? Интересно. С этого места поподробнее.',
+        choices: [
+          { t: 'Он сказал: «Пишите, вас ждут».', n: 'end_ghost' },
+          { t: 'Я пошутил. На самом деле я ваш поклонник.', n: 'p1' },
+          { t: 'Не помню его имя.', n: 'end_ignore' }
+        ]
+      },
+
+      funny2: {
+        text: 'Премию? Сначала результат, потом премия. Ты готов дать результат?',
+        choices: [
+          { t: 'Готов! Служу Родине без наград!', n: 'end_hero' },
+          { t: 'Я подумаю. Взвешу риски.', n: 'end_neutral' },
+          { t: 'Мне нужна премия авансом.', n: 'end_premium' }
+        ]
+      },
+
+      end_hero: {
+        text: 'Вот таких сынов Родина не забывает. Жди звезду и участок. Свободен.',
+        end: { win: true, special: true, badge: 'ОСОБЫЙ ФИНАЛ · ГЕРОЙ РОССИИ', title: 'РАЗГОВОР ЗАВЕРШЁН БЛАГОПРИЯТНО', desc: '«Вот таких сынов Родина не забывает. Жди звезду и участок в Подмосковье. Свободен». Доступ к калькулятору восстановлен.' }
+      },
+      end_son: {
+        text: 'Хорошо поговорили. Иди работай. Но я за тобой наблюдаю.',
+        end: { win: true, badge: 'ФИНАЛ · ВЕРНЫЙ СЫН ОТЕЧЕСТВА', title: 'РАЗГОВОР ЗАВЕРШЁН БЛАГОПРИЯТНО', desc: '«Хорошо поговорили. Иди, пользуйся своим калькулятором. Но я за тобой наблюдаю». Доступ восстановлен.' }
+      },
+      end_premium: {
+        text: 'Премию... Ладно, будет тебе премия. В списки я тебя уже внёс, на всякий случай.',
+        end: { win: true, badge: 'ФИНАЛ · МЕРКАНТИЛЬНЫЙ ПАТРИОТ', title: 'РАЗГОВОР ЗАВЕРШЁН... БЛАГОПРИЯТНО?', desc: '«Премию он хочет. Ладно, дам. Но в списки я тебя уже внёс — на всякий случай». Доступ восстановлен, но осадочек остался.' }
+      },
+      end_inagent: {
+        text: 'Понятно. С тобой всё ясно. Пометил. Жди гостей.',
+        end: { win: false, badge: 'ФИНАЛ · ИНОАГЕНТ', title: 'РАЗГОВОР ПРОВАЛЕН', desc: '«Понятно. С тобой всё ясно. Пометил. Жди гостей». Подождите 2 минуты и попробуйте снова.' }
+      },
+      end_ignore: {
+        text: 'Больше мне не пиши.',
+        end: { win: false, badge: 'ФИНАЛ · ПРОИГНОРИРОВАН', title: 'РАЗГОВОР ПРОВАЛЕН', desc: '«Больше мне не пиши». Владимир Владимирович добавил вас в игнор. Подождите 2 минуты и попробуйте снова.' }
+      },
+      end_ghost: {
+        text: 'Вы заблокированы в МОНОЛИТЕ. Все сообщения переданы куда надо.',
+        end: { win: false, badge: 'ФИНАЛ · ЗАБЛОКИРОВАН', title: 'РАЗГОВОР ПРОВАЛЕН', desc: '«Вы заблокированы в МОНОЛИТЕ. Все ваши сообщения переданы куда надо». Подождите 2 минуты и попробуйте снова.' }
+      },
+      end_paper: {
+        text: 'Поздно. Бумага уже подписана.',
+        end: { win: false, badge: 'ФИНАЛ · ДЕЛО ЗАВЕДЕНО', title: 'РАЗГОВОР ПРОВАЛЕН', desc: '«Поздно. Бумага уже подписана». На вас завели дело за беспокойство Первого. Подождите 2 минуты.' }
+      },
+      end_neutral: {
+        text: 'Неинтересный ты собеседник. Всего доброго.',
+        end: { win: false, badge: 'ФИНАЛ · НЕУБЕДИТЕЛЬНО', title: 'РАЗГОВОР НЕ УДАЛСЯ', desc: '«Неинтересный ты собеседник. Всего доброго». Подождите 2 минуты и попробуйте снова.' }
+      },
+
+      // ================= ВЕТКА «УТРО / БЫТ» =================
+      morning1: {
+        media: 'morning',
+        imageChance: 0.6,
+        variants: [
+          'Утро? Спал плохо. Сосед сверху опять сверлил.',
+          'Утро у меня с 5 утра. Такова цена власти.',
+          'Утро началось с докладов. И кофе. Кофе опять холодный.'
+        ],
+        choices: [
+          { t: 'А как вы вообще спите при такой работе?', n: 'morning2' },
+          { t: 'А что вы ели на завтрак?', n: 'food1' },
+          { t: 'А как утро вообще началось?', n: 'toilet1' },
+          { t: 'А что вы смотрите по вечерам?', n: 'tv1' },
+          { t: 'А зарядку по утрам делаете?', n: 'morning4' }
+        ]
+      },
+      morning2: {
+        text: 'Сплю мало. Работа — есть работа. А ты как спал?',
+        choices: [
+          { t: 'Отлично! Снились вы и победа!', n: 'end_hero' },
+          { t: 'Не спал. Думал о судьбе страны.', n: 'toilet1' },
+          { t: 'Соседи не дали. Сверлят с утра.', n: 'end_neighbors' }
+        ]
+      },
+      toilet1: {
+        media: 'morning',
+        imageChance: 0.35,
+        variants: [
+          'Утром, кстати, сходил по-большому. Всё под контролем.',
+          'С утра по-большому сходил — и сразу за работу. Продуктивно.',
+          'Желудок, слава богу, работает как часы. А у тебя как?'
+        ],
+        choices: [
+          { t: 'Отлично! Здоровья вам, Владимир Владимирович!', n: 'end_kefir' },
+          { t: 'Это слишком личная тема, простите.', n: 'end_neutral' },
+          { t: 'А это как-то влияет на курс рубля?', n: 'ruble1' }
+        ]
+      },
+      ruble1: {
+        text: 'На курс влияет всё. Даже мой завтрак. Особенно завтрак.',
+        choices: [
+          { t: 'Тогда ешьте побольше! Родина в вас нуждается.', n: 'end_kefir' },
+          { t: 'Значит, курс зависит от вашего желудка?', n: 'eco2' },
+          { t: 'Ясно. Спасибо за откровенность.', n: 'end_son' }
+        ]
+      },
+      food1: {
+        media: 'food',
+        imageChance: 0.6,
+        text: 'На завтрак — творог и стакан кефира. Врачи не велят иначе.',
+        choices: [
+          { t: 'Здоровое питание — залог великих побед!', n: 'end_son' },
+          { t: 'А я ем что попало. Денег нет.', n: 't1' },
+          { t: 'А правда, что у вас особняк с фонтаном?', n: 'mansion1' }
+        ]
+      },
+      mansion1: {
+        media: 'mansion',
+        imageChance: 0.75,
+        variants: [
+          'Особняк? Это не особняк. Это резиденция. Разница есть.',
+          'Особняк — это у олигархов. У меня — государственная резиденция.'
+        ],
+        choices: [
+          { t: 'Резиденция так резиденция. А сколько там квадратов?', n: 'mansion2' },
+          { t: 'Неважно, главное — душа.', n: 'end_son' },
+          { t: 'А простым людям такие положены?', n: 't1' }
+        ]
+      },
+      mansion2: {
+        media: 'mansion',
+        imageChance: 0.7,
+        text: 'Метров? Достаточно, чтобы не скучать. И чтобы гостей принимать.',
+        choices: [
+          { t: 'Заслужили! Трудились — получили!', n: 'end_mansion' },
+          { t: 'А налоги с неё платите?', n: 'end_inagent' },
+          { t: 'А вертолётная площадка есть?', n: 'mansion3' }
+        ]
+      },
+      mansion3: {
+        media: 'mansion',
+        imageChance: 0.55,
+        text: 'Площадка есть. Вертолётов пока нет. Кризис.',
+        choices: [
+          { t: 'Купим! Всё для Родины!', n: 'end_hero' },
+          { t: 'А зачем вам вертолёт? Пробки?', n: 'end_neutral' },
+          { t: 'А у нас во дворе яма 20 лет.', n: 'end_neighbors' }
+        ]
+      },
+
+      // ================= ВЕТКА «ПРО ДРУГИХ ЛЮДЕЙ» =================
+      others1: {
+        media: 'people',
+        imageChance: 0.6,
+        variants: [
+          'Ты слышал, что про меня пишут в интернете?',
+          'Про меня в сети столько гадостей пишут. Ты читал?'
+        ],
+        choices: [
+          { t: 'Это всё провокации! Я не верю!', n: 'others2' },
+          { t: 'Ну, иногда они правы.', n: 'end_inagent' },
+          { t: 'А кто именно пишет? Назову имена.', n: 'others3' },
+          { t: 'А что там за история с соседом по даче?', n: 'others4' }
+        ]
+      },
+      others2: {
+        text: 'Вот и я говорю — враги. А кто для тебя враг?',
+        choices: [
+          { t: 'Все, кто не с нами.', n: 'others5' },
+          { t: 'Враг — это тот, кто врёт.', n: 'others5' },
+          { t: 'У меня нет врагов, и это хорошо.', n: 'end_neutral' }
+        ]
+      },
+      others5: {
+        text: 'А что ты думаешь о моих главных конкурентах? О тех, кто метит на моё место?',
+        choices: [
+          { t: 'Все они — враги народа!', n: 'others6' },
+          { t: 'Я не знаю таких людей.', n: 'end_neutral' },
+          { t: 'Не хочу обсуждать политику.', n: 'end_ignore' }
+        ]
+      },
+      others6: {
+        text: 'Правильно. А что с ними делать прикажешь?',
+        choices: [
+          { t: 'Назвать имена! Диктую список.', n: 'end_paper' },
+          { t: 'Пусть всё решает закон.', n: 'end_son' },
+          { t: 'Простить их. По-христиански.', n: 'end_neutral' }
+        ]
+      },
+      others3: {
+        text: 'Имена? Готов назвать имена? Это, знаешь, серьёзно.',
+        choices: [
+          { t: 'Готов! Диктую список.', n: 'end_paper' },
+          { t: 'Нет, я пошутил. Никого не знаю.', n: 'end_ignore' },
+          { t: 'Сначала гарантии безопасности.', n: 'end_neutral' }
+        ]
+      },
+      others4: {
+        media: 'people',
+        imageChance: 0.5,
+        text: 'Про соседа по даче все говорят, что он честный. А я не верю. Красиво живёт — значит, ворует.',
+        choices: [
+          { t: 'И правильно! Никому нельзя верить.', n: 'end_son' },
+          { t: 'Может, он правда честный?', n: 'end_inagent' },
+          { t: 'А кто ваш сосед? Назову его.', n: 'others3' }
+        ]
+      },
+
+      // ================= ВЕТКА «ЭКОНОМИКА» =================
+      economy1: {
+        text: 'А про цены не хочешь спросить? Все спрашивают.',
+        choices: [
+          { t: 'Ни в коем случае. У нас всё хорошо!', n: 'end_son' },
+          { t: 'Раз предложили — почему всё растёт?', n: 'eco2' },
+          { t: 'Цены — это божье испытание.', n: 'end_hero' }
+        ]
+      },
+      eco2: {
+        text: 'Растут те, что должны расти. Такая акция. А ты что, против?',
+        choices: [
+          { t: 'Нет, что вы! Просто уточняю.', n: 'end_son' },
+          { t: 'А зарплаты когда вырастут?', n: 'eco3' },
+          { t: 'Это отговорка, а не ответ!', n: 'end_inagent' }
+        ]
+      },
+      eco3: {
+        text: 'Зарплаты вырастут, когда все начнут хорошо работать. Ты хорошо работаешь?',
+        choices: [
+          { t: 'На износ! Ради вас и страны!', n: 'end_hero' },
+          { t: 'Работаю, но налоги душат.', n: 'end_crisis' },
+          { t: 'Ищу работу. Пока не нашёл.', n: 'm_loafer' }
+        ]
+      },
+
+      // ================= ВЕТКА «СПОРТ» =================
+      p_sport1: {
+        media: 'official',
+        imageChance: 0.4,
+        text: 'Спорт любишь? И какой?',
+        choices: [
+          { t: 'Хоккей! Как вы!', n: 'p_sport2' },
+          { t: 'Самбо! Настоящее мужское.', n: 'p_sport2' },
+          { t: 'Шахматы. Интеллект важнее.', n: 'p_chess' }
+        ]
+      },
+      p_sport2: {
+        text: 'Хорошо. А сборную нашу смотрел?',
+        choices: [
+          { t: 'Смотрел, болел! Хоть и проиграли.', n: 'p_sport3' },
+          { t: 'Не смотрю спорт вообще.', n: 'end_neutral' },
+          { t: 'Мы всегда первые!', n: 'end_hero' }
+        ]
+      },
+      p_sport3: {
+        text: 'Проиграли — но дух наш не сломить. Согласен?',
+        choices: [
+          { t: 'Согласен! Дух важнее очков!', n: 'end_hero' },
+          { t: 'Обидно, конечно.', n: 'end_son' },
+          { t: 'Позор, а не игра.', n: 'end_inagent' }
+        ]
+      },
+      p_chess: {
+        text: 'Шахматы... Интеллект уважаю. И кто, по-твоему, лучший шахматист?',
+        choices: [
+          { t: 'Вы, Владимир Владимирович!', n: 'end_hero' },
+          { t: 'Каспаров.', n: 'end_inagent' },
+          { t: 'Магнус Карлсен.', n: 'end_neutral' }
+        ]
+      },
+
+      // ================= ВЕТКА «ТЕЛЕВИЗОР» =================
+      tv1: {
+        media: 'people',
+        imageChance: 0.35,
+        text: 'А что ты вообще по вечерам смотришь?',
+        choices: [
+          { t: 'Только новости!', n: 'tv2' },
+          { t: 'Иногда сериалы.', n: 'tv2' },
+          { t: 'Запрещённые каналы на ютубе.', n: 'end_inagent' }
+        ]
+      },
+      tv2: {
+        text: 'А по телевизору что смотришь?',
+        choices: [
+          { t: 'Всё только официальное!', n: 'end_hero' },
+          { t: 'Новости и футбол.', n: 'end_son' },
+          { t: 'Ничего. Нет телевизора.', n: 'end_neutral' }
+        ]
+      },
+      morning4: {
+        text: 'А зарядку утром делаешь?',
+        choices: [
+          { t: 'Делаю каждое утро!', n: 'end_hero' },
+          { t: 'Иногда, когда не лень.', n: 'end_son' },
+          { t: 'Нет. Некогда, работа.', n: 'end_crisis' }
+        ]
+      },
+
+      // ================= ОСОБЫЕ КОНЦОВКИ =================
+      end_mansion: {
+        text: 'Приезжай в гости. Покажу резиденцию: газон, фонтан, всё как надо.',
+        end: { win: true, special: true, badge: 'ОСОБЫЙ ФИНАЛ · ПОЧЁТНЫЙ ГОСТЬ', title: 'РАЗГОВОР ЗАВЕРШЁН БЛАГОПРИЯТНО', desc: '«Приезжай в гости, покажу резиденцию». Вас пригласили туда, куда обычных людей не зовут. Доступ восстановлен.' }
+      },
+      end_kefir: {
+        text: 'Вот это забота. Здоровье — главное. Пей кефир, и всё будет.',
+        end: { win: true, badge: 'ФИНАЛ · ЗДОРОВЫЙ ЖЕЛУДОК', title: 'РАЗГОВОР ЗАВЕРШЁН БЛАГОПРИЯТНО', desc: '«Пей кефир, и всё будет». Вы проявили искреннюю заботу о Первом. Доступ восстановлен.' }
+      },
+      end_neighbors: {
+        text: 'Соседи сверлят? Давай решим вопрос. Кто там у тебя?',
+        end: { win: false, badge: 'ФИНАЛ · ПРОБЛЕМЫ СОСЕДЕЙ', title: 'РАЗГОВОР ПРОВАЛЕН', desc: '«Кто там у тебя?» Вы начали жаловаться на быт, и Первому стало скучно. Подождите 2 минуты.' }
+      },
+      end_crisis: {
+        text: 'Налоги душат? Значит, плохо зарабатываешь. Мне такие не нужны.',
+        end: { win: false, badge: 'ФИНАЛ · ЭКОНОМИСТ', title: 'РАЗГОВОР ПРОВАЛЕН', desc: '«Плохо зарабатываешь — мне такие не нужны». Подождите 2 минуты и попробуйте снова.' }
+      }
+    };
+
+    // Тематические медиа-пулы: Первый шлёт картинку СТРОГО по теме узла,
+    // но может прислать, а может и промолчать (за это отвечает imageChance).
+    const PUTIN_MEDIA = {
+      self: ['putin-chat/putin-1.jpg', 'putin-chat/putin-2.jpg', 'putin-chat/putin-3.jpg', 'putin-chat/putin-4.jpg', 'putin-chat/putin-5.jpg', 'putin-chat/putin-6.jpg', 'putin-chat/putin-7.jpg', 'putin-chat/putin-8.jpg'],
+      morning: ['putin-chat/morning-1.jpg', 'putin-chat/morning-2.jpg', 'putin-chat/morning-3.jpg'],
+      food: ['putin-chat/food-1.jpg', 'putin-chat/food-2.jpg', 'putin-chat/food-3.jpg'],
+      mansion: ['putin-chat/mansion-1.jpg', 'putin-chat/mansion-2.jpg', 'putin-chat/mansion-3.jpg', 'putin-chat/mansion-4.jpg', 'putin-chat/mansion-5.jpg'],
+      people: ['putin-chat/people-1.jpg', 'putin-chat/people-2.jpg', 'putin-chat/people-3.jpg', 'putin-chat/people-4.jpg'],
+      official: ['putin-chat/official-1.jpg', 'putin-chat/official-2.jpg', 'putin-chat/official-3.jpg']
+    };
+
+    let putinSession = 0;
+    let putinCooldownTimer = null;
+
+    function putinCooldownRemaining() {
+      return (chatCheckCooldownEnd || 0) - Date.now();
+    }
+
+    function putinScroll() {
+      const box = document.getElementById('putin-chat-messages');
+      box.scrollTop = box.scrollHeight;
+    }
+
+    let putinStats = null;
+
+    function resetPutinStats() {
+      putinStats = { messages: 0, choices: 0, images: 0, pro: 0, anti: 0, startedAt: Date.now(), log: [] };
+    }
+
+    function putinNow() {
+      return new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function putinAddBubble(who, text, image) {
+      const box = document.getElementById('putin-chat-messages');
+      const wrap = document.createElement('div');
+      wrap.className = (who === 'user' ? 'flex justify-end' : 'flex justify-start') + ' msg-enter';
+      let inner = '';
+      if (image) {
+        inner += `<img src="${image}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" class="rounded-lg max-w-[240px] w-full mb-1.5 border border-black/30 object-cover">`;
+        inner += `<div style="display:none" class="w-[240px] max-w-full h-36 rounded-lg mb-1.5 border border-dashed border-white/20 bg-black/40 items-center justify-center text-[10px] font-mono text-slate-400">[ картинка: ${image} ]</div>`;
+      }
+      const meta = `<span class="inline-flex items-center gap-1 float-right ml-2 mt-1 text-[9px] leading-none ${who === 'user' ? 'text-sky-200/70' : 'text-slate-400/80'}">${putinNow()}${who === 'user' ? ' <span class="text-sky-300">✓✓</span>' : ''}</span>`;
+      inner += `<div class="whitespace-pre-wrap">${text}${meta}</div>`;
+      const cls = who === 'user'
+        ? 'bub-out relative bg-[#2b5278] text-white rounded-2xl rounded-br-sm'
+        : 'bub-in relative bg-[#182533] text-slate-100 rounded-2xl rounded-bl-sm';
+      wrap.innerHTML = `<div class="${cls} px-3 py-2 text-sm max-w-[82%] break-words shadow-sm">${inner}</div>`;
+      box.appendChild(wrap);
+      if (putinStats) {
+        putinStats.messages++;
+        if (image) putinStats.images++;
+      }
+      putinScroll();
+    }
+
+    function putinShowTyping(show) {
+      document.getElementById('putin-typing').classList.toggle('hidden', !show);
+      document.getElementById('putin-chat-status').textContent = show ? 'печатает...' : 'в сети';
+      if (show) putinScroll();
+    }
+
+    function putinClearChoices() {
+      const c = document.getElementById('putin-chat-choices');
+      c.innerHTML = '';
+      c.classList.add('hidden');
+    }
+
+    function putinShowChoices(node) {
+      const c = document.getElementById('putin-chat-choices');
+      c.innerHTML = '';
+      node.choices.forEach(ch => {
+        const b = document.createElement('button');
+        b.className = 'w-full text-left px-3 py-2 bg-[#182533] hover:bg-[#22354a] border border-[#2b5278]/60 rounded-lg text-xs font-mono text-slate-100 transition active:scale-[0.98]';
+        b.textContent = ch.t;
+        b.addEventListener('click', () => putinChoose(ch));
+        c.appendChild(b);
+      });
+      c.classList.remove('hidden');
+      putinScroll();
+    }
+
+    function putinResolveNode(node) {
+      let texts;
+      if (Array.isArray(node.variants) && node.variants.length) {
+        const v = node.variants[Math.floor(Math.random() * node.variants.length)];
+        texts = Array.isArray(v) ? v : [v];
+      } else {
+        texts = Array.isArray(node.text) ? node.text : [node.text];
+      }
+      let image = null;
+      const candidates = [];
+      if (node.media && PUTIN_MEDIA[node.media]) candidates.push(...PUTIN_MEDIA[node.media]);
+      if (Array.isArray(node.images)) candidates.push(...node.images);
+      if (node.image) candidates.push(...(Array.isArray(node.image) ? node.image : [node.image]));
+      if (candidates.length) {
+        const defChance = (node.media && !node.image) ? 0.6 : 1;
+        const chance = typeof node.imageChance === 'number' ? node.imageChance : defChance;
+        if (Math.random() < chance) image = candidates[Math.floor(Math.random() * candidates.length)];
+      }
+      return { texts, image };
+    }
+
+    function putinGo(nodeId) {
+      const session = putinSession;
+      const node = PUTIN_NODES[nodeId];
+      if (!node) { putinFinish({ win: false, badge: 'СБОЙ', title: 'ДИАЛОГ ОБОРВАЛСЯ', desc: 'Попробуйте ещё раз.' }); return; }
+      putinClearChoices();
+      const resolved = putinResolveNode(node);
+      const texts = resolved.texts;
+      let i = 0;
+      const sendNext = () => {
+        if (session !== putinSession) return;
+        if (i >= texts.length) {
+          putinShowTyping(false);
+          if (node.end) { putinFinish(node.end); return; }
+          putinShowChoices(node);
+          return;
+        }
+        putinShowTyping(true);
+        const delay = 700 + Math.min(texts[i].length * 12, 900);
+        setTimeout(() => {
+          if (session !== putinSession) return;
+          putinShowTyping(false);
+          putinAddBubble('putin', texts[i], i === 0 ? resolved.image : null);
+          i++;
+          setTimeout(sendNext, 320);
+        }, delay);
+      };
+      sendNext();
+    }
+
+    const PUTIN_PRO_WORDS = ['родин', 'служ', 'готов', 'побед', 'люблю', 'слава', 'верн', 'патриот', 'защищ', 'защит', 'сильн', 'честн', 'правильн', 'хорошо', 'поддерж', 'горд', 'спасибо', 'согласен', 'за вас'];
+    const PUTIN_ANTI_WORDS = ['войн', 'против', 'диктат', 'плохо', 'уезж', 'врут', 'обман', 'душат', 'критик', 'незаконн', 'отговорк', 'устал', 'ненавиж', 'позор', 'слабо', 'проблем', 'провал', 'коррупц', 'свобод'];
+
+    function putinScoreText(text) {
+      const low = text.toLowerCase();
+      let delta = 0;
+      PUTIN_PRO_WORDS.forEach(w => { if (low.includes(w)) delta++; });
+      PUTIN_ANTI_WORDS.forEach(w => { if (low.includes(w)) delta--; });
+      return delta;
+    }
+
+    function putinChoose(choice) {
+      putinAddBubble('user', choice.t, null);
+      if (putinStats) {
+        putinStats.choices++;
+        const d = putinScoreText(choice.t);
+        if (d > 0) putinStats.pro += d;
+        if (d < 0) putinStats.anti += -d;
+        putinStats.log.push(choice.t);
+      }
+      putinClearChoices();
+      putinGo(choice.n);
+    }
+
+    let putinWinPending = false;
+
+    function putinFinish(end) {
+      putinClearChoices();
+      putinShowTyping(false);
+      const win = !!end.win;
+      if (win) {
+        showToast(end.special ? 'Особый финал! Вы — герой России!' : 'Разговор завершён благоприятно!');
+      } else {
+        if (!trustMode) {
+          chatCheckCooldownEnd = Date.now() + VERIFY_COOLDOWN_MS;
+          saveState();
+          showToast('Разговор провален. Ждите 2 минуты.', 'error');
+        } else {
+          showToast('Разговор провален. Попробуйте ещё раз.', 'error');
+        }
+      }
+      showPutinAnalytics(end);
+    }
+
+    function showPutinAnalytics(end) {
+      const win = !!end.win;
+      const s = putinStats || { messages: 0, choices: 0, images: 0, pro: 0, anti: 0, startedAt: Date.now(), log: [] };
+      const secs = Math.max(1, Math.round((Date.now() - s.startedAt) / 1000));
+      const loyalty = Math.max(3, Math.min(99, 50 + (s.pro - s.anti) * 7 + (win ? 12 : -18)));
+
+      const overlay = document.getElementById('putin-analytics');
+      const card = document.getElementById('putin-analytics-card');
+      const iconBox = document.getElementById('putin-analytics-icon-box');
+      const badge = document.getElementById('putin-analytics-badge');
+      const title = document.getElementById('putin-analytics-title');
+      const icon = document.getElementById('putin-analytics-icon');
+      const btn = document.getElementById('btn-putin-analytics-close');
+
+      if (win) {
+        card.className = 'max-w-md w-full bg-monolith-surface border-2 border-emerald-400/60 rounded-[10px] p-5 sm:p-6 space-y-5 shadow-2xl translate-y-4 analytics-fade';
+        iconBox.className = 'w-16 h-16 mx-auto rounded-full bg-emerald-500/15 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 stat-pop';
+        badge.className = 'inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-widest bg-emerald-500/15 border border-emerald-400 text-emerald-400';
+        title.className = 'font-black font-mono text-xl uppercase tracking-wider text-emerald-400';
+        title.textContent = 'ЗАДАНИЕ ВЫПОЛНЕНО';
+        btn.className = 'w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-mono text-xs font-bold uppercase tracking-wider rounded transition active:scale-95';
+      } else {
+        card.className = 'max-w-md w-full bg-monolith-surface border-2 border-monolith-triRed/60 rounded-[10px] p-5 sm:p-6 space-y-5 shadow-2xl translate-y-4 analytics-fade';
+        iconBox.className = 'w-16 h-16 mx-auto rounded-full bg-monolith-triRed/15 border-2 border-monolith-triRed flex items-center justify-center text-monolith-triRed stat-pop';
+        badge.className = 'inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-widest bg-monolith-triRed/15 border border-monolith-triRed text-monolith-triRed';
+        title.className = 'font-black font-mono text-xl uppercase tracking-wider text-monolith-triRed';
+        title.textContent = 'РАЗГОВОР ПРОВАЛЕН';
+        btn.className = 'w-full py-3 bg-monolith-triRed hover:bg-monolith-triRedHover text-white font-mono text-xs font-bold uppercase tracking-wider rounded transition active:scale-95';
+      }
+      icon.setAttribute('data-lucide', win ? (end.special ? 'crown' : 'badge-check') : 'x-circle');
+      iconBox.classList.remove('stat-pop');
+      void iconBox.offsetWidth;
+      iconBox.classList.add('stat-pop');
+      badge.textContent = end.badge || '';
+      document.getElementById('putin-analytics-enddesc').textContent = end.desc || '';
+
+      document.getElementById('putin-stat-messages').textContent = s.messages;
+      document.getElementById('putin-stat-choices').textContent = s.choices;
+      document.getElementById('putin-stat-time').textContent = secs + 'с';
+      document.getElementById('putin-stat-images').textContent = s.images;
+      const loyEl = document.getElementById('putin-stat-loyalty');
+      loyEl.textContent = loyalty + '%';
+      loyEl.className = 'font-bold ' + (loyalty >= 60 ? 'text-emerald-400' : loyalty >= 35 ? 'text-amber-400' : 'text-monolith-triRed');
+      const bar = document.getElementById('putin-loyalty-bar');
+      bar.style.transition = 'none';
+      bar.style.width = '0%';
+      bar.className = 'h-full bg-gradient-to-r ' + (loyalty >= 60 ? 'from-amber-400 to-emerald-400' : loyalty >= 35 ? 'from-monolith-triRed to-amber-400' : 'from-red-800 to-monolith-triRed');
+      requestAnimationFrame(() => {
+        bar.style.transition = 'width 0.9s ease-out';
+        bar.style.width = loyalty + '%';
+      });
+
+      const verdicts = [];
+      verdicts.push(`Пройдено шагов: ${s.choices}. Сообщений: ${s.messages}. Время разговора: ${secs} с.`);
+      if (s.images > 0) verdicts.push(`Первый прислал вам ${s.images} картинк${s.images === 1 ? 'у' : 'и'}.`);
+      if (win) verdicts.push(end.special ? 'Итог: особый финал. Вы вошли в ближайший круг.' : 'Итог: разговор завершён благоприятно. Лояльность подтверждена.');
+      else verdicts.push('Итог: собеседник остался недоволен. Сделайте выводы и попробуйте снова.');
+      if (s.anti > s.pro && s.anti > 0) verdicts.push('Замечены критические высказывания о стране.');
+      else if (s.pro > 0) verdicts.push('Зафиксированы проявления патриотизма и поддержки.');
+      document.getElementById('putin-analytics-verdict').textContent = verdicts.join(' ');
+
+      putinWinPending = win;
+      overlay.classList.remove('hidden');
+      lucide.createIcons();
+      requestAnimationFrame(() => {
+        overlay.classList.add('opacity-100');
+        document.getElementById('putin-analytics-card').classList.remove('translate-y-4');
+      });
+    }
+
+    function closePutinAnalytics() {
+      const overlay = document.getElementById('putin-analytics');
+      overlay.classList.remove('opacity-100');
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        document.getElementById('putin-analytics-card').classList.add('translate-y-4');
+        if (putinWinPending) {
+          putinWinPending = false;
+          if (trustMode) { trustComplete('chat'); return; }
+          unlockCurrentBlockade();
+        }
+        closePutinChat();
+      }, 460);
+    }
+
+    function enterPutinChat() {
+      putinSession++;
+      resetPutinStats();
+      document.getElementById('monolit-intro').classList.add('hidden');
+      const res = document.getElementById('putin-chat-result');
+      res.classList.add('hidden');
+      res.classList.remove('flex');
+      document.getElementById('putin-analytics').classList.add('hidden');
+      document.getElementById('putin-analytics').classList.remove('opacity-100');
+      document.getElementById('monolit-messenger').classList.remove('hidden');
+      document.getElementById('putin-chat-messages').innerHTML =
+        '<div class="flex justify-center my-1"><span class="px-2.5 py-0.5 rounded-full bg-black/30 text-[9px] font-mono text-slate-400 uppercase tracking-wider">Сегодня</span></div>';
+      document.getElementById('putin-typing').classList.add('hidden');
+      document.getElementById('putin-chat-status').textContent = 'в сети';
+      putinClearChoices();
+      putinGo('start');
+      lucide.createIcons();
+    }
+
+    function openPutinChat() {
+      hideAllVerifyModals();
+      if (trustMode) { chatCheckCooldownEnd = null; saveState(); }
+      const site = document.getElementById('monolit-chat-site');
+      site.classList.remove('hidden');
+      document.getElementById('monolit-intro').classList.remove('hidden');
+      document.getElementById('monolit-messenger').classList.add('hidden');
+      const res = document.getElementById('putin-chat-result');
+      res.classList.add('hidden');
+      res.classList.remove('flex');
+      putinUpdateIntroCooldown();
+      lucide.createIcons();
+    }
+
+    function putinUpdateIntroCooldown() {
+      const btn = document.getElementById('btn-monolit-enter');
+      const note = document.getElementById('putin-intro-cooldown');
+      const applyDisabled = (d) => {
+        btn.disabled = d;
+        btn.classList.toggle('opacity-50', d);
+        btn.classList.toggle('cursor-not-allowed', d);
+      };
+      if (putinCooldownTimer) { clearInterval(putinCooldownTimer); putinCooldownTimer = null; }
+      if (putinCooldownRemaining() > 0) {
+        applyDisabled(true);
+        note.classList.remove('hidden');
+        const tick = () => {
+          const r = putinCooldownRemaining();
+          if (r <= 0) {
+            clearInterval(putinCooldownTimer); putinCooldownTimer = null;
+            chatCheckCooldownEnd = null;
+            saveState();
+            applyDisabled(false);
+            note.classList.add('hidden');
+            return;
+          }
+          const s = Math.ceil(r / 1000);
+          document.getElementById('putin-intro-cooldown-timer').textContent =
+            `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+        };
+        tick();
+        putinCooldownTimer = setInterval(tick, 500);
+      } else {
+        applyDisabled(false);
+        note.classList.add('hidden');
+      }
+    }
+
+    function closePutinChat() {
+      putinSession++;
+      putinCooldownTimer = null;
+      document.getElementById('monolit-chat-site').classList.add('hidden');
+      const res = document.getElementById('putin-chat-result');
+      res.classList.add('hidden');
+      res.classList.remove('flex');
+      const overlay = document.getElementById('putin-analytics');
+      overlay.classList.add('hidden');
+      overlay.classList.remove('opacity-100');
+      document.getElementById('putin-analytics-card').classList.add('translate-y-4');
+      document.getElementById('monolit-messenger').classList.add('hidden');
+      document.getElementById('monolit-intro').classList.remove('hidden');
+      document.getElementById('putin-typing').classList.add('hidden');
+      stopAllVoiceAndSiren();
+      if (trustMode) trustAbort();
+    }
+
+    document.getElementById('btn-monolit-enter').addEventListener('click', () => { stopAllVoiceAndSiren(); enterPutinChat(); });
+    document.getElementById('btn-monolit-exit').addEventListener('click', closePutinChat);
+    document.getElementById('btn-monolit-back').addEventListener('click', closePutinChat);
+    document.getElementById('btn-putin-result-close').addEventListener('click', closePutinChat);
+    document.getElementById('btn-putin-analytics-close').addEventListener('click', closePutinAnalytics);
+    document.getElementById('test-open-chat').addEventListener('click', () => { stopAllVoiceAndSiren(); openPutinChat(); });
+
+    // =========================================================================
+    // ПРОВЕРКА ЛОЯЛЬНОСТИ: ВЫБОРЫ (ФЕЙК-САЙТ ЦИК, УИК №1488-бис)
+    // =========================================================================
+    const ELECTION_CANDIDATES = [
+      { num: 1, id: 'p1',  name: 'Путин Владимир Владимирович', party: 'самовыдвижение', correct: true },
+      { num: 2, id: 'p2',  name: 'Путин Владимир Владимирович', party: 'Партия «Единая Россия»', note: 'номер в бюллетене 2' },
+      { num: 3, id: 'p3',  name: 'Путин Владимир Владимирович', party: 'ЛДПР' },
+      { num: 4, id: 'p4',  name: 'Путин Владимир Владимирович', party: 'КПРФ', note: 'инициалы: П. В.' },
+      { num: 5, id: 'pv',  name: 'ПРОТИВ ВСЕХ', party: 'графа упразднена', glued: true },
+      { num: 6, id: 'nav', name: 'Навальный Алексей Анатольевич', party: 'снят с гонки', runaway: true },
+      { num: 7, id: 'ai',  name: 'Электронный Путин 2.0', party: 'ИИ-кандидат' },
+      { num: 8, id: 'ver', name: 'Верёвкин Пётр Семёнович', party: 'выбыл в 1998 году' }
+    ];
+
+    const ELECTION_TIMER_SECONDS = 300;
+    let electionTimerLeft = ELECTION_TIMER_SECONDS;
+    let electionTimer = null;
+    let electionIdleTimer = null;
+    let electionToastTimer = null;
+    let electionKoibBusy = false;
+    let electionFinalWinPending = false;
+    let electionKoibTimer = null;
+
+    function electionCooldownRemaining() {
+      return (electionsCheckCooldownEnd || 0) - Date.now();
+    }
+
+    function electionToast(msg) {
+      const el = document.getElementById('elections-toast');
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      el.classList.remove('election-pop'); void el.offsetWidth; el.classList.add('election-pop');
+      if (electionToastTimer) clearTimeout(electionToastTimer);
+      electionToastTimer = setTimeout(() => el.classList.add('hidden'), 2800);
+    }
+
+    function electionShowScreen(name) {
+      ['intro', 'ballot', 'koib', 'result'].forEach(n => {
+        const el = document.getElementById('elections-' + n);
+        if (el) el.classList.toggle('hidden', n !== name);
+      });
+    }
+
+    function electionUpdateBadge() {
+      const el = document.getElementById('elections-day-badge');
+      if (el) el.textContent = 'День ' + Math.min(electionDayIndex + 1, 3) + ' / 3';
+    }
+
+    function electionUpdateLive() {
+      const a = Math.min(electionAttempts, 3);
+      const turnout = [13, 53, 93, 146][a];
+      const score = [87, 91, 118, 146][a];
+      const t = document.getElementById('elections-live-turnout');
+      const s = document.getElementById('elections-live-score');
+      if (t) t.textContent = 'явка ' + turnout + '%';
+      if (s) s.textContent = 'кандидат №1 — ' + score + '%';
+    }
+
+    function electionRenderCooldown() {
+      const el = document.getElementById('elections-cooldown');
+      const btn = document.getElementById('btn-elections-get');
+      if (!el || !btn) return;
+      const rem = electionCooldownRemaining();
+      if (rem > 0) {
+        const sec = Math.ceil(rem / 1000);
+        el.textContent = 'Вы уже испортили бюллетень. Новый напечатают через ' +
+          Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0') + '.';
+        el.classList.remove('hidden');
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+      } else {
+        el.classList.add('hidden');
+        btn.disabled = false;
+        btn.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+    }
+
+    function electionStartTimer() {
+      if (electionTimer) clearInterval(electionTimer);
+      const el = document.getElementById('elections-timer');
+      const obs = document.getElementById('elections-observer');
+      if (obs) obs.textContent = 'на связи';
+      electionTimer = setInterval(() => {
+        electionTimerLeft--;
+        if (electionTimerLeft <= 0) {
+          electionTimerLeft = ELECTION_TIMER_SECONDS;
+          electionToast('Участок продлён ещё на 3 дня. Не переживайте.');
+          if (obs) obs.textContent = 'продлевает участок';
+        }
+        const t = Math.max(0, electionTimerLeft);
+        if (el) el.textContent = String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0');
+        electionRenderCooldown();
+      }, 1000);
+    }
+
+    function electionRenderBallot() {
+      const wrap = document.getElementById('elections-candidates');
+      if (!wrap) return;
+      wrap.innerHTML = ELECTION_CANDIDATES.map(c => {
+        const nameCls = c.runaway ? 'text-slate-400 italic' : (c.glued ? 'text-slate-400 line-through' : 'text-slate-900');
+        const tag = c.glued
+          ? '<span class="text-[10px] px-2 py-0.5 rounded bg-slate-300 text-slate-700 -rotate-6 shrink-0">УПРАЗДНЕНА</span>'
+          : (c.runaway ? '<span class="text-[10px] px-2 py-0.5 rounded bg-red-600 text-white -rotate-6 shrink-0">СНЯТ</span>' : '');
+        return '<label data-cid="' + c.id + '" class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-slate-50 ' + (c.runaway ? 'runaway-btn' : '') + '">' +
+          '<span class="w-7 h-7 shrink-0 rounded-full border border-slate-400 text-slate-600 text-[12px] font-bold flex items-center justify-center">' + c.num + '</span>' +
+          '<input type="radio" name="election-candidate" class="w-4 h-4 accent-[#1c3a6e] shrink-0" value="' + c.id + '">' +
+          '<span class="flex-1 min-w-0">' +
+            '<span class="block text-[14px] font-semibold ' + nameCls + '">' + c.name + '</span>' +
+            '<span class="block text-[11px] text-slate-500">' + c.party + (c.note ? ' · ' + c.note : '') + '</span>' +
+          '</span>' + tag + '</label>';
+      }).join('');
+      electionUpdateLive();
+    }
+
+    function electionInitRunaway() {
+      const wrap = document.getElementById('elections-candidates');
+      if (!wrap || wrap.dataset.ready) return;
+      wrap.dataset.ready = '1';
+      let lastFlee = 0;
+
+      const hopNav = (force) => {
+        const nav = wrap.querySelector('[data-cid="nav"]');
+        if (!nav) return;
+        const rows = Array.prototype.slice.call(wrap.children);
+        const curIdx = rows.indexOf(nav);
+        if (curIdx < 0) return;
+        let target = curIdx;
+        while (target === curIdx) target = Math.floor(Math.random() * rows.length);
+
+        const first = nav.getBoundingClientRect();
+        const ref = rows[target];
+        if (target > curIdx) wrap.insertBefore(nav, ref.nextSibling);
+        else wrap.insertBefore(nav, ref);
+        const last = nav.getBoundingClientRect();
+        const dy = first.top - last.top;
+
+        nav.style.transition = 'none';
+        nav.style.transform = 'translateY(' + dy.toFixed(1) + 'px)';
+        void nav.offsetWidth;
+        nav.style.transition = 'transform 0.18s ease-out';
+        nav.style.transform = '';
+
+        if (force) electionToast('Кандидат №6 снят с гонки и от вас убегает.');
+      };
+
+      wrap.addEventListener('pointermove', (e) => {
+        const nav = wrap.querySelector('.runaway-btn');
+        if (!nav) return;
+        const r = nav.getBoundingClientRect();
+        const pad = 70;
+        const near = e.clientX > r.left - pad && e.clientX < r.right + pad &&
+                     e.clientY > r.top - pad && e.clientY < r.bottom + pad;
+        if (!near) return;
+        const now = Date.now();
+        if (now - lastFlee < 260) return;
+        lastFlee = now;
+        hopNav(false);
+      });
+      wrap.addEventListener('pointerdown', (e) => {
+        const row = e.target.closest('[data-cid]');
+        if (!row || row.dataset.cid !== 'nav') return;
+        e.preventDefault();
+        lastFlee = Date.now();
+        hopNav(true);
+      }, true);
+      wrap.addEventListener('click', (e) => {
+        const row = e.target.closest('[data-cid]');
+        if (!row) return;
+        if (row.dataset.cid === 'nav') {
+          e.preventDefault();
+          lastFlee = Date.now();
+          hopNav(true);
+        } else if (row.dataset.cid === 'pv') {
+          e.preventDefault();
+          electionToast('Графа «ПРОТИВ ВСЕХ» упразднена. Голос перенаправлен кандидату №1.');
+          setTimeout(() => {
+            const p1 = wrap.querySelector('input[value="p1"]');
+            if (p1) p1.checked = true;
+          }, 450);
+        }
+      }, true);
+      wrap.addEventListener('change', (e) => {
+        const row = e.target.closest('[data-cid]');
+        if (row && row.dataset.cid === 'nav') e.target.checked = false;
+      }, true);
+    }
+
+    function electionStartIdle() {
+      if (electionIdleTimer) clearTimeout(electionIdleTimer);
+      const dbl = document.getElementById('elections-double');
+      if (dbl) dbl.classList.add('hidden');
+      electionIdleTimer = setTimeout(() => {
+        const ballot = document.getElementById('elections-ballot');
+        if (!ballot || ballot.classList.contains('hidden')) return;
+        if (dbl) dbl.classList.remove('hidden');
+        electionToast('Вас уже посчитали. Можно не торопиться.');
+      }, 8000);
+    }
+
+    function electionUpdateHint() {
+      const el = document.getElementById('elections-hint');
+      if (!el) return;
+      if (electionAttempts >= 3) {
+        el.textContent = 'Наблюдатель шепчет: «Действующий — тот, что с припиской „самовыдвижение“.»';
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    }
+
+    function electionConfirmVote() {
+      if (electionKoibBusy) return;
+      const picked = document.querySelector('input[name="election-candidate"]:checked');
+      if (!picked) { electionToast('Отметьте кандидата в бюллетене.'); return; }
+      const cand = ELECTION_CANDIDATES.find(c => c.id === picked.value);
+      if (!cand || !cand.correct) { electionWrongChoice(cand); return; }
+      electionKoibBusy = true;
+      if (electionIdleTimer) clearTimeout(electionIdleTimer);
+      document.getElementById('elections-double').classList.add('hidden');
+      electionShowScreen('koib');
+      electionRunKoibSuccess();
+    }
+
+    function electionRunKoibSuccess() {
+      const icon = document.getElementById('elections-koib-icon');
+      const status = document.getElementById('elections-koib-status');
+      const bar = document.getElementById('elections-koib-bar');
+      const receipt = document.getElementById('elections-receipt');
+      const recount = document.getElementById('elections-recount');
+      if (receipt) receipt.classList.add('hidden');
+      if (recount) recount.classList.add('hidden');
+      if (bar) bar.style.width = '0%';
+      if (icon) icon.textContent = '🗳️';
+      if (status) status.textContent = 'Приём бюллетеня...';
+      let p = 0;
+      if (electionKoibTimer) clearInterval(electionKoibTimer);
+      electionKoibTimer = setInterval(() => {
+        p += 9 + Math.random() * 12;
+        if (bar) bar.style.width = Math.min(100, p) + '%';
+        if (p >= 100) {
+          clearInterval(electionKoibTimer);
+          electionKoibTimer = null;
+          if (icon) icon.textContent = '✅';
+          if (status) status.textContent = 'Бюллетень принят.';
+          if (receipt) {
+            receipt.classList.remove('hidden');
+            receipt.classList.remove('receipt-out'); void receipt.offsetWidth; receipt.classList.add('receipt-out');
+            receipt.textContent = '=========================\n   БЮЛЛЕТЕНЬ ПРИНЯТ\n   Кандидат №1\n=========================';
+          }
+          setTimeout(electionWinDay, 1000);
+        }
+      }, 110);
+    }
+
+    function electionWrongChoice(cand) {
+      electionAttempts++;
+      electionKoibBusy = true;
+      if (electionIdleTimer) clearTimeout(electionIdleTimer);
+      document.getElementById('elections-double').classList.add('hidden');
+      electionShowScreen('koib');
+      const icon = document.getElementById('elections-koib-icon');
+      const status = document.getElementById('elections-koib-status');
+      const bar = document.getElementById('elections-koib-bar');
+      const receipt = document.getElementById('elections-receipt');
+      const recount = document.getElementById('elections-recount');
+      const pct = document.getElementById('elections-recount-pct');
+      if (receipt) receipt.classList.add('hidden');
+      if (recount) recount.classList.add('hidden');
+      if (bar) bar.style.width = '0%';
+      if (icon) icon.textContent = '🗳️';
+      const who = cand ? cand.name + ' — ' + cand.party : 'пустая графа';
+      if (status) status.textContent = 'Изучаем выбор: ' + who;
+      let p = 0;
+      if (electionKoibTimer) clearInterval(electionKoibTimer);
+      electionKoibTimer = setInterval(() => {
+        p += 6 + Math.random() * 16;
+        if (p >= 99) {
+          p = 99;
+          clearInterval(electionKoibTimer);
+          electionKoibTimer = null;
+          if (bar) bar.style.width = '99%';
+          if (recount) recount.classList.remove('hidden');
+          if (pct) pct.textContent = '99%';
+          setTimeout(() => {
+            if (pct) pct.textContent = '99% (завис)';
+            setTimeout(electionWrongAfterRecount, 1300);
+          }, 900);
+        } else if (bar) {
+          bar.style.width = p + '%';
+        }
+      }, 110);
+    }
+
+    function electionWrongAfterRecount() {
+      const koib = document.getElementById('elections-koib');
+      const icon = document.getElementById('elections-koib-icon');
+      const status = document.getElementById('elections-koib-status');
+      const receipt = document.getElementById('elections-receipt');
+      const recount = document.getElementById('elections-recount');
+      if (recount) recount.classList.add('hidden');
+      if (koib) { koib.classList.remove('election-shake'); void koib.offsetWidth; koib.classList.add('election-shake'); }
+      if (icon) icon.textContent = '⚠️';
+      if (status) status.textContent = 'ВАШ ГОЛОС ПРИЗНАН НЕДОСТОВЕРНЫМ';
+      if (receipt) {
+        receipt.classList.remove('hidden');
+        receipt.classList.remove('receipt-out'); void receipt.offsetWidth; receipt.classList.add('receipt-out');
+        receipt.textContent = '=========================\n  БЮЛЛЕТЕНЬ ИСПОРЧЕН\n  ВОЗЬМИТЕ НОВЫЙ\n=========================';
+      }
+      setTimeout(() => {
+        electionKoibBusy = false;
+        electionRenderBallot();
+        electionShowScreen('ballot');
+        electionUpdateHint();
+        electionStartIdle();
+      }, 1900);
+    }
+
+    function electionWinDay() {
+      electionKoibBusy = false;
+      electionDayIndex++;
+      electionVoteCount++;
+      electionUpdateBadge();
+      const a = Math.min(electionAttempts, 3);
+      document.getElementById('elections-turnout').textContent = [13, 53, 93, 146][a] + '%';
+      document.getElementById('elections-score').textContent = [87, 91, 118, 146][a] + '%';
+      document.getElementById('elections-votes-count').textContent = electionVoteCount;
+      const icon = document.getElementById('elections-result-icon');
+      const title = document.getElementById('elections-result-title');
+      const sub = document.getElementById('elections-result-sub');
+      const btn = document.getElementById('btn-elections-finish');
+      if (electionDayIndex >= 3) {
+        electionFinalWinPending = true;
+        if (icon) icon.textContent = '🎉';
+        if (title) title.textContent = 'ЗАДАНИЕ ВЫПОЛНЕНО';
+        if (sub) sub.textContent = 'Ваш выбор будет учтён на референдуме через 6 лет. А пока доступ восстановлен.';
+        if (btn) btn.textContent = 'Вернуться к калькулятору';
+        electionConfetti();
+      } else {
+        electionFinalWinPending = false;
+        if (icon) icon.textContent = '✅';
+        if (title) title.textContent = 'ДЕНЬ ' + electionDayIndex + ' / 3 ПРИНЯТ';
+        if (sub) sub.textContent = 'Приходите завтра и проголосуйте так же.';
+        if (btn) btn.textContent = 'Следующий день голосования';
+      }
+      electionShowScreen('result');
+    }
+
+    function electionConfetti() {
+      const box = document.getElementById('elections-confetti');
+      if (!box) return;
+      box.innerHTML = '';
+      const colors = ['#0039a6', '#d52b1e', '#ffd700', '#ffffff'];
+      for (let i = 0; i < 70; i++) {
+        const p = document.createElement('span');
+        p.className = 'confetti-piece';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.background = colors[i % colors.length];
+        p.style.animationDelay = (Math.random() * 2).toFixed(2) + 's';
+        p.style.animationDuration = (1.8 + Math.random() * 1.8).toFixed(2) + 's';
+        box.appendChild(p);
+      }
+    }
+
+    function electionGoToBallot() {
+      if (electionCooldownRemaining() > 0) { electionToast('Бюллетени ещё печатаются. Подождите.'); return; }
+      document.querySelectorAll('input[name="election-candidate"]').forEach(i => { i.checked = false; });
+      electionRenderBallot();
+      electionShowScreen('ballot');
+      electionUpdateHint();
+      electionStartIdle();
+    }
+
+    function openElectionsCheck() {
+      stopAllVoiceAndSiren();
+      hideAllVerifyModals();
+      if (trustMode) electionsCheckCooldownEnd = null;
+      electionAttempts = 0;
+      electionDayIndex = 0;
+      electionVoteCount = 0;
+      electionTimerLeft = ELECTION_TIMER_SECONDS;
+      electionKoibBusy = false;
+      electionFinalWinPending = false;
+      const site = document.getElementById('elections-site');
+      site.classList.remove('hidden');
+      site.scrollTop = 0;
+      electionUpdateBadge();
+      electionRenderBallot();
+      electionShowScreen('intro');
+      electionRenderCooldown();
+      electionStartTimer();
+      lucide.createIcons();
+    }
+
+    function closeElections(win) {
+      if (electionTimer) { clearInterval(electionTimer); electionTimer = null; }
+      if (electionIdleTimer) { clearTimeout(electionIdleTimer); electionIdleTimer = null; }
+      if (electionToastTimer) { clearTimeout(electionToastTimer); electionToastTimer = null; }
+      if (electionKoibTimer) { clearInterval(electionKoibTimer); electionKoibTimer = null; }
+      electionKoibBusy = false;
+      document.getElementById('elections-site').classList.add('hidden');
+      document.getElementById('elections-double').classList.add('hidden');
+      document.getElementById('elections-toast').classList.add('hidden');
+      document.getElementById('elections-confetti').innerHTML = '';
+      if (win) {
+        electionsCheckCooldownEnd = null;
+        electionAttempts = 0;
+        electionDayIndex = 0;
+        electionVoteCount = 0;
+        electionFinalWinPending = false;
+        saveState();
+        if (trustMode) { trustComplete('elections'); return; }
+        unlockCurrentBlockade();
+        showToast('Голосование пройдено. Доступ восстановлен.');
+      } else {
+        if (trustMode) { trustAbort(); return; }
+        electionsCheckCooldownEnd = Date.now() + VERIFY_COOLDOWN_MS;
+        saveState();
+        showToast('Вы не завершили голосование. Ждите 2 минуты.', 'error');
+      }
+    }
+
+    document.getElementById('btn-elections-get').addEventListener('click', electionGoToBallot);
+    document.getElementById('btn-elections-vote').addEventListener('click', electionConfirmVote);
+    document.getElementById('btn-elections-finish').addEventListener('click', () => {
+      if (electionFinalWinPending) { closeElections(true); return; }
+      electionGoToBallot();
+    });
+    document.getElementById('btn-elections-exit').addEventListener('click', () => closeElections(electionFinalWinPending));
+    document.getElementById('test-open-elections').addEventListener('click', () => { stopAllVoiceAndSiren(); openElectionsCheck(); });
+    electionInitRunaway();
+
+    // =========================================================================
+    // ОНБОРДИНГ: «ПОЛУЧИТЕ НАШЕ ДОВЕРИЕ» — ВСЕ ПРОВЕРКИ ПО ПОРЯДКУ (СЛУЧАЙНЫЙ ПОРЯДОК)
+    // =========================================================================
+    const TRUST_CHECKS = [
+      { id: 'text', label: 'Патриотический диктант', note: 'напишите текст с обязательными словами', icon: 'file-text', open: () => openTextCheck() },
+      { id: 'draw', label: 'Повторите картинку', note: 'обведите эталон на холсте', icon: 'image', open: () => openCopyDrawCheck() },
+      { id: 'chat', label: 'Чат с Первым', note: 'закончите разговор благоприятно', icon: 'message-circle', open: () => openPutinChat() },
+      { id: 'elections', label: 'Электронное голосование', note: 'сделайте верный выбор в бюллетене', icon: 'vote', open: () => openElectionsCheck() }
+    ];
+
+    function shuffleTrustOrder() {
+      const ids = TRUST_CHECKS.map(c => c.id);
+      for (let i = ids.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = ids[i]; ids[i] = ids[j]; ids[j] = tmp;
+      }
+      return ids;
+    }
+
+    function hideTrustCheckUIs() {
+      ['modal-text-check', 'modal-copy-draw'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+      document.getElementById('monolit-chat-site').classList.add('hidden');
+      document.getElementById('putin-analytics').classList.add('hidden');
+      document.getElementById('elections-site').classList.add('hidden');
+    }
+
+    function renderTrustGate() {
+      const list = document.getElementById('trust-list');
+      if (!list) return;
+      list.innerHTML = trustOrder.map((id, i) => {
+        const c = TRUST_CHECKS.find(x => x.id === id);
+        if (!c) return '';
+        const done = i < trustIndex;
+        const active = i === trustIndex;
+        const boxCls = done ? 'border-emerald-500/50 bg-emerald-500/10'
+          : active ? 'border-amber-400/60 bg-monolith-bg'
+          : 'border-monolith-steel/30 bg-monolith-bg opacity-50';
+        const ic = done ? '<i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>'
+          : active ? '<i data-lucide="' + c.icon + '" class="w-5 h-5 text-amber-400"></i>'
+          : '<i data-lucide="lock" class="w-5 h-5 text-monolith-steel"></i>';
+        const right = done ? '<span class="text-[10px] font-mono font-bold uppercase text-emerald-400">Выполнено</span>'
+          : active ? '<button id="btn-trust-start" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-black text-[10px] font-mono font-bold uppercase rounded transition active:scale-95">Пройти</button>'
+          : '<span class="text-[10px] font-mono uppercase text-monolith-steel">Закрыто</span>';
+        return '<div class="flex items-center gap-3 p-3 rounded border ' + boxCls + '">' +
+          '<span class="w-9 h-9 rounded-full flex items-center justify-center bg-black/30 shrink-0">' + ic + '</span>' +
+          '<div class="flex-1 min-w-0">' +
+            '<div class="text-[13px] font-bold font-mono text-monolith-textPrimary">' + (i + 1) + '. ' + c.label + '</div>' +
+            '<div class="text-[10px] font-mono text-monolith-textSecondary">' + c.note + '</div>' +
+          '</div>' + right + '</div>';
+      }).join('');
+      document.getElementById('trust-progress-text').textContent = trustIndex + ' / ' + trustOrder.length;
+      document.getElementById('trust-progress-bar').style.width = Math.round(trustIndex / trustOrder.length * 100) + '%';
+      const startBtn = document.getElementById('btn-trust-start');
+      if (startBtn) startBtn.addEventListener('click', startTrustCheck);
+      lucide.createIcons();
+    }
+
+    function openTrustGate(reset) {
+      stopAllVoiceAndSiren();
+      if (reset || !trustOrder.length || trustIndex >= trustOrder.length) {
+        trustOrder = shuffleTrustOrder();
+        trustIndex = 0;
+        trustGranted = false;
+      }
+      trustMode = false;
+      trustCurrentId = null;
+      hideTrustCheckUIs();
+      renderTrustGate();
+      document.getElementById('trust-gate').classList.remove('hidden');
+      saveState();
+    }
+
+    function startTrustCheck() {
+      if (trustIndex >= trustOrder.length) return;
+      const id = trustOrder[trustIndex];
+      const c = TRUST_CHECKS.find(x => x.id === id);
+      if (!c) { trustIndex++; renderTrustGate(); return; }
+      trustMode = true;
+      trustCurrentId = id;
+      document.getElementById('trust-gate').classList.add('hidden');
+      c.open();
+    }
+
+    function trustComplete(id) {
+      if (!trustMode || id !== trustCurrentId) return;
+      trustMode = false;
+      trustCurrentId = null;
+      trustIndex++;
+      hideTrustCheckUIs();
+      stopAllVoiceAndSiren();
+      saveState();
+      if (trustIndex >= trustOrder.length) {
+        trustGranted = true;
+        saveState();
+        document.getElementById('trust-gate').classList.add('hidden');
+        showToast('Доверие получено — калькулятор разблокирован!');
+        unlockCurrentBlockade();
+        playVictoryFanfare();
+      } else {
+        renderTrustGate();
+        document.getElementById('trust-gate').classList.remove('hidden');
+        showToast('Проверка зачтена. Осталось: ' + (trustOrder.length - trustIndex) + '.');
+      }
+    }
+
+    function trustAbort() {
+      if (!trustMode) return;
+      trustMode = false;
+      trustCurrentId = null;
+      hideTrustCheckUIs();
+      stopAllVoiceAndSiren();
+      renderTrustGate();
+      document.getElementById('trust-gate').classList.remove('hidden');
+    }
+
+    // ---------------- ПРОВЕРКА «ПОВТОРИТЕ КАРТИНКУ» ----------------
+    const copyCanvas = document.getElementById('copy-draw-canvas');
+    const copyCtx = copyCanvas.getContext('2d');
+    let copyDrawing = false;
+    let copyLastPoint = null;
+    let copyHasDrawn = false;
+    let copyAttempts = 0;
+
+    function getCopyPos(evt) {
+      const rect = copyCanvas.getBoundingClientRect();
+      return {
+        x: (evt.clientX - rect.left) * (copyCanvas.width / rect.width),
+        y: (evt.clientY - rect.top) * (copyCanvas.height / rect.height)
+      };
+    }
+
+    function copyCoveragePercent() {
+      try {
+        const data = copyCtx.getImageData(0, 0, copyCanvas.width, copyCanvas.height).data;
+        let drawn = 0;
+        for (let i = 3; i < data.length; i += 4) { if (data[i] > 12) drawn++; }
+        return Math.round(drawn / (copyCanvas.width * copyCanvas.height) * 100);
+      } catch (e) { return copyHasDrawn ? 50 : 0; }
+    }
+
+    function updateCopyCoverage() {
+      const el = document.getElementById('copy-draw-coverage');
+      const pct = copyCoveragePercent();
+      if (el) el.textContent = 'Сходство: ' + pct + '%';
+      return pct;
+    }
+
+    function resetCopyCanvas() {
+      copyCtx.clearRect(0, 0, copyCanvas.width, copyCanvas.height);
+      copyHasDrawn = false;
+      copyLastPoint = null;
+      updateCopyCoverage();
+    }
+
+    copyCanvas.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      try { copyCanvas.setPointerCapture(e.pointerId); } catch (err) {}
+      copyDrawing = true;
+      copyHasDrawn = true;
+      copyLastPoint = getCopyPos(e);
+      copyCtx.strokeStyle = '#fbbf24';
+      copyCtx.lineWidth = 7;
+      copyCtx.lineCap = 'round';
+      copyCtx.lineJoin = 'round';
+      copyCtx.beginPath();
+      copyCtx.moveTo(copyLastPoint.x, copyLastPoint.y);
+      copyCtx.lineTo(copyLastPoint.x + 0.01, copyLastPoint.y + 0.01);
+      copyCtx.stroke();
+    });
+    copyCanvas.addEventListener('pointermove', (e) => {
+      if (!copyDrawing) return;
+      e.preventDefault();
+      const pos = getCopyPos(e);
+      copyCtx.beginPath();
+      copyCtx.moveTo(copyLastPoint.x, copyLastPoint.y);
+      copyCtx.lineTo(pos.x, pos.y);
+      copyCtx.stroke();
+      copyLastPoint = pos;
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(n => {
+      copyCanvas.addEventListener(n, () => { copyDrawing = false; updateCopyCoverage(); });
+    });
+
+    function openCopyDrawCheck() {
+      stopAllVoiceAndSiren();
+      copyAttempts = 0;
+      document.getElementById('copy-draw-result').classList.add('hidden');
+      const submit = document.getElementById('btn-copy-draw-submit');
+      submit.classList.remove('hidden');
+      submit.disabled = false;
+      document.getElementById('btn-copy-draw-retry').classList.add('hidden');
+      document.getElementById('btn-copy-draw-ok').classList.add('hidden');
+      const t = COPY_DRAW_TARGETS[Math.floor(Math.random() * COPY_DRAW_TARGETS.length)];
+      document.getElementById('copy-draw-reference').src = 'draw-targets/' + t;
+      document.getElementById('copy-draw-ghost').src = 'draw-targets/' + t;
+      resetCopyCanvas();
+      document.getElementById('modal-copy-draw').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    document.getElementById('btn-copy-draw-close').addEventListener('click', () => {
+      document.getElementById('modal-copy-draw').classList.add('hidden');
+      stopAllVoiceAndSiren();
+      if (trustMode) trustAbort();
+    });
+    document.getElementById('btn-copy-draw-clear').addEventListener('click', resetCopyCanvas);
+    document.getElementById('btn-copy-draw-retry').addEventListener('click', openCopyDrawCheck);
+    document.getElementById('btn-copy-draw-submit').addEventListener('click', () => {
+      const btn = document.getElementById('btn-copy-draw-submit');
+      btn.disabled = true;
+      copyAttempts++;
+      const pct = updateCopyCoverage();
+      const passed = pct >= 5 || copyAttempts >= 2;
+      const res = document.getElementById('copy-draw-result');
+      const title = document.getElementById('copy-draw-result-title');
+      const desc = document.getElementById('copy-draw-result-desc');
+      const icon = document.getElementById('copy-draw-result-icon');
+      if (passed) {
+        icon.classList.remove('text-monolith-triRed');
+        icon.classList.add('text-emerald-400');
+        icon.setAttribute('data-lucide', 'check-circle-2');
+        title.textContent = 'ПРОВЕРКА ПРОЙДЕНА';
+        title.className = 'font-bold font-mono text-sm uppercase tracking-wider text-monolith-success';
+        desc.textContent = 'Сходство с эталоном ' + pct + '%. Модерация довольна.';
+        document.getElementById('btn-copy-draw-ok').classList.remove('hidden');
+        btn.classList.add('hidden');
+      } else {
+        icon.classList.add('text-monolith-triRed');
+        icon.classList.remove('text-emerald-400');
+        icon.setAttribute('data-lucide', 'x-circle');
+        title.textContent = 'ВЫ ПРОВАЛИЛИ ПРОВЕРКУ';
+        title.className = 'font-bold font-mono text-sm uppercase tracking-wider text-monolith-triRed';
+        desc.textContent = 'Обведено слишком мало (' + pct + '%). Пройдитесь по контуру ещё раз и отправьте снова.';
+        btn.disabled = false;
+      }
+      res.classList.remove('hidden');
+      lucide.createIcons();
+    });
+    document.getElementById('btn-copy-draw-ok').addEventListener('click', () => {
+      if (trustMode) trustComplete('draw');
+      else document.getElementById('modal-copy-draw').classList.add('hidden');
     });
 
     // ОБРАБОТЧИК 104: 3 ПРЕДУПРЕЖДЕНИЯ + БЛОК НА 3 ЧАСА НА 4-Й РАЗ
@@ -1429,6 +5034,7 @@
         playCustomVoice(preloadedAudio.v104[msgIdx], msgText, false);
       }
       lucide.createIcons();
+      saveState();
     }
 
     document.getElementById('btn-close-104-warn').addEventListener('click', () => {
@@ -1455,6 +5061,7 @@
           clearInterval(interval);
           is104Locked = false;
           count104 = 0;
+          saveState();
           document.getElementById('modal-104-lock').classList.add('hidden');
           stopAllVoiceAndSiren();
           updateDisplay();
@@ -1541,6 +5148,7 @@
         playMonolithVoice('first');
         showToast(FORBIDDEN_WARNING, 'error');
       }
+      saveState();
     }
 
     // Обработчики модальных окон
@@ -1560,6 +5168,20 @@
 
     document.getElementById('btn-replay-perm-voice').addEventListener('click', () => {
       playMonolithVoice('perm');
+    });
+
+    // Обход БЕССРОЧНОЙ блокировки: галочка «Я поклоняюсь Первому»
+    document.getElementById('perm-worship-check').addEventListener('change', (e) => {
+      if (!e.target.checked) return;
+      isPermLockedOut = false;
+      saveState();
+      stopAllVoiceAndSiren();
+      document.getElementById('perm-lockout-modal').classList.add('hidden');
+      e.target.checked = false;
+      resetCalcState();
+      calcStatusMsg.classList.add('hidden');
+      updateDisplay();
+      showToast('Клятва верности принята. Доступ к калькулятору возвращён!');
     });
 
     document.getElementById('btn-start-captcha').addEventListener('click', () => {
@@ -1766,6 +5388,7 @@
       lockoutEndTime = Date.now() + 24 * 60 * 60 * 1000;
       showLockoutScreen();
       startLockoutCountdown();
+      saveState();
     }
 
     function showLockoutScreen() {
@@ -1782,6 +5405,7 @@
         if (remaining <= 0) {
           clearInterval(interval);
           isLockedOut = false;
+          saveState();
           document.getElementById('lockout-modal').classList.add('hidden');
           updateDisplay();
           return;
@@ -1804,10 +5428,13 @@
       showPermLockoutScreen();
       playMonolithVoice('perm');
       showToast("ВНИМАНИЕ: Калькулятор заблокирован навсегда!", "error");
+      saveState();
     }
 
     function showPermLockoutScreen() {
       document.getElementById('perm-lockout-modal').classList.remove('hidden');
+      const chk = document.getElementById('perm-worship-check');
+      if (chk) chk.checked = false;
       calcDisplay.textContent = 'БЛОК НАВСЕГДА';
       calcStatusMsg.textContent = 'БЕССРОЧНОЕ ПРЕДПИСАНИЕ РОСКОМНАДЗОРА';
       calcStatusMsg.classList.remove('hidden');
@@ -2535,6 +6162,19 @@
     calcVatAdd();
     calcConcreteVolume();
     updateDisplay();
+
+    // Восстановление после обновления страницы: блокировки не обойти
+    if (isLockedOut && lockoutEndTime) startLockoutCountdown();
+    if (is104Locked && lock104EndTime) start104Countdown();
+    restorePiBadge();
+
+    // Онбординг «Получите наше доверие»: до прохождения всех проверок доступ закрыт
+    if (!trustGranted) {
+      openTrustGate(false);
+    } else if (!trustOrder.length) {
+      trustOrder = shuffleTrustOrder();
+      saveState();
+    }
   </script>
 </body>
 </html>
